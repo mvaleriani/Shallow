@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="shortcut icon" sizes="24x24" href="./media/images/favicon.png" />
+        <link rel="shortcut icon" sizes="24x24" href="./media/images/favicon.ico" />
         <!-- Description -->
          <title>Shallow</title>
          <meta name="description" content="Revolutionary template made it by the top experts in the industry, specialized on getting high conversions" />
@@ -18,6 +18,7 @@
          <meta property="og:image:height" content="630" />
     </head>
     <body>
+        <main id="root"></main>
         <!-- charger (should be at top of all) -->
             <div class="charger cover-fixed bg9 cu-tweenmax"
                 style="z-index:999; position:fixed; left:0; top:0; right:0; bottom:0; background:#2A394A"
@@ -38,18 +39,15 @@
                             <a class="button1 menu-btn1 f-semi-bold" href="index.html"><div>Home<div class="line"></div></div></a>
                         </li>
                         <li>
-                            <a class="button1 menu-btn1 f-semi-bold" href="about.html"><div>About<div class="line"></div></div></a>
+                            <a class="button1 menu-btn1 f-semi-bold" href="about.html"><div>Our Team<div class="line"></div></div></a>
                         </li>
                         <li>
-                            <a class="button1 menu-btn1 f-semi-bold" href="contact.html"><div>Contact<div class="line"></div></div></a>
+                            <a class="button1 menu-btn1 f-semi-bold" href="https://github.com/ttillotson/Shallow"><div>Github<div class="line"></div></div></a>
                         </li>
                         <li>
-                            <a class="button1 menu-btn1 f-semi-bold" href="./index.html" ><div>Demos<div class="line"></div></div></a>
-                        </li>
-                        <li>
-                            <a class="button1 type6 f-semi-bold" href="https://themeforest.net/item/byond-responsive-multipurpose-theme/21075943?s_rank=1" >
+                            <a id="to-ai-button" class="button1 type6 f-semi-bold" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" >
                                 <div class="bg bg6 ease-cubicInOut transition-4ms"></div>
-                                <div>Buy now</div>
+                                <div id="to-ai">Try now</div>
                             </a>
                         </li>
                     </ul>
@@ -90,17 +88,24 @@
             <div class="bg12 contents p-b-5">
                 <!-- banner -->
                     <section class="header-2 h-80vh color7" style="z-index:2">
-                        <div class="cover bg-cover parallax-bg" style="background-image:url(./media/images/p2-image0.jpg)" ></div>
+                        <!-- Banner Background -->
+                        <div class="cover bg-cover parallax-bg"  >
+                            <canvas id=c></canvas>
+                        </div>
+                        <!-- Banner Foreground -->
                         <div class="cover" style="background:rgba(22,23,30,0.2)"></div>
                         <!-- content -->
                             <div class="content flex flex-cover flex-row">
                                 <div class="column1 flex-grow m-r-50">
+
+                                    <!-- Banner Phone -->
                                     <img class="a-r-b m-b-200- cu-tweenmax" src="./media/images/p2-image1.png" alt=""
                                         data-a-init="y:300, alpha:0"
                                         data-a-to="y:0, alpha:1, ease:Expo.easeOut, duration:1"
                                     />
                                 </div>
                                 <div class="column2 flex flex-grow flex-justify-start flex-align-center m-l-50">
+                                    <!-- Banner Content -->
                                     <div class="contents m-t-100">
                                         <div>
                                             <div class="line1 bg1 m-l-5 cu-tweenmax"
@@ -113,8 +118,11 @@
                                             data-a-init="x:-50, alpha:0"
                                             data-a-to="x:0, alpha:1, duration:0.9, delay:0.7, ease:Cubic.easeOut" 
                                         >
+                                            <!-- Banner H1 -->
                                             <h1 class="t-60 f-extra-light m-t-25 l-h-110">The Theme that your App Deserve</h1>
+                                            <!-- Banner Subtitle -->
                                             <p class="t-16 m-t-30">Navigate through it and check it out</p>
+                                            <!-- Banner Buttons -->
                                             <div>
                                                 <p class="f-bold m-t-40 m-b-10">Download the app</p>
                                                 <a class="button-style3 bg6 m-r-20">
@@ -133,7 +141,7 @@
                         <!-- -->
                     </section>
                 <!-- -->
-                <!-- content -->
+                <!-- Section 1 -->
                     <section class="content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor" >
                         <div class="column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175" >
                             <!-- texts -->
@@ -144,17 +152,19 @@
                                             data-a-to="x:300, alpha:0.5, scaleX:50, ease:Expo.easeIn, duration:0.6"
                                             data-a-to-2="x:0, alpha:1, scaleX:1, ease:Expo.easeOut, duration:1"
                                         ></div>
+                                        <!-- Section 1 Title -->
                                         <h2 class="color2 f-medium cu-tweenmax"
                                             data-a-init="alpha:0"
                                             data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut" 
-                                        >What is Byond</h2>
+                                        >What is Shallow?</h2>
                                     </div>
                                     <div class="cu-tweenmax"
                                         data-a-init="x:-50, alpha:0"
                                         data-a-to="x:0, alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut" 
                                     >
-                                        <h3 class="t-60 f-extra-light l-h-normal m-t-25">Quality instead of quantity</h3>
-                                        <p class="t-18 m-t-30 l-h-170">Byond theme is a beautiful and perfect theme that your business really needs</p>
+                                        <!-- Section 1 Supertext-->
+                                        <h3 class="t-60 f-extra-light l-h-normal m-t-25">Fighting AI with AI</h3>
+                                        <p class="t-18 m-t-30 l-h-170">Shallow is a deep learning architecture designed to detect Deepfake video alterations.</p>
                                     </div>
                                 </div>
                             <!-- -->
@@ -184,10 +194,10 @@
                                 data-a-gap="200"
                                 >
                                 <div class="content">
-                                    <div class="icon-ball m-b-40 bg3 box-shadow1">
-                                        <img src="./media/images/icon1.svg" alt="" />
+                                    <div id="keras-icon" class="icon-ball m-b-40 ">
+                                        <img id="keras-img" src="./media/images/kerasIcon.jpg" alt="" />
                                     </div>
-                                    <h2 class="t-18 f-bold">Beautiful Design</h2>
+                                    <h2 class="t-18 f-bold">Keras</h2>
                                     <p class="m-t-20" >Byond theme is a beautiful and perfect theme that your business really needs</p>
                                 </div>
                             </div>
@@ -199,10 +209,10 @@
                                 data-a-gap="200"
                                 >
                                 <div class="content">
-                                    <div class="icon-ball m-b-40 bg3 box-shadow1">
-                                        <img src="./media/images/icon2.svg" alt="" />
+                                    <div id="tensorflow-icon" class="icon-ball m-b-40 ">
+                                        <img id="tensorflow-img" src="./media/images/tensorflowIcon.png" alt="" />
                                     </div>
-                                    <h2 class="t-18 f-bold">Easy set theme</h2>
+                                    <h2 class="t-18 f-bold">Tensorflow</h2>
                                     <p style="margin-top:20px">Byond theme is a beautiful and perfect theme that your business really needs vitia malo quam malitias nominare</p>
                                 </div>
                             </div>
@@ -214,10 +224,10 @@
                                 data-a-gap="200"
                                 >
                                 <div class="content">
-                                    <div class="icon-ball m-b-40 bg3 box-shadow1">
-                                        <img src="./media/images/icon3.svg" alt="" />
+                                    <div id="react-icon" class="icon-ball m-b-40 ">
+                                        <img id="react-img" src="./media/images/reactIcon.png" alt="" />
                                     </div>
-                                    <h2 class="t-18 f-bold ">Clever UX</h2>
+                                    <h2 class="t-18 f-bold ">React</h2>
                                     <p style="margin-top:20px">Byond theme is a beautiful and perfect theme that your business really needs</p>
                                 </div>
                             </div>
@@ -628,8 +638,8 @@
             </div>
         <!-- -->
         <!-- resources css -->
-            <link href="./css/requires.min.css" rel="stylesheet" type="text/css" />
-            <link href="./css/styles.min.css" rel="stylesheet" type="text/css" />
+            <link href="./css/requires.css" rel="stylesheet" type="text/css" />
+            <link href="./css/styles.css" rel="stylesheet" type="text/css" />
         <!-- -->
         <!-- -resources js -->
             <script src="./js/requires.min.js"></script>

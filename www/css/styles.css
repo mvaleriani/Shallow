@@ -50,33 +50,33 @@ p{ padding:0; }
 .video-bg{ position: absolute; top: 0; left: 0;width: 100%; height: auto; }
 
 /* 3. colors */
-.color1{ color:#2D39B4 !important; } .color1 *{ fill: #2D39B4 !important; }
-.color2{ color:#0088FF !important; } .color2 *{ fill: #0088FF !important; }
+.color1{ color:#059B9A !important; } .color1 *{ fill: #059B9A !important; }
+.color2{ color:#059B9A !important; } .color2 *{ fill: #059B9A !important; }
 .color3{ color:#00B353 !important; } .color3 *{ fill: #00B353 !important; }
 .color4{ color:#7200F4 !important; } .color4 *{ fill: #7200F4 !important; }
-.color5{ color:#5267FF !important; } .color5 *{ fill: #5267FF !important; }
+.color5{ color:#059B9A !important; } .color5 *{ fill: #059B9A !important; }
 .color6{ color:#211A29 !important; } .color6 *{ fill: #211A29 !important; }
 .color7{ color:#FFF !important; } .color7 *{ fill: #FFF !important; }
 .color8{ color:#878787 !important; } .color8 *{ fill: #878787 !important; }
-.color9{ color:#4A57FF !important; } .color8 *{ fill: #4A57FF !important; }
+.color9{ color:#059B9A !important; } .color8 *{ fill: #059B9A !important; }
 .color10{ color:#28AECD !important; } .color10 *{ fill: #28AECD !important; }
 .color11{ color:#111 !important; } .color10 *{ fill: #111 !important; }
 .color12{ color:#FF334A !important; } .color12 *{ fill: #FF334A !important; }
 
 /* 4. backgrounds */
 .bg1{ background:#FFF !important; }
-.bg2{ background:#2E3AB5 !important; }
-.bg3{ background:#0083FF !important; }
+.bg2{ background:#059B9A !important; }
+.bg3{ background:#059B9A; }
 .bg4{ background:#00B353 !important; }
 .bg5{ background:#7200F4 !important; }
-.bg6{ background:#5267FF !important; }
+.bg6{ background:#059B9A !important; }
 .bg7{ background:#211A29 !important; }
 .bg8{ background:#E3E3E3 !important; }
 .bg9{ background:#2A394A !important; }
 .bg10{ background:#F6F6F6 !important; }
 .bg11{ background: #211F3A !important; }
 .bg12{ background: #EEE !important; }
-.bg13{ background:#4A57FF !important; }
+.bg13{ background:#059B9A !important; }
 .bg14{ background:#28AECD !important; }
 .bg15{ background:#112640 !important; }
 .bg16{ background:#111 !important; }
@@ -210,9 +210,37 @@ p{ padding:0; }
 	.button-style6.type5 .bg{ background:#111;}
 	.button-style6.type6 .bg{ background:#FF334A;}
 
-.icon-ball{ border-radius:100%; width:52px; height:52px; display:inline-block;  }
-    .icon-ball *{ position: absolute; top: 50%; left:0; right:0; margin:0 auto; transform: translate(0%, -50%); text-align:center; }
+.icon-ball{ border-radius:100%; width:70px; height:70px; display:inline-block; overflow: hidden; }
+    .icon-ball *{ position: absolute; top: 50%; left:0; right:0; margin:0 auto; transform: translate(-1%, -50%); text-align:center; }
     .icon-ball i{ font-size: 26px; color: #FFF; }
+
+
+#keras-icon{
+    box-shadow:0px 8px 20px #96040e;
+}
+#keras-img{
+    height: 73px;
+}
+
+#tensorflow-icon{
+    background-color: #3BC4AC;
+    box-shadow:0px 8px 20px #3BC4AC;
+}
+#tensorflow-img{
+    height: 56px;
+}
+
+#react-icon{
+    background-color: #222222;
+    box-shadow:0px 8px 20px #222222;
+}
+#react-img{
+    height: 56px;
+    left: -4px;
+}
+#to-ai{color: #059B9A;}
+#to-ai:hover{color:white;}
+#to-ai-button:hover{color:white;}
 
 .video{ cursor: pointer; }
     .video .bg-black{ transition: 1s; opacity: 0; background: #000; }
@@ -278,8 +306,8 @@ button{ font-family: 'Raleway', sans-serif;  }
             .cu-menu-fixed-top .button1.type7{ background:#FF334A; color:#FFF !important; }
 			
 		.main-menu-1 .button1.type6{ background: rgba(255,255,255,1); color: #5167FF !important; overflow: hidden; }
-            .main-menu-1 .button1.type6:hover{ color:#FFF !important; }
-            .cu-menu-fixed-top .button1.type6{ background:#5167FF; color:#FFF !important; }
+            /* .main-menu-1 .button1.type6:hover{ color:#FFF !important; } */
+            /* .cu-menu-fixed-top .button1.type6{ background:#5167FF; color:#FFF !important; } */
 			
 		.main-menu-1 .button1.type5{ background: rgba(255,255,255,1); color: #00B353 !important; overflow: hidden; }
             .main-menu-1 .button1.type5:hover{ color:#FFF !important; }
