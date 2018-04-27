@@ -24713,7 +24713,7 @@ var Navbar = function (_React$Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'main-menu-1 main-menu cu-menu' },
+          { className: 'main-menu-1 main-menu ' },
           _react2.default.createElement(
             'div',
             { id: 'menu', className: 'content max-width flex flex-justify-between flex-align-center p-x-40 ' },
@@ -25354,7 +25354,7 @@ var TopSection = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'section',
-        { className: 'header-2 h-80vh color7', style: { zIndex: 2 } },
+        { className: ' h-80vh color7', style: { zIndex: 2 } },
         _react2.default.createElement(
           'div',
           { id: 'canvas-cont', className: 'cover bg-cover parallax-bg' },
@@ -27078,51 +27078,38 @@ var AnalysisPage = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement('section', { id: 'analysis-page', className: 'header-2 h-80vh color7', style: { zIndex: 2 } }),
+                _react2.default.createElement('section', { id: 'analysis-page', className: ' h-80vh color7', style: { zIndex: 2 } }),
                 _react2.default.createElement(
                     'section',
                     { className: 'content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
+                        { id: 'tool-div', className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
                         _react2.default.createElement(
                             'section',
                             { id: 'upload-menu' },
                             _react2.default.createElement(
                                 'div',
                                 { id: 'file-catcher' },
-                                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' })
+                                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' }),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'up-span' },
+                                    'Drag and Drop a File'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'up-span' },
+                                    'or Click Here'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { id: 'upload-subtitle' },
+                                    'To Begin Video Analysis'
+                                )
                             )
                         ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'texts m-w-400 m-l-0' },
-                            _react2.default.createElement('div', null),
-                            _react2.default.createElement('div', { className: 'cu-tweenmax',
-                                'data-a-init': 'x:-50, alpha:0',
-                                'data-a-to': 'x:0, alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut'
-                            })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'column column2 flex-grow' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'image video cu-tweenmax',
-                                'data-a-init': 'y:200, alpha:0',
-                                'data-a-to': 'y:0, alpha:1, duration:0.8',
-                                'data-a-gap': '100'
-                            },
-                            _react2.default.createElement('div', { className: 'bg-stretch cover', style: { backgroundImage: 'url(../../app/assets/images/shadow.png)', marginLeft: '-160px', marginBottom: '-125px' } }),
-                            _react2.default.createElement('div', { className: 'bg-cover cover', style: { backgroundImage: 'url(../../app/assets/images/p2-image2.jpg)' } }),
-                            _react2.default.createElement('div', { className: 'cover bg-black' }),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'video-play' },
-                                _react2.default.createElement('img', { className: 'svg', src: '../../app/assets/images/video-play.svg', alt: '' })
-                            )
-                        )
+                        _react2.default.createElement('canvas', { id: 'photo-edit' })
                     )
                 )
             );

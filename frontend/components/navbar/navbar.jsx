@@ -7,7 +7,7 @@ class Navbar extends React.Component {
 
     return (
       <div>
-        <div className="main-menu-1 main-menu cu-menu" >
+        <div className="main-menu-1 main-menu " >
           <div id="menu" className="content max-width flex flex-justify-between flex-align-center p-x-40 ">
             <a className="logo main" href="index.html">
               {/* <img id="main-shallow-icon" src="../../app/assets/images/IconWShadow.png" /> */}

@@ -367,7 +367,7 @@ class TopSection extends React.Component {
 
   render() {
     return (
-      <section className="header-2 h-80vh color7" style={{zIndex:2}}>
+      <section className=" h-80vh color7" style={{zIndex:2}}>
 
         <div id="canvas-cont" className="cover bg-cover parallax-bg"  >
           <canvas id='c'></canvas>
