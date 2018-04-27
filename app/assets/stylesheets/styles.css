@@ -305,6 +305,8 @@ p{ padding:0; }
 .up-span{font-weight: 600; font-size: 17px;}
 #upload-subtitle{font-size: 12px; font-weight: 600; margin-top: 10px;}
 
+#logo-2{height:40px;}
+
 .video{ cursor: pointer; }
     .video .bg-black{ transition: 1s; opacity: 0; background: #000; }
     .video .video-play{ transition: 0.3s; position: absolute; width:71px; height: 71px; top: 50%; left:50%; transform: translate(-50%, -50%); transform-origin: 550% 550%; }

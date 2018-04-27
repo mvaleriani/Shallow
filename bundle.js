@@ -26892,7 +26892,7 @@ var FooterSection = function (_React$Component) {
                         _react2.default.createElement(
                             "div",
                             { className: "column column1 flex-box-16p" },
-                            _react2.default.createElement("img", { src: "../../app/assets/images/p1-logo2.svg", alt: "" }),
+                            _react2.default.createElement("img", { id: "logo-2", src: "../../app/assets/images/shallowLogo2.png", alt: "" }),
                             _react2.default.createElement(
                                 "div",
                                 { className: "social m-t-20" },
