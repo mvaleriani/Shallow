@@ -8,9 +8,10 @@ class Navbar extends React.Component {
     return (
       <div>
         <div className="main-menu-1 main-menu cu-menu" >
-          <div className="content max-width flex flex-justify-between flex-align-center p-x-40 ">
+          <div id="menu" className="content max-width flex flex-justify-between flex-align-center p-x-40 ">
             <a className="logo main" href="index.html">
-              <img className="a-l-c svg" src="../../app/assets/images/p1-logo1.svg" alt="logo" />
+              {/* <img id="main-shallow-icon" src="../../app/assets/images/IconWShadow.png" /> */}
+              <img id="nav-logo" className="a-l-c svg" src="../../app/assets/images/shallowLogo.png" alt="logo" />
             </a>
             <ul className="buttons v-a-m" >
               <li>

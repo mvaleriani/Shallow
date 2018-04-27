@@ -215,32 +215,29 @@ p{ padding:0; }
     .icon-ball i{ font-size: 26px; color: #FFF; }
 
 
-#keras-icon{
-    box-shadow:0px 8px 20px #96040e;
-}
-#keras-img{
-    height: 73px;
-}
+#keras-icon{box-shadow:0px 8px 20px #96040e;}
+#keras-img{height: 73px;}
 
-#tensorflow-icon{
-    background-color: #3BC4AC;
-    box-shadow:0px 8px 20px #3BC4AC;
-}
-#tensorflow-img{
-    height: 56px;
-}
+#tensorflow-icon{background-color: #3BC4AC; box-shadow:0px 8px 20px #3BC4AC;}
+#tensorflow-img{height: 56px;}
 
-#react-icon{
-    background-color: #222222;
-    box-shadow:0px 8px 20px #222222;
-}
-#react-img{
-    height: 56px;
-    left: -4px;
-}
+/* #menu{background-color: rgba(185, 221, 237, 0.413);} */
+#react-icon{background-color: #222222; box-shadow:0px 8px 20px #222222;}
+#react-img{height: 56px; left: -4px;}
+
 #to-ai{color: #059B9A;}
 #to-ai:hover{color:white;}
 #to-ai-button:hover{color:white;}
+
+#main-shallow-icon{height:80px; min-height: 80px;}
+#nav-logo{height:40px;}
+
+#grad-graph{left:20px; top:170px; height: 450px; min-width: 450px; min-height: 450px; max-width: 450px;}
+
+#canvas-cont{overflow: hidden;}
+#face-icon{height:35px; margin-left: 1px;}
+#face-button{height: 56px; width:250px; display: flex; justify-content: space-between; align-items: center;}
+#scroll-icon{height: 70px; position: absolute; left: 50%; bottom: -80px;}
 
 .video{ cursor: pointer; }
     .video .bg-black{ transition: 1s; opacity: 0; background: #000; }

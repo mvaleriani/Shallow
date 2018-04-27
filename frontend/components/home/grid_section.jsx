@@ -16,7 +16,7 @@ class GridSection extends React.Component {
                           <img id="keras-img" src="../../app/assets/images/kerasIcon.jpg" alt="" />
                       </div>
                       <h2 className="t-18 f-bold">Keras</h2>
-                      <p className="m-t-20" >Byond theme is a beautiful and perfect theme that your business really needs</p>
+                    <p className="m-t-20" >Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano.</p>
                   </div>
               </div>
 
@@ -30,7 +30,7 @@ class GridSection extends React.Component {
                           <img id="tensorflow-img" src="../../app/assets/images/tensorflowIcon.png" alt="" />
                       </div>
                       <h2 className="t-18 f-bold">Tensorflow</h2>
-                      <p style={{marginTop:'20px'}}>Byond theme is a beautiful and perfect theme that your business really needs vitia malo quam malitias nominare</p>
+                    <p style={{ marginTop: '20px' }}>Tensorflow is a computational framework for machine learning models. It provides a variety of toolkits for constructing models at your preferred level of abstraction.</p>
                   </div>
               </div>
 
@@ -44,7 +44,7 @@ class GridSection extends React.Component {
                           <img id="react-img" src="../../app/assets/images/reactIcon.png" alt="" />
                       </div>
                       <h2 className="t-18 f-bold ">React</h2>
-                      <p style={{marginTop:'20px'}}>Byond theme is a beautiful and perfect theme that your business really needs</p>
+                    <p style={{ marginTop: '20px' }}>React is a JavaScript library for building dynamic user interfaces. It efficiently updates and renders just the right components when data changes.</p>
                   </div>
               </div>
 
