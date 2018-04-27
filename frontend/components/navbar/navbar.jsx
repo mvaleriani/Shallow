@@ -24,10 +24,10 @@ class Navbar extends React.Component {
                 <a className="button1 menu-btn1 f-semi-bold" href="https://github.com/ttillotson/Shallow"><div>Github<div className="line"></div></div></a>
               </li>
               <li>
-                <a id="to-ai-button" className="button1 type6 f-semi-bold" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" >
+                <Link id="to-ai-button" className="button1 type6 f-semi-bold" to="/analysis" >
                   <div className="bg bg6 ease-cubicInOut transition-4ms"></div>
                   <div id="to-ai">Try now</div>
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="btn-menu a-r-c m-r-20 color7" onClick={byond.showMenuMobile(true, 1)} ><img alt="" className="svg" src="../../app/assets/images/icon-menu2.svg" /></div>

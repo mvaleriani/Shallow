@@ -48,9 +48,9 @@ class FooterSection extends React.Component {
                       <div>
                           <div className="color1 f-medium">Contact</div>
                           <ul className="list list-no-style t-14  m-t-40">
-                              <li>servicio@conferencias.com</li>
-                              <li>1-800-456-7823</li>
-                              <li>1900 West Hollywood, CA, 90204</li>
+                              <li>vggshallow@gmail.com</li>
+                              {/* <li>1-800-456-7823</li>
+                              <li>1900 West Hollywood, CA, 90204</li> */}
                           </ul>
                       </div>
                   </div>

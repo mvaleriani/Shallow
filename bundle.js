@@ -24635,6 +24635,10 @@ var _footer_section = __webpack_require__(89);
 
 var _footer_section2 = _interopRequireDefault(_footer_section);
 
+var _AnalysisPage = __webpack_require__(90);
+
+var _AnalysisPage2 = _interopRequireDefault(_AnalysisPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -24650,7 +24654,8 @@ var App = function App() {
       _reactRouterDom.Switch,
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/about', component: _about2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/about', component: _about2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/analysis', component: _AnalysisPage2.default })
     ),
     _react2.default.createElement(
       'footer',
@@ -24758,8 +24763,8 @@ var Navbar = function (_React$Component) {
                 'li',
                 null,
                 _react2.default.createElement(
-                  'a',
-                  { id: 'to-ai-button', className: 'button1 type6 f-semi-bold', href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+                  _reactRouterDom.Link,
+                  { id: 'to-ai-button', className: 'button1 type6 f-semi-bold', to: '/analysis' },
                   _react2.default.createElement('div', { className: 'bg bg6 ease-cubicInOut transition-4ms' }),
                   _react2.default.createElement(
                     'div',
@@ -25185,7 +25190,11 @@ var TopSection = function (_React$Component) {
       Connection.prototype.draw = function () {
         ctx.fillStyle = this.screen.color;
         ctx.beginPath();
-        ctx.arc(this.screen.x, this.screen.y, this.screen.scale * this.size, 0, Tau);
+        var radius = this.screen.scale * this.size;
+        if (radius < 0) {
+          radius = 0;
+        }
+        ctx.arc(this.screen.x, this.screen.y, radius, 0, Tau);
         ctx.fill();
       };
       function Data(connection) {
@@ -26971,17 +26980,7 @@ var FooterSection = function (_React$Component) {
                                     _react2.default.createElement(
                                         "li",
                                         null,
-                                        "servicio@conferencias.com"
-                                    ),
-                                    _react2.default.createElement(
-                                        "li",
-                                        null,
-                                        "1-800-456-7823"
-                                    ),
-                                    _react2.default.createElement(
-                                        "li",
-                                        null,
-                                        "1900 West Hollywood, CA, 90204"
+                                        "vggshallow@gmail.com"
                                     )
                                 )
                             )
@@ -27036,6 +27035,104 @@ var FooterSection = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = FooterSection;
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AnalysisPage = function (_React$Component) {
+    _inherits(AnalysisPage, _React$Component);
+
+    function AnalysisPage() {
+        _classCallCheck(this, AnalysisPage);
+
+        return _possibleConstructorReturn(this, (AnalysisPage.__proto__ || Object.getPrototypeOf(AnalysisPage)).apply(this, arguments));
+    }
+
+    _createClass(AnalysisPage, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('section', { id: 'analysis-page', className: 'header-2 h-80vh color7', style: { zIndex: 2 } }),
+                _react2.default.createElement(
+                    'section',
+                    { className: 'content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
+                        _react2.default.createElement(
+                            'section',
+                            { id: 'upload-menu' },
+                            _react2.default.createElement(
+                                'div',
+                                { id: 'file-catcher' },
+                                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'texts m-w-400 m-l-0' },
+                            _react2.default.createElement('div', null),
+                            _react2.default.createElement('div', { className: 'cu-tweenmax',
+                                'data-a-init': 'x:-50, alpha:0',
+                                'data-a-to': 'x:0, alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut'
+                            })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'column column2 flex-grow' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'image video cu-tweenmax',
+                                'data-a-init': 'y:200, alpha:0',
+                                'data-a-to': 'y:0, alpha:1, duration:0.8',
+                                'data-a-gap': '100'
+                            },
+                            _react2.default.createElement('div', { className: 'bg-stretch cover', style: { backgroundImage: 'url(../../app/assets/images/shadow.png)', marginLeft: '-160px', marginBottom: '-125px' } }),
+                            _react2.default.createElement('div', { className: 'bg-cover cover', style: { backgroundImage: 'url(../../app/assets/images/p2-image2.jpg)' } }),
+                            _react2.default.createElement('div', { className: 'cover bg-black' }),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'video-play' },
+                                _react2.default.createElement('img', { className: 'svg', src: '../../app/assets/images/video-play.svg', alt: '' })
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AnalysisPage;
+}(_react2.default.Component);
+
+exports.default = AnalysisPage;
 
 /***/ })
 /******/ ]);

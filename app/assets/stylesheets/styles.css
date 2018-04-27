@@ -239,6 +239,42 @@ p{ padding:0; }
 #face-button{height: 56px; width:250px; display: flex; justify-content: space-between; align-items: center;}
 #scroll-icon{height: 70px; position: absolute; left: 50%; bottom: -80px;}
 
+#analysis-page{
+    background-color: #121214;
+    width:100vw;
+    height: 112px;    
+}
+#analysis-tool{
+    z-index: 4;
+    background-color: violet;
+}
+#upload-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 7px;
+    width: 300px;
+    height: 400px;
+    background-color: #009B99;
+    /* left:50px; */
+    top:-100px;
+    box-shadow: -15px 35px 22px rgba(0,0,0,0.05);
+    
+}
+#file-catcher{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 270px;
+    height: 250px;
+    border-radius: 5px;
+    margin-top: 15px;
+    border: 3px dashed #B9DDED; 
+    background-color: rgb(242, 241, 241);
+}
+#cloud{width:100px; margin-top: 20px;}
+
 .video{ cursor: pointer; }
     .video .bg-black{ transition: 1s; opacity: 0; background: #000; }
     .video .video-play{ transition: 0.3s; position: absolute; width:71px; height: 71px; top: 50%; left:50%; transform: translate(-50%, -50%); transform-origin: 550% 550%; }

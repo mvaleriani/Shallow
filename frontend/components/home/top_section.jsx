@@ -204,7 +204,11 @@ class TopSection extends React.Component {
     Connection.prototype.draw = function () {
       ctx.fillStyle = this.screen.color;
       ctx.beginPath();
-      ctx.arc(this.screen.x, this.screen.y, this.screen.scale * this.size, 0, Tau);
+      let radius = this.screen.scale * this.size
+      if(radius < 0){
+        radius = 0;
+      }
+      ctx.arc(this.screen.x, this.screen.y, radius, 0, Tau);
       ctx.fill();
     }
     function Data(connection) {
