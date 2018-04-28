@@ -27055,6 +27055,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(7);
 
+var _image_cropper = __webpack_require__(91);
+
+var _image_cropper2 = _interopRequireDefault(_image_cropper);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27111,7 +27115,8 @@ var AnalysisPage = function (_React$Component) {
                         ),
                         _react2.default.createElement('canvas', { id: 'photo-edit' })
                     )
-                )
+                ),
+                _react2.default.createElement(_image_cropper2.default, null)
             );
         }
     }]);
@@ -27120,6 +27125,139 @@ var AnalysisPage = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = AnalysisPage;
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ImageCropper = function (_React$Component) {
+  _inherits(ImageCropper, _React$Component);
+
+  function ImageCropper(props) {
+    _classCallCheck(this, ImageCropper);
+
+    var _this = _possibleConstructorReturn(this, (ImageCropper.__proto__ || Object.getPrototypeOf(ImageCropper)).call(this, props));
+
+    _this.imgElement = null;
+    _this.inputElement = null;
+    _this.mat = null;
+    _this.createSrc = _this.createSrc.bind(_this);
+    _this.crop = _this.crop.bind(_this);
+    return _this;
+  }
+
+  _createClass(ImageCropper, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.imgElement = document.getElementById('imageSrc');
+      this.inputElement = document.getElementById('fileInput');
+      window.onload = this.onOpenCvReady;
+      this.inputElement.addEventListener('change', this.createSrc);
+      this.imgElement.onload = this.renderImg;
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.mat.delete();
+    }
+  }, {
+    key: 'onOpenCvReady',
+    value: function onOpenCvReady() {
+      document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+    }
+  }, {
+    key: 'createSrc',
+    value: function createSrc(e) {
+      this.imgElement.src = URL.createObjectURL(e.target.files[0]);
+    }
+  }, {
+    key: 'renderImg',
+    value: function renderImg() {
+      this.mat = cv.imread(this.imgElement);
+      cv.imshow('canvasOutput', this.mat);
+    }
+  }, {
+    key: 'crop',
+    value: function crop() {
+      var src = cv.imread(this.imgElement);
+      var dst = new cv.Mat();
+      // You can try more different parameters
+      var rect = new cv.Rect(0, 0, 224, 224);
+      dst = src.roi(rect);
+      cv.imshow('canvasOutput', dst);
+      src.delete();
+      dst.delete();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          { id: 'status' },
+          'OpenCV is loading...'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'div',
+            { className: 'inputoutput' },
+            _react2.default.createElement('img', { id: 'imageSrc', alt: 'No Image' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'caption' },
+              'imageSrc ',
+              _react2.default.createElement('input', { type: 'file', id: 'fileInput', name: 'file' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'inputoutput' },
+            _react2.default.createElement('canvas', { id: 'canvasOutput' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'caption' },
+              'canvasOutput'
+            )
+          ),
+          _react2.default.createElement(
+            'button',
+            { onClick: this.crop },
+            'Crop!'
+          )
+        )
+      );
+    }
+  }]);
+
+  return ImageCropper;
+}(_react2.default.Component);
+
+exports.default = ImageCropper;
 
 /***/ })
 /******/ ]);

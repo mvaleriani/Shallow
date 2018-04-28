@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import ImageCropper from './image_cropper';
 
 class AnalysisPage extends React.Component{
     render(){
@@ -18,7 +19,7 @@ class AnalysisPage extends React.Component{
                                 <span className="up-span">or Click Here</span>
                                 <span id="upload-subtitle">To Begin Video Analysis</span>
                             </div>
-                        
+
                         </section>
                             <canvas id="photo-edit"></canvas>
 
@@ -60,6 +61,7 @@ class AnalysisPage extends React.Component{
                         </div>
                     </div> */}
                 </section>
+                <ImageCropper />
         </div>
         );
     }
