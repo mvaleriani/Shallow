@@ -1,9 +1,17 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import ImageCropper from './image_cropper';
+// import ImageCropper from './image_cropper';
+import Dropzone from 'react-dropzone';
 
 class AnalysisPage extends React.Component{
+    
+    onDrop(acceptedFiles, rejectedFiles) {
+        console.log(acceptedFiles[0]);
+        // debugger;
+        
+    }
+    
     render(){
         return (
         <div>
@@ -13,15 +21,15 @@ class AnalysisPage extends React.Component{
                 <section className="content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor" >
                     <div id="tool-div" className="column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175" >
                         <section id="upload-menu">
-                            <div id="file-catcher">
+                            <Dropzone onDrop={this.onDrop} id="file-catcher">
                                 <img id="cloud" src="../../app/assets/images/cloud-upload-1.png" />
                                 <span className="up-span">Drag and Drop a File</span>
                                 <span className="up-span">or Click Here</span>
                                 <span id="upload-subtitle">To Begin Video Analysis</span>
-                            </div>
+                            </Dropzone>
 
                         </section>
-                            <canvas id="photo-edit"></canvas>
+                        <canvas id="canvas-output"></canvas>
 
                         {/* <div className="texts m-w-400 m-l-0">
                             <div>
@@ -61,7 +69,7 @@ class AnalysisPage extends React.Component{
                         </div>
                     </div> */}
                 </section>
-                <ImageCropper />
+                {/* <ImageCropper /> */}
         </div>
         );
     }

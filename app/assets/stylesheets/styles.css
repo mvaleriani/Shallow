@@ -260,7 +260,7 @@ p{ padding:0; }
     align-items: center;
     width: fit-content;
 }
-#photo-edit{
+#canvas-output{
     margin-bottom: 160px; 
     margin-left: 310px;
     width: 900px; 
