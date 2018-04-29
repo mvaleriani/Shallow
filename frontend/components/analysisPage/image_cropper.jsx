@@ -1,6 +1,6 @@
 import React from 'react';
 // This code contains the end-user file picker and the image cropper
-// It needs to grab video files for the user
+// It needs to i video files for the user
 // It needs to Slice the video into frames, then extract 10 frames from each quartile
 // Crop each frame, before updating state with the cropped 40 frames
 //This is where this component's role ends
@@ -12,12 +12,14 @@ class ImageCropper extends React.Component {
     this.imgElement = null;
     this.inputElement = null;
     this.mat = null;
-    //the.path = null;
+    this.path = this.props.vidPath;
     this.createSrc = this.createSrc.bind(this);
     this.crop = this.crop.bind(this);
   }
   componentDidMount() {
-    this.imgElement = document.getElementById('imageSrc');
+    // The path will be stated in
+    // this.imgElement = document.getElementById('imageSrc');
+
     this.inputElement = document.getElementById('fileInput');
     window.onload = this.onOpenCvReady;
     this.inputElement.addEventListener('change', this.createSrc);
