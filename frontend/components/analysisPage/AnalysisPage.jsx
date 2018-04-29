@@ -5,13 +5,75 @@ import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
 class AnalysisPage extends React.Component{
-    
-    onDrop(acceptedFiles, rejectedFiles) {
-        console.log(acceptedFiles[0]);
-        // debugger;
-        
-    }
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      vidFile: null,
+      cropped: [],
+      selectedCrops: []
+    };
+  }
+
+  getVideoImage(path, secs, callback) {
+    var me = this, video = document.createElement('video');
+    video.onloadedmetadata = function() {
+      if ('function' === typeof secs) {
+        secs = secs(this.duration);
+      }
+      this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+    };
+    video.onseeked = function(e) {
+      var canvas = document.createElement('canvas');
+      canvas.height = video.videoHeight;
+      canvas.width = video.videoWidth;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      var img = new Image();
+      img.src = canvas.toDataURL();
+      callback.call(me, img, this.currentTime, e);
+    };
+    video.onerror = function(e) {
+      callback.call(me, undefined, undefined, e);
+    };
+    video.src = path;
+  }
+
+  showImageAt(secs) {
+    var duration;
+    this.getVideoImage(
+      '/html/mov_bbb.mp4',
+      function(totalTime) {
+        duration = totalTime;
+        return secs;
+      },
+      function(img, secs, event) {
+        if (event.type == 'seeked') {
+          var li = document.createElement('li');
+          li.innerHTML += '<b>Frame at second ' + secs + ':</b><br />';
+          li.appendChild(img);
+          document.getElementById('olFrames').appendChild(li);
+          if (duration >= ++secs) {
+            this.showImageAt(secs);
+          }
+        }
+      }
+    );
+  }
+
+  crop(img) {
+    // loads in the photo
+    let src = cv.imread(img);
+    let dst = new cv.Mat();
+    // Crops the photo
+    let rect = new cv.Rect(0, 0, 224, 224);
+    dst = src.roi(rect);
+    // add the cropped photo, cleans up memory
+    let newCropped = this.state.cropped.concat([dst]);
+    this.setState({cropped: newCropped});
+    src.delete();
+    dst.delete();
+  }
+
     render(){
         return (
         <div>

@@ -27044,7 +27044,7 @@ exports.default = FooterSection;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27070,65 +27070,126 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var AnalysisPage = function (_React$Component) {
-    _inherits(AnalysisPage, _React$Component);
+  _inherits(AnalysisPage, _React$Component);
 
-    function AnalysisPage() {
-        _classCallCheck(this, AnalysisPage);
+  function AnalysisPage(props) {
+    _classCallCheck(this, AnalysisPage);
 
-        return _possibleConstructorReturn(this, (AnalysisPage.__proto__ || Object.getPrototypeOf(AnalysisPage)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (AnalysisPage.__proto__ || Object.getPrototypeOf(AnalysisPage)).call(this, props));
+
+    _this.state = {
+      vidFile: null,
+      cropped: [],
+      selectedCrops: []
+    };
+    return _this;
+  }
+
+  _createClass(AnalysisPage, [{
+    key: 'getVideoImage',
+    value: function getVideoImage(path, secs, callback) {
+      var me = this,
+          video = document.createElement('video');
+      video.onloadedmetadata = function () {
+        if ('function' === typeof secs) {
+          secs = secs(this.duration);
+        }
+        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+      };
+      video.onseeked = function (e) {
+        var canvas = document.createElement('canvas');
+        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        var img = new Image();
+        img.src = canvas.toDataURL();
+        callback.call(me, img, this.currentTime, e);
+      };
+      video.onerror = function (e) {
+        callback.call(me, undefined, undefined, e);
+      };
+      video.src = path;
     }
-
-    _createClass(AnalysisPage, [{
-        key: 'onDrop',
-        value: function onDrop(acceptedFiles, rejectedFiles) {
-            console.log(acceptedFiles[0]);
-            // debugger;
+  }, {
+    key: 'showImageAt',
+    value: function showImageAt(secs) {
+      var duration;
+      this.getVideoImage('/html/mov_bbb.mp4', function (totalTime) {
+        duration = totalTime;
+        return secs;
+      }, function (img, secs, event) {
+        if (event.type == 'seeked') {
+          var li = document.createElement('li');
+          li.innerHTML += '<b>Frame at second ' + secs + ':</b><br />';
+          li.appendChild(img);
+          document.getElementById('olFrames').appendChild(li);
+          if (duration >= ++secs) {
+            this.showImageAt(secs);
+          }
         }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('section', { id: 'analysis-page', className: ' h-80vh color7', style: { zIndex: 2 } }),
+      });
+    }
+  }, {
+    key: 'crop',
+    value: function crop(img) {
+      // loads in the photo
+      var src = cv.imread(img);
+      var dst = new cv.Mat();
+      // Crops the photo
+      var rect = new cv.Rect(0, 0, 224, 224);
+      dst = src.roi(rect);
+      // add the cropped photo, cleans up memory
+      var newCropped = this.state.cropped.concat([dst]);
+      this.setState({ cropped: newCropped });
+      src.delete();
+      dst.delete();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('section', { id: 'analysis-page', className: ' h-80vh color7', style: { zIndex: 2 } }),
+        _react2.default.createElement(
+          'section',
+          { className: 'content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor' },
+          _react2.default.createElement(
+            'div',
+            { id: 'tool-div', className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
+            _react2.default.createElement(
+              'section',
+              { id: 'upload-menu' },
+              _react2.default.createElement(
+                _reactDropzone2.default,
+                { onDrop: this.onDrop, id: 'file-catcher' },
+                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' }),
                 _react2.default.createElement(
-                    'section',
-                    { className: 'content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor' },
-                    _react2.default.createElement(
-                        'div',
-                        { id: 'tool-div', className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
-                        _react2.default.createElement(
-                            'section',
-                            { id: 'upload-menu' },
-                            _react2.default.createElement(
-                                _reactDropzone2.default,
-                                { onDrop: this.onDrop, id: 'file-catcher' },
-                                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' }),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'up-span' },
-                                    'Drag and Drop a File'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'up-span' },
-                                    'or Click Here'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { id: 'upload-subtitle' },
-                                    'To Begin Video Analysis'
-                                )
-                            )
-                        ),
-                        _react2.default.createElement('canvas', { id: 'canvas-output' })
-                    )
+                  'span',
+                  { className: 'up-span' },
+                  'Drag and Drop a File'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'up-span' },
+                  'or Click Here'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { id: 'upload-subtitle' },
+                  'To Begin Video Analysis'
                 )
-            );
-        }
-    }]);
+              )
+            ),
+            _react2.default.createElement('canvas', { id: 'canvas-output' })
+          )
+        )
+      );
+    }
+  }]);
 
-    return AnalysisPage;
+  return AnalysisPage;
 }(_react2.default.Component);
 
 exports.default = AnalysisPage;
