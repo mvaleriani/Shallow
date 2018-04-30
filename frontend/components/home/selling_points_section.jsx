@@ -31,10 +31,16 @@ class SellingPointsSection extends React.Component {
                   data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
                   >
                   <div className="number t-30 f-light">1.</div>
-                  <h3 className="t-18 color2 m-t-20">Best quality experience</h3>
+                  <h3 className="t-18 color2 m-t-20">Our Model</h3>
                 </div>
               </div>
-              <p className="t-18 m-t-30 l-h-170" >Byond theme is a beautiful and perfect theme that your business really needs.</p>
+              <p className="t-18 m-t-30 l-h-170" >
+                Our model was trained and validated on separate datasets with a cumulative 20,000+ images
+                The base model for Shallow is VGG16, an award winning photo-recognition CNN. 
+                Fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. 
+                It should be noted that our model was trained on available data and may not be fully representative for everyone. 
+                With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow.
+              </p>
 
             </div>
           </div>
