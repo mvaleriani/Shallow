@@ -34,30 +34,33 @@ class AnalysisPage extends React.Component{
       this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
     };
 
-    video.onseeked = function(e) {
-      var canvas = document.createElement('canvas');
-      canvas.height = video.videoHeight;
-      canvas.width = video.videoWidth;
-      var ctx = canvas.getContext('2d');
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      var img = new Image();
-      img.src = canvas.toDataURL();
-      callback.call(me, img, this.currentTime, e);
-    };
+        video.onloadedmetadata = function() {
+        if ('function' === typeof secs) {
+            secs = secs(this.duration);
+        }
+        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+        };
 
-    video.onerror = function(e) {
-      callback.call(me, undefined, undefined, e);
-    };
+        video.onseeked = function(e) {
+        var canvas = document.createElement('canvas');
+        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        var img = new Image();
+        img.src = canvas.toDataURL();
+        callback.call(me, img, this.currentTime, e);
+        };
 
-    video.src = path;
-    if (video.duration) {
-      this.duration = video.duration;
+        video.onerror = function(e) {
+        callback.call(me, undefined, undefined, e);
+        };
+
+        video.src = path;
+        this.duration = video.duration;
+        console.log("Video: ", video);
+        console.log("Video-Duration: ", this.duration);
     }
-    // console.log("Video: ", video);
-    // console.log("Video-Duration: ", video.duration);
-    // console.log(this.duration)
-    // console.log(video.duration)
-  }
 
     showImageAt(secs) {
       this.getVideoImage(
