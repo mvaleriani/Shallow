@@ -27029,7 +27029,7 @@ var FooterSection = function (_React$Component) {
                         _react2.default.createElement(
                             "div",
                             { className: "column column1 flex-box-16p" },
-                            _react2.default.createElement("img", { id: "logo-2", src: "../../app/assets/images/shallowLogo2.png", alt: "" }),
+                            _react2.default.createElement("img", { id: "logo-2", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png", alt: "" }),
                             _react2.default.createElement(
                                 "div",
                                 { className: "social m-t-20" },
@@ -27092,7 +27092,7 @@ var FooterSection = function (_React$Component) {
                                         null,
                                         _react2.default.createElement(
                                             "a",
-                                            { className: "button-style6 type2", href: "contact.html" },
+                                            { className: "button-style6 type2", href: "https://github.com/mvaleriani/Shallow" },
                                             _react2.default.createElement("div", { className: "bg" }),
                                             _react2.default.createElement(
                                                 "span",

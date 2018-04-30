@@ -10,7 +10,7 @@ class FooterSection extends React.Component {
           >
               <div className="m-w-1600 wrap flex">
                   <div className="column column1 flex-box-16p"  >
-                      <img id="logo-2" src="../../app/assets/images/shallowLogo2.png" alt="" />
+                        <img id="logo-2" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png" alt="" />
                       <div className="social m-t-20" >
                           <a className="button-style4 type2 m-r-20">
                               <img className="icon svg" src="../../app/assets/images/icon-facebook.svg" alt="" />
@@ -37,7 +37,7 @@ class FooterSection extends React.Component {
                                   </a>
                               </li>
                               <li>
-                                  <a className="button-style6 type2" href="contact.html">
+                                    <a className="button-style6 type2" href="https://github.com/mvaleriani/Shallow">
                                       <div className="bg"></div>
                                       <span>GitHub</span>
                                   </a>
