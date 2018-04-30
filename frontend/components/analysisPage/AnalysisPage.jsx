@@ -9,19 +9,32 @@ class AnalysisPage extends React.Component{
     super(props);
     this.state = {
       vidFile: null,
+      vidPath: "",
       cropped: [],
       selectedCrops: []
     };
+    this.currentTime = 0;
+    this.duration = 0;
+  }
+
+  componentDidUpdate() {
+    if (this.state.vidFile) {
+      // call showImageAt at the 4 quartiles
+
+
+    }
   }
 
   getVideoImage(path, secs, callback) {
     var me = this, video = document.createElement('video');
+
     video.onloadedmetadata = function() {
       if ('function' === typeof secs) {
         secs = secs(this.duration);
       }
       this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
     };
+
     video.onseeked = function(e) {
       var canvas = document.createElement('canvas');
       canvas.height = video.videoHeight;
@@ -32,31 +45,28 @@ class AnalysisPage extends React.Component{
       img.src = canvas.toDataURL();
       callback.call(me, img, this.currentTime, e);
     };
+
     video.onerror = function(e) {
       callback.call(me, undefined, undefined, e);
     };
+
     video.src = path;
+    this.duration = video.duration;
   }
 
+
   showImageAt(secs) {
-    var duration;
     this.getVideoImage(
-      '/html/mov_bbb.mp4',
+      this.state.vidPath,
       function(totalTime) {
-        duration = totalTime;
+        // this.duration = totalTime;
         return secs;
       },
       function(img, secs, event) {
         if (event.type == 'seeked') {
-          var li = document.createElement('li');
-          li.innerHTML += '<b>Frame at second ' + secs + ':</b><br />';
-          li.appendChild(img);
-          document.getElementById('olFrames').appendChild(li);
-          if (duration >= ++secs) {
-            this.showImageAt(secs);
+          this.crop(img);
           }
         }
-      }
     );
   }
 
