@@ -25,6 +25,9 @@ class AnalysisPage extends React.Component{
       if (this.state.vidFile && this.state.cropped.length < 40) {
         this.showImageAt(0);
       }
+      if (this.state.cropped.length === 40) {
+        debugger;
+      }
     }
 
     getVideoImage(path, secs, callback) {
@@ -44,7 +47,6 @@ class AnalysisPage extends React.Component{
         var ctx = canvas.getContext('2d');
 
         while (this.state.cropped.length < 40 && this.loaded) {
-          console.log('while loop');
           this.loaded = false;
           // Draw the image into a canvas, then pass it to the cropper;
           if (this.loaded) {
@@ -95,8 +97,6 @@ class AnalysisPage extends React.Component{
     crop(img, canvas) {
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
         // loads in the photo
-        console.log('img-height', img.heigth);
-        console.log('img-width', img.width);
         const reader = function (image) {
           return cv.imread(image);
         }
@@ -106,13 +106,10 @@ class AnalysisPage extends React.Component{
         let rect = new cv.Rect(0, 0, 224, 224);
         dst = src.roi(rect);
         cv.imshow(canvas, dst);
-        console.log('after imshow');
 
         let croppedImg = new Image();
         croppedImg.height = canvas.height;
         croppedImg.width = canvas.width;
-        console.log('height: ', croppedImg.height);
-        console.log('width: ', croppedImg.width);
         canvas.toBlob(function (blob) {
           this.currentBlob = blob;
           croppedImg.src = URL.createObjectURL(this.currentBlob);
