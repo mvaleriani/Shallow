@@ -15,8 +15,10 @@ class AnalysisPage extends React.Component{
       };
       this.currentTime = 0;
       this.duration = 0;
+      this.currentBlob = ''; //Because toBlob() expects a callback, this is necessary
       this.onDrop = this.onDrop.bind(this);
       this.getVideoImage = this.getVideoImage.bind(this);
+      this.saveBlob = this.saveBlob.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -27,28 +29,37 @@ class AnalysisPage extends React.Component{
     }
 
     getVideoImage(path, secs, callback) {
-    var me = this, video = document.createElement('video');
+      var me = this, video = document.createElement('video');
 
-    video.onloadedmetadata = function() {
-      console.log(this.duration);
-      this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
-    };
+      video.onloadedmetadata = function() {
+        console.log(this.duration);
+        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+      };
 
         video.onloadedmetadata = function() {
-        if ('function' === typeof secs) {
-            secs = secs(this.duration);
-        }
         this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
         };
 
         video.onseeked = function(e) {
+        //We need to skip to random points in the video
+
+        //Initializes Canvas
         var canvas = document.createElement('canvas');
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
         var ctx = canvas.getContext('2d');
+
+        //check to see if video is in scope;
+        console.log('video: ', video);
+
+        // Draw the image into a canvas, then pass it to the cropper;
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         var img = new Image();
-        img.src = canvas.toDataURL();
+        canvas.toBlob((blob) => {
+          this.currentBlob = blob;
+        }, 'image/png');
+        img.src = this.currentBlob;
+        console.log('img: ', img);
         callback.call(me, img, this.currentTime, e);
         };
 
@@ -58,8 +69,6 @@ class AnalysisPage extends React.Component{
 
         video.src = path;
         this.duration = video.duration;
-        console.log("Video: ", video);
-        console.log("Video-Duration: ", this.duration);
     }
 
     showImageAt(secs) {
@@ -74,9 +83,14 @@ class AnalysisPage extends React.Component{
         );
     }
 
+    saveBlob(blob) {
+      this.currentBlob = blob;
+    }
+
     crop(img) {
+      //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
         // loads in the photo
-        let src = cv.imread(img);
+        let src = cv.imread(img); //img is invalid
         let dst = new cv.Mat();
         // Crops the photo
         let rect = new cv.Rect(0, 0, 224, 224);
