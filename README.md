@@ -8,7 +8,7 @@
     <img src="https://raw.githubusercontent.com/MoistCode/Resources/master/Programming/ReadmeStructures/Shallow/images/title.png">
   </a>
   
-  <p align="center"><i>"Deep fake detection with deep learning"</i></p>
+  <p align="center"><i>"Deepfake detection with deep learning"</i></p>
 </p> 
 
 ## Shallow
