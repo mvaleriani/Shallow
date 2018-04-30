@@ -27175,15 +27175,19 @@ var AnalysisPage = function (_React$Component) {
         return cv.imread(image);
       };
       var src = reader(img);
-      console.log('after imread');
       var dst = new cv.Mat();
       // Crops the photo
       var rect = new cv.Rect(0, 0, 224, 224);
       dst = src.roi(rect);
       cv.imshow(canvas, dst);
+      console.log('after imshow');
 
       var croppedImg = new Image();
-      canvas.getBlob(function (blob) {
+      croppedImg.height = canvas.height;
+      croppedImg.width = canvas.width;
+      console.log('height: ', croppedImg.height);
+      console.log('width: ', croppedImg.width);
+      canvas.toBlob(function (blob) {
         this.currentBlob = blob;
         croppedImg.src = URL.createObjectURL(this.currentBlob);
       }.bind(this), 'image/png');

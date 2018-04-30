@@ -101,15 +101,19 @@ class AnalysisPage extends React.Component{
           return cv.imread(image);
         }
         let src = reader(img);
-        console.log('after imread');
         let dst = new cv.Mat();
         // Crops the photo
         let rect = new cv.Rect(0, 0, 224, 224);
         dst = src.roi(rect);
         cv.imshow(canvas, dst);
+        console.log('after imshow');
 
         let croppedImg = new Image();
-        canvas.getBlob(function (blob) {
+        croppedImg.height = canvas.height;
+        croppedImg.width = canvas.width;
+        console.log('height: ', croppedImg.height);
+        console.log('width: ', croppedImg.width);
+        canvas.toBlob(function (blob) {
           this.currentBlob = blob;
           croppedImg.src = URL.createObjectURL(this.currentBlob);
         }.bind(this), 'image/png');
