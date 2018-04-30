@@ -27151,8 +27151,9 @@ var AnalysisPage = function (_React$Component) {
         value: function onDrop(acceptedFiles, rejectedFiles) {
             // do stuff with files...
             if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
-                this.setState({ vidFile: acceptedFiles[0] });
+                this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
             }
+            var url = URL.createObjectURL(file);
         }
     }, {
         key: 'render',

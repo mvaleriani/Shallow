@@ -78,8 +78,9 @@ class AnalysisPage extends React.Component{
     onDrop(acceptedFiles, rejectedFiles) {
         // do stuff with files...
         if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
-            this.setState({vidFile: acceptedFiles[0]})
+            this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
         }
+        var url = URL.createObjectURL(file);
     }
 
     render(){
