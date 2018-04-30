@@ -25715,7 +25715,7 @@ var SellingPointsSection = function (_React$Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "column column1 flex-grow" },
-                        _react2.default.createElement("div", { className: "image bg-cover cu-tweenmax c-a-t-y box-shadow7", style: { backgroundImage: "url(../../app/assets/images/val_acc.svg)" },
+                        _react2.default.createElement("div", { className: "image bg-cover cu-tweenmax c-a-t-y box-shadow7", style: { backgroundImage: "url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png)" },
                             "data-a-init": "alpha:0",
                             "data-a-to": "alpha:1, delay:0.3, duration:1.5",
                             "data-a-gap": "200"
@@ -25769,7 +25769,7 @@ var SellingPointsSection = function (_React$Component) {
                 _react2.default.createElement(
                     "section",
                     { className: "content-10 flex" },
-                    _react2.default.createElement("div", { className: "image cover bg-cover absolute cu-tweenmax", style: { backgroundImage: 'url(../../app/assets/images/df_faces.png)', left: '32%', height: '700px', marginTop: '320px', marginLeft: '50px' },
+                    _react2.default.createElement("div", { className: "image cover bg-cover absolute cu-tweenmax", style: { backgroundImage: 'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left: '32%', height: '700px', marginTop: '320px', marginLeft: '50px' },
                         "data-a-init": "alpha:0",
                         "data-a-to": "alpha:.5, delay:0.3, duration:1.5",
                         "data-a-gap": "200"
@@ -25864,7 +25864,7 @@ var SellingPointsSection = function (_React$Component) {
                             "data-a-to": "y:0, alpha:1, delay:0.3, duration:0.7",
                             "data-a-gap": "100"
                         },
-                        _react2.default.createElement("img", { src: "../../app/assets/images/p2-image5.png", className: "m-w-1000", alt: "" })
+                        _react2.default.createElement("img", { src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/p2-image5.png", className: "m-w-1000", alt: "" })
                     )
                 )
             );
