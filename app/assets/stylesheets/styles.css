@@ -294,10 +294,10 @@ p{ padding:0; }
     align-items: center;
     width: 270px;
     min-width: 270px;
-    height: 250px;
+    height: 250px !important;
     border-radius: 5px;
     margin-top: 15px;
-    border: 3px dashed #B9DDED; 
+    border: 3px dashed #7ED4D0 !important;
     background-color: rgb(242, 241, 241);
 }
 #file-catcher:hover{cursor: pointer;}
