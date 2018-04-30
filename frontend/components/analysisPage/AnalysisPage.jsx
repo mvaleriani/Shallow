@@ -15,12 +15,17 @@ class AnalysisPage extends React.Component{
     };
     this.currentTime = 0;
     this.duration = 0;
+    this.onDrop = this.onDrop.bind(this); 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Component Did Update');
+    console.log('prevProps',prevProps);
+    console.log('prevState',prevState);
     if (this.state.vidFile) {
+      console.log("IF", this.state.vidFile);
       // call showImageAt at the 4 quartiles
-
+      this.showImageAt(0);
 
     }
   }
@@ -52,6 +57,8 @@ class AnalysisPage extends React.Component{
 
     video.src = path;
     this.duration = video.duration;
+    console.log("Video: ", video);
+    console.log("Video-Duration: ", this.duration);
   }
 
 
@@ -87,6 +94,8 @@ class AnalysisPage extends React.Component{
     onDrop(acceptedFiles, rejectedFiles) {
         // do stuff with files...
         if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
+          console.log("onDrop");
+          console.log(this);
             this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
         }
     }
