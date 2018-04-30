@@ -27153,7 +27153,6 @@ var AnalysisPage = function (_React$Component) {
             if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
                 this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
             }
-            var url = URL.createObjectURL(file);
         }
     }, {
         key: 'render',
