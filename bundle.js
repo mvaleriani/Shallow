@@ -27093,8 +27093,6 @@ var AnalysisPage = function (_React$Component) {
         value: function componentDidUpdate() {
             if (this.state.vidFile) {
                 // call showImageAt at the 4 quartiles
-
-
             }
         }
     }, {
