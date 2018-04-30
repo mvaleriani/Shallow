@@ -232,7 +232,7 @@ p{ padding:0; }
 #main-shallow-icon{height:80px; min-height: 80px;}
 #nav-logo{height:40px;}
 
-#grad-graph{left:120px; top:120px; height: 450px; min-width: 450px; min-height: 450px; max-width: 450px;}
+#grad-graph{left:120px; top:25%; height: 450px; min-width: 450px; min-height: 450px; max-width: 450px;}
 
 #canvas-cont{overflow: hidden;}
 #face-icon{height:35px; margin-left: 1px;}
