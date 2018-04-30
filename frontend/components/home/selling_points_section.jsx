@@ -35,11 +35,10 @@ class SellingPointsSection extends React.Component {
                 </div>
               </div>
               <p className="t-18 m-t-30 l-h-170" >
-                Our model was trained and validated on separate datasets with a cumulative 20,000+ images
-                The base model for Shallow is VGG16, an award winning photo-recognition CNN. 
-                Fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. 
-                It should be noted that our model was trained on available data and may not be fully representative for everyone. 
-                With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow.
+                Shallow utilizes the VGG16 model, a deep-learning neural network specializing in distinguishing images. 
+                No pre-trained weights were used as we felt the classifications were drastically different from those VGG16 was initially trained with. 
+                Instead, the weights were randomized; the top layer of the provided VGG16 model was also not used and we created our own top layers. 
+                Shallow used 'RELU' and 'SOFTMAX' activation functions respectively with a Dropout layer of 0.5 to reduce the risk of overfitting. 
               </p>
 
             </div>
@@ -66,10 +65,14 @@ class SellingPointsSection extends React.Component {
                                 data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
                             >
                                 <div className="number t-30 f-light">2.</div>
-                                <h3 className="t-18 color2 m-t-20 ">Stunning Functionality</h3>
+                                <h3 className="t-18 color2 m-t-20 ">Model Accuracy</h3>
                             </div>
                         </div>
-                        <p className="t-18 m-t-30 l-h-170" >Byond theme is a beautiful and perfect theme that your business really needs.</p>
+                        <p className="t-18 m-t-30 l-h-170">
+                            By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. 
+                            It should be noted that our model was trained on available data and may not be fully representative for everyone. 
+                            With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow.
+                        </p>
                     </div>
 
             </div>
@@ -94,10 +97,18 @@ class SellingPointsSection extends React.Component {
                             data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
                         >
                             <div className="number t-30 f-light">3.</div>
-                            <h3 className="t-18 color2 m-t-20">Your business goals Satisfied</h3>
+                            <h3 className="t-18 color2 m-t-20">Ethics</h3>
                         </div>
                     </div>
-                    <p className="t-18 m-t-30 l-h-170" >Byond theme is a beautiful and perfect theme that your business really needs.</p>
+                    <p className="t-18 m-t-30 l-h-170" >
+                        Deep Fakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. 
+                        Surfacing in 2017, deep fakes were created as a way to create fake celebrity pornographic videos. 
+                        Deep Fakes have already produced numerous scandals for the affected celebrities as well as various individuals who were targets of "revenge porn". 
+                        As it currently stands, only the quality of the video is able to distinguish the authenticity.
+
+                        Our goal with this project was to create a Convolutional Neural Network (CNN) capable of distinguishing between real and 
+                        faked videos in order to protect the reputation and integrity of anyone who could be affected by faked videos.
+                    </p>
                 </div>
 
             <div className="image m-b-10- cu-tweenmax o-hidden"
