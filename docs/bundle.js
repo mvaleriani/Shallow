@@ -25546,7 +25546,7 @@ exports.default = DescriptionSection;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25564,107 +25564,107 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var GridSection = function (_React$Component) {
-    _inherits(GridSection, _React$Component);
+  _inherits(GridSection, _React$Component);
 
-    function GridSection() {
-        _classCallCheck(this, GridSection);
+  function GridSection() {
+    _classCallCheck(this, GridSection);
 
-        return _possibleConstructorReturn(this, (GridSection.__proto__ || Object.getPrototypeOf(GridSection)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (GridSection.__proto__ || Object.getPrototypeOf(GridSection)).apply(this, arguments));
+  }
+
+  _createClass(GridSection, [{
+    key: "render",
+    value: function render() {
+
+      return _react2.default.createElement(
+        "section",
+        { className: "grid-items-1 flex max-width m-y-60" },
+        _react2.default.createElement(
+          "div",
+          { className: "item cu-tweenmax",
+            "data-a-init": "alpha:0",
+            "data-a-to": "alpha:1, duration:0.8",
+            "data-a-gap": "200"
+          },
+          _react2.default.createElement(
+            "div",
+            { className: "content" },
+            _react2.default.createElement(
+              "div",
+              { id: "keras-icon", className: "icon-ball m-b-40 " },
+              _react2.default.createElement("img", { id: "keras-img", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/kerasIcon.jpg", alt: "" })
+            ),
+            _react2.default.createElement(
+              "h2",
+              { className: "t-18 f-bold" },
+              "Keras"
+            ),
+            _react2.default.createElement(
+              "p",
+              { className: "m-t-20" },
+              "Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano."
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "item cu-tweenmax",
+            "data-a-init": "alpha:0",
+            "data-a-to": "alpha:1, delay:0.2, duration:0.8",
+            "data-a-gap": "200"
+          },
+          _react2.default.createElement(
+            "div",
+            { className: "content" },
+            _react2.default.createElement(
+              "div",
+              { id: "tensorflow-icon", className: "icon-ball m-b-40 " },
+              _react2.default.createElement("img", { id: "tensorflow-img", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/tensorflowIcon.png", alt: "" })
+            ),
+            _react2.default.createElement(
+              "h2",
+              { className: "t-18 f-bold" },
+              "Tensorflow"
+            ),
+            _react2.default.createElement(
+              "p",
+              { style: { marginTop: '20px' } },
+              "Tensorflow is a computational framework for machine learning models. It provides a variety of toolkits for constructing models at your preferred level of abstraction."
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "item cu-tweenmax",
+            "data-a-init": "alpha:0",
+            "data-a-to": "alpha:1, delay:0.4, duration:0.8",
+            "data-a-gap": "200"
+          },
+          _react2.default.createElement(
+            "div",
+            { className: "content" },
+            _react2.default.createElement(
+              "div",
+              { id: "react-icon", className: "icon-ball m-b-40 " },
+              _react2.default.createElement("img", { id: "react-img", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/reactIcon.png", alt: "" })
+            ),
+            _react2.default.createElement(
+              "h2",
+              { className: "t-18 f-bold " },
+              "React"
+            ),
+            _react2.default.createElement(
+              "p",
+              { style: { marginTop: '20px' } },
+              "React is a JavaScript library for building dynamic user interfaces. It efficiently updates and renders just the right components when data changes."
+            )
+          )
+        )
+      );
     }
+  }]);
 
-    _createClass(GridSection, [{
-        key: "render",
-        value: function render() {
-
-            return _react2.default.createElement(
-                "section",
-                { className: "grid-items-1 flex max-width m-y-60" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "item cu-tweenmax",
-                        "data-a-init": "alpha:0",
-                        "data-a-to": "alpha:1, duration:0.8",
-                        "data-a-gap": "200"
-                    },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "content" },
-                        _react2.default.createElement(
-                            "div",
-                            { id: "keras-icon", className: "icon-ball m-b-40 " },
-                            _react2.default.createElement("img", { id: "keras-img", src: "../../app/assets/images/kerasIcon.jpg", alt: "" })
-                        ),
-                        _react2.default.createElement(
-                            "h2",
-                            { className: "t-18 f-bold" },
-                            "Keras"
-                        ),
-                        _react2.default.createElement(
-                            "p",
-                            { className: "m-t-20" },
-                            "Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano."
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "item cu-tweenmax",
-                        "data-a-init": "alpha:0",
-                        "data-a-to": "alpha:1, delay:0.2, duration:0.8",
-                        "data-a-gap": "200"
-                    },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "content" },
-                        _react2.default.createElement(
-                            "div",
-                            { id: "tensorflow-icon", className: "icon-ball m-b-40 " },
-                            _react2.default.createElement("img", { id: "tensorflow-img", src: "../../app/assets/images/tensorflowIcon.png", alt: "" })
-                        ),
-                        _react2.default.createElement(
-                            "h2",
-                            { className: "t-18 f-bold" },
-                            "Tensorflow"
-                        ),
-                        _react2.default.createElement(
-                            "p",
-                            { style: { marginTop: '20px' } },
-                            "Tensorflow is a computational framework for machine learning models. It provides a variety of toolkits for constructing models at your preferred level of abstraction."
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "item cu-tweenmax",
-                        "data-a-init": "alpha:0",
-                        "data-a-to": "alpha:1, delay:0.4, duration:0.8",
-                        "data-a-gap": "200"
-                    },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "content" },
-                        _react2.default.createElement(
-                            "div",
-                            { id: "react-icon", className: "icon-ball m-b-40 " },
-                            _react2.default.createElement("img", { id: "react-img", src: "../../app/assets/images/reactIcon.png", alt: "" })
-                        ),
-                        _react2.default.createElement(
-                            "h2",
-                            { className: "t-18 f-bold " },
-                            "React"
-                        ),
-                        _react2.default.createElement(
-                            "p",
-                            { style: { marginTop: '20px' } },
-                            "React is a JavaScript library for building dynamic user interfaces. It efficiently updates and renders just the right components when data changes."
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return GridSection;
+  return GridSection;
 }(_react2.default.Component);
 
 exports.default = GridSection;
