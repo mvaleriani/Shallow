@@ -25520,7 +25520,7 @@ var DescriptionSection = function (_React$Component) {
               _react2.default.createElement(
                 "p",
                 { className: "t-18 m-t-30 l-h-170" },
-                "Shallow is a deep learning architecture designed to detect Deepfake video alterations."
+                "Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using only our data and the architecture of the VGG16 model, a deep-learning neural network specializing in distinguishing images, Shallow distinguishes between authentic and fake images."
               )
             )
           )
@@ -25770,14 +25770,14 @@ var SellingPointsSection = function (_React$Component) {
                                     _react2.default.createElement(
                                         "h3",
                                         { className: "t-18 color2 m-t-20" },
-                                        "Best quality experience"
+                                        "Model Accuracy"
                                     )
                                 )
                             ),
                             _react2.default.createElement(
                                 "p",
                                 { className: "t-18 m-t-30 l-h-170" },
-                                "Byond theme is a beautiful and perfect theme that your business really needs."
+                                "By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. However, it should be noted that our model was trained on available data and may not be fully representative for everyone. With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow."
                             )
                         )
                     )
@@ -25818,14 +25818,14 @@ var SellingPointsSection = function (_React$Component) {
                                     _react2.default.createElement(
                                         "h3",
                                         { className: "t-18 color2 m-t-20 " },
-                                        "Stunning Functionality"
+                                        "Why Make Shallow?"
                                     )
                                 )
                             ),
                             _react2.default.createElement(
                                 "p",
                                 { className: "t-18 m-t-30 l-h-170" },
-                                "Byond theme is a beautiful and perfect theme that your business really needs."
+                                "Deep Fakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. Surfacing in 2017, deep fakes were created as a way to create fake celebrity pornographic videos. Deep Fakes have already produced numerous scandals for the affected celebrities as well as various individuals who were targets of \"revenge porn\". As it currently stands, only the quality of the video is able to distinguish the authenticity. Our goal with this project was to create a Convolutional Neural Network (CNN) capable of distinguishing between real and faked videos in order to protect the reputation and integrity of anyone who could be affected by faked videos."
                             )
                         )
                     )
@@ -25863,14 +25863,14 @@ var SellingPointsSection = function (_React$Component) {
                                 _react2.default.createElement(
                                     "h3",
                                     { className: "t-18 color2 m-t-20" },
-                                    "Your business goals Satisfied"
+                                    "Business Applications"
                                 )
                             )
                         ),
                         _react2.default.createElement(
                             "p",
                             { className: "t-18 m-t-30 l-h-170" },
-                            "Byond theme is a beautiful and perfect theme that your business really needs."
+                            "As our goal is to just create a way to determine the authenticity of videos, we encourage anyone who has need to use our application. If you are interested in commercially using our work, please reach out to us."
                         )
                     ),
                     _react2.default.createElement(
@@ -27044,7 +27044,7 @@ exports.default = FooterSection;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27070,152 +27070,181 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var AnalysisPage = function (_React$Component) {
-    _inherits(AnalysisPage, _React$Component);
+  _inherits(AnalysisPage, _React$Component);
 
-    function AnalysisPage(props) {
-        _classCallCheck(this, AnalysisPage);
+  function AnalysisPage(props) {
+    _classCallCheck(this, AnalysisPage);
 
-        var _this = _possibleConstructorReturn(this, (AnalysisPage.__proto__ || Object.getPrototypeOf(AnalysisPage)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AnalysisPage.__proto__ || Object.getPrototypeOf(AnalysisPage)).call(this, props));
 
-        _this.state = {
-            vidFile: null,
-            vidPath: "",
-            cropped: [],
-            selectedCrops: []
-        };
-        _this.currentTime = 0;
-        _this.duration = 0;
-        _this.onDrop = _this.onDrop.bind(_this);
-        return _this;
+    _this.state = {
+      vidFile: null,
+      vidPath: "",
+      cropped: [],
+      selectedCrops: []
+    };
+    _this.currentTime = 0;
+    _this.duration = 0;
+    _this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
+    _this.onDrop = _this.onDrop.bind(_this);
+    _this.getVideoImage = _this.getVideoImage.bind(_this);
+    _this.loaded = true;
+    return _this;
+  }
+
+  _createClass(AnalysisPage, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.vidFile && this.state.cropped.length < 40) {
+        this.showImageAt(0);
+      }
     }
+  }, {
+    key: 'getVideoImage',
+    value: function getVideoImage(path, secs, callback) {
+      var me = this,
+          video = document.createElement('video');
 
-    _createClass(AnalysisPage, [{
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevProps, prevState) {
-            console.log('Component Did Update');
-            console.log('prevProps', prevProps);
-            console.log('prevState', prevState);
-            if (this.state.vidFile) {
-                console.log("IF", this.state.vidFile);
-                // call showImageAt at the 4 quartiles
-                this.showImageAt(0);
-            }
-        }
-    }, {
-        key: 'getVideoImage',
-        value: function getVideoImage(path, secs, callback) {
-            var me = this,
-                video = document.createElement('video');
+      video.onloadedmetadata = function () {
+        //For some reason, this starts the onseeked event :/
+        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+      };
 
-            video.onloadedmetadata = function () {
-                if ('function' === typeof secs) {
-                    secs = secs(this.duration);
-                }
-                this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
-            };
+      video.onseeked = function (e) {
+        //Initializes Canvas
+        var canvas = document.createElement('canvas');
+        canvas.id = 'hidden-canvas';
+        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth;
+        var ctx = canvas.getContext('2d');
 
-            video.onseeked = function (e) {
-                var canvas = document.createElement('canvas');
-                canvas.height = video.videoHeight;
-                canvas.width = video.videoWidth;
-                var ctx = canvas.getContext('2d');
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                var img = new Image();
-                img.src = canvas.toDataURL();
-                callback.call(me, img, this.currentTime, e);
-            };
+        while (this.state.cropped.length < 40 && this.loaded) {
+          console.log('while loop');
+          this.loaded = false;
+          // Draw the image into a canvas, then pass it to the cropper;
+          if (this.loaded) {
+            this.reloadRandomFrame(video);
+          }
 
-            video.onerror = function (e) {
-                callback.call(me, undefined, undefined, e);
-            };
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          var img = new Image();
 
-            video.src = path;
-            this.duration = video.duration;
-            console.log("Video: ", video);
-            console.log("Video-Duration: ", this.duration);
+          canvas.toBlob(function (blob) {
+            this.currentBlob = blob;
+            img.src = URL.createObjectURL(this.currentBlob);
+            callback.call(me, img, canvas, e);
+            this.currentBlob = null;
+          }.bind(this), 'image/png');
         }
-    }, {
-        key: 'showImageAt',
-        value: function showImageAt(secs) {
-            this.getVideoImage(this.state.vidPath, function (totalTime) {
-                // this.duration = totalTime;
-                return secs;
-            }, function (img, secs, event) {
-                if (event.type == 'seeked') {
-                    this.crop(img);
-                }
-            });
+      }.bind(this);
+
+      video.onerror = function (e) {
+        callback.call(me, undefined, undefined, e);
+      };
+
+      video.src = path;
+      this.duration = video.duration;
+    }
+  }, {
+    key: 'showImageAt',
+    value: function showImageAt(secs) {
+      this.getVideoImage(this.state.vidPath, secs, function (img, canvas, event) {
+        if (event.type == 'seeked' && this.state.cropped.length < 40) {
+          this.crop(img, canvas);
         }
-    }, {
-        key: 'crop',
-        value: function crop(img) {
-            // loads in the photo
-            var src = cv.imread(img);
-            var dst = new cv.Mat();
-            // Crops the photo
-            var rect = new cv.Rect(0, 0, 224, 224);
-            dst = src.roi(rect);
-            // add the cropped photo, cleans up memory
-            var newCropped = this.state.cropped.concat([dst]);
-            this.setState({ cropped: newCropped });
-            src.delete();
-            dst.delete();
-        }
-    }, {
-        key: 'onDrop',
-        value: function onDrop(acceptedFiles, rejectedFiles) {
-            // do stuff with files...
-            if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
-                console.log("onDrop");
-                console.log(this);
-                this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('section', { id: 'analysis-page', className: ' h-80vh color7', style: { zIndex: 2 } }),
+      }.bind(this));
+    }
+  }, {
+    key: 'reloadRandomFrame',
+    value: function reloadRandomFrame(video) {
+      if (!isNaN(video.duration) && this.loaded) {
+        var rand = Math.round(Math.random() * video.duration * 1000) + 1;
+        video.currentTime = rand / 1000;
+      }
+    }
+  }, {
+    key: 'crop',
+    value: function crop(img, canvas) {
+      console.log('crop');
+      //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
+      // loads in the photo
+      function reader(image) {
+        console.log('inside the reader');
+        return cv.imread(image);
+      }
+      var src = reader(img);
+      console.log('after imread');
+      var dst = new cv.Mat();
+      // Crops the photo
+      var rect = new cv.Rect(0, 0, 224, 224);
+      dst = src.roi(rect);
+      cv.imShow(canvas, dst);
+
+      var croppedImg = new Image();
+      canvas.getBlob(function (blob) {
+        this.currentBlob = blob;
+        croppedImg.src = URL.createObjectURL(this.currentBlob);
+      }.bind(this), 'image/png');
+      // add the cropped photo, cleans up memory
+      var newCropped = this.state.cropped.concat([croppedImg]);
+      this.loaded = true;
+      this.setState({ cropped: newCropped });
+      src.delete();
+      dst.delete();
+    }
+  }, {
+    key: 'onDrop',
+    value: function onDrop(acceptedFiles, rejectedFiles) {
+      // do stuff with files...
+      if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
+        this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('section', { id: 'analysis-page', className: ' h-80vh color7', style: { zIndex: 2 } }),
+        _react2.default.createElement(
+          'section',
+          { className: 'content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor' },
+          _react2.default.createElement(
+            'div',
+            { id: 'tool-div', className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
+            _react2.default.createElement(
+              'section',
+              { id: 'upload-menu' },
+              _react2.default.createElement(
+                _reactDropzone2.default,
+                { onDrop: this.onDrop, id: 'file-catcher' },
+                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' }),
                 _react2.default.createElement(
-                    'section',
-                    { className: 'content-1 type2 flex max-width m-t-125 m-b-125 m-w p-x-20 cu-menu-anchor' },
-                    _react2.default.createElement(
-                        'div',
-                        { id: 'tool-div', className: 'column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175' },
-                        _react2.default.createElement(
-                            'section',
-                            { id: 'upload-menu' },
-                            _react2.default.createElement(
-                                _reactDropzone2.default,
-                                { onDrop: this.onDrop, id: 'file-catcher' },
-                                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' }),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'up-span' },
-                                    'Drag and Drop a File'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'up-span' },
-                                    'or Click Here'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { id: 'upload-subtitle' },
-                                    'To Begin Video Analysis'
-                                )
-                            )
-                        ),
-                        _react2.default.createElement('canvas', { id: 'canvas-output' })
-                    )
+                  'span',
+                  { className: 'up-span' },
+                  'Drag and Drop a File'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'up-span' },
+                  'or Click Here'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { id: 'upload-subtitle' },
+                  'To Begin Video Analysis'
                 )
-            );
-        }
-    }]);
+              )
+            ),
+            _react2.default.createElement('canvas', { id: 'canvas-output' })
+          )
+        )
+      );
+    }
+  }]);
 
-    return AnalysisPage;
+  return AnalysisPage;
 }(_react2.default.Component);
 
 exports.default = AnalysisPage;

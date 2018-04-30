@@ -6,49 +6,62 @@ import Dropzone from 'react-dropzone';
 
 class AnalysisPage extends React.Component{
     constructor(props) {
-        super(props);
-        this.state = {
+      super(props);
+      this.state = {
         vidFile: null,
         vidPath: "",
         cropped: [],
         selectedCrops: []
-        };
-        this.currentTime = 0;
-        this.duration = 0;
-        this.onDrop = this.onDrop.bind(this);
+      };
+      this.currentTime = 0;
+      this.duration = 0;
+      this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
+      this.onDrop = this.onDrop.bind(this);
+      this.getVideoImage = this.getVideoImage.bind(this);
+      this.loaded = true;
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('Component Did Update');
-        console.log('prevProps',prevProps);
-        console.log('prevState',prevState);
-        if (this.state.vidFile) {
-            console.log("IF", this.state.vidFile);
-            // call showImageAt at the 4 quartiles
-            this.showImageAt(0);
-        }
+      if (this.state.vidFile && this.state.cropped.length < 40) {
+        this.showImageAt(0);
+      }
     }
 
     getVideoImage(path, secs, callback) {
-        var me = this, video = document.createElement('video');
+      var me = this, video = document.createElement('video');
 
-        video.onloadedmetadata = function() {
-        if ('function' === typeof secs) {
-            secs = secs(this.duration);
-        }
+      video.onloadedmetadata = function() {
+        //For some reason, this starts the onseeked event :/
         this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
-        };
+      };
 
-        video.onseeked = function(e) {
+      video.onseeked = function(e) {
+        //Initializes Canvas
         var canvas = document.createElement('canvas');
+        canvas.id = 'hidden-canvas';
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
         var ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        var img = new Image();
-        img.src = canvas.toDataURL();
-        callback.call(me, img, this.currentTime, e);
-        };
+
+        while (this.state.cropped.length < 40 && this.loaded) {
+          console.log('while loop');
+          this.loaded = false;
+          // Draw the image into a canvas, then pass it to the cropper;
+          if (this.loaded) {
+            this.reloadRandomFrame(video);
+          }
+
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          var img = new Image();
+
+          canvas.toBlob(function (blob) {
+            this.currentBlob = blob;
+            img.src = URL.createObjectURL(this.currentBlob);
+            callback.call(me, img, canvas, e);
+            this.currentBlob = null;
+          }.bind(this), 'image/png');
+        }
+      }.bind(this);
 
         video.onerror = function(e) {
         callback.call(me, undefined, undefined, e);
@@ -56,37 +69,51 @@ class AnalysisPage extends React.Component{
 
         video.src = path;
         this.duration = video.duration;
-        console.log("Video: ", video);
-        console.log("Video-Duration: ", this.duration);
     }
 
-
-  
-
     showImageAt(secs) {
-        this.getVideoImage(
+      this.getVideoImage(
         this.state.vidPath,
-        function(totalTime) {
-            // this.duration = totalTime;
-            return secs;
-        },
-        function(img, secs, event) {
-            if (event.type == 'seeked') {
-            this.crop(img);
+        secs,
+        function(img, canvas, event) {
+          if (event.type == 'seeked' && this.state.cropped.length < 40) {
+            this.crop(img, canvas);
             }
-            }
+          }.bind(this)
         );
     }
 
-    crop(img) {
+    reloadRandomFrame(video) {
+      if (!isNaN(video.duration) && this.loaded) {
+        var rand = Math.round(Math.random() * video.duration * 1000) + 1;
+        video.currentTime = rand / 1000;
+      }
+    }
+
+    crop(img, canvas) {
+      console.log('crop');
+      //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
         // loads in the photo
-        let src = cv.imread(img);
+        function reader(image) {
+          console.log('inside the reader');
+          return cv.imread(image);
+        }
+        let src = reader(img)
+        console.log('after imread');
         let dst = new cv.Mat();
         // Crops the photo
         let rect = new cv.Rect(0, 0, 224, 224);
         dst = src.roi(rect);
+        cv.imShow(canvas, dst);
+
+        let croppedImg = new Image();
+        canvas.getBlob(function (blob) {
+          this.currentBlob = blob;
+          croppedImg.src = URL.createObjectURL(this.currentBlob);
+        }.bind(this), 'image/png');
         // add the cropped photo, cleans up memory
-        let newCropped = this.state.cropped.concat([dst]);
+        let newCropped = this.state.cropped.concat([croppedImg]);
+        this.loaded = true;
         this.setState({cropped: newCropped});
         src.delete();
         dst.delete();
@@ -95,8 +122,6 @@ class AnalysisPage extends React.Component{
     onDrop(acceptedFiles, rejectedFiles) {
         // do stuff with files...
         if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
-          console.log("onDrop");
-          console.log(this);
             this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
         }
     }
