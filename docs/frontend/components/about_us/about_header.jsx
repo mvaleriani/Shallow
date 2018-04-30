@@ -18,6 +18,7 @@ class AboutHeader extends React.Component {
                   data-a-init="alpha:0"
                   data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
               >Our Team Runs Deep</h1>
+              
           </div>
       </section>
     );
