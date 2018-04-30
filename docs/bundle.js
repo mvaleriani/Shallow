@@ -24720,7 +24720,7 @@ var Navbar = function (_React$Component) {
             _react2.default.createElement(
               'a',
               { className: 'logo main', href: 'index.html' },
-              _react2.default.createElement('img', { id: 'nav-logo', className: 'a-l-c svg', src: '../../app/assets/images/shallowLogo.png', alt: 'logo' })
+              _react2.default.createElement('img', { id: 'nav-logo', className: 'a-l-c svg', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo.png', alt: 'logo' })
             ),
             _react2.default.createElement(
               'ul',
@@ -24750,7 +24750,7 @@ var Navbar = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   'a',
-                  { className: 'button1 menu-btn1 f-semi-bold', href: 'https://github.com/mvaleriani/Shallow-frontend-' },
+                  { className: 'button1 menu-btn1 f-semi-bold', href: 'https://github.com/mvaleriani/Shallow' },
                   _react2.default.createElement(
                     'div',
                     null,
@@ -25365,7 +25365,7 @@ var TopSection = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'column1 flex-grow m-r-50' },
-            _react2.default.createElement('img', { id: 'grad-graph', className: '', src: '../../app/assets/images/icon.png', alt: '',
+            _react2.default.createElement('img', { id: 'grad-graph', className: '', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/icon.png', alt: '',
               'data-a-init': 'y:300, alpha:0',
               'data-a-to': 'y:0, alpha:.9, ease:Expo.easeOut, duration:1'
 
@@ -25414,7 +25414,7 @@ var TopSection = function (_React$Component) {
                     _react2.default.createElement(
                       'span',
                       null,
-                      _react2.default.createElement('img', { id: 'face-icon', src: '../../app/assets/images/faceIcon.png' })
+                      _react2.default.createElement('img', { id: 'face-icon', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/faceIcon.png' })
                     )
                   )
                 )
@@ -25422,7 +25422,7 @@ var TopSection = function (_React$Component) {
             )
           )
         ),
-        _react2.default.createElement('img', { id: 'scroll-icon', src: '../../app/assets/images/scroll.png' })
+        _react2.default.createElement('img', { id: 'scroll-icon', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/scroll.png' })
       );
     }
   }]);

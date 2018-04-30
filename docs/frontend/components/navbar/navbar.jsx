@@ -11,7 +11,7 @@ class Navbar extends React.Component {
           <div id="menu" className="content max-width flex flex-justify-between flex-align-center p-x-40 ">
             <a className="logo main" href="index.html">
               {/* <img id="main-shallow-icon" src="../../app/assets/images/IconWShadow.png" /> */}
-              <img id="nav-logo" className="a-l-c svg" src="../../app/assets/images/shallowLogo.png" alt="logo" />
+              <img id="nav-logo" className="a-l-c svg" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo.png" alt="logo" />
             </a>
             <ul className="buttons v-a-m" >
               <li>
@@ -21,7 +21,7 @@ class Navbar extends React.Component {
                 <Link className={"button1 menu-btn1 f-semi-bold"} to='/about'>Our Team<div className="line"></div></Link>
               </li>
               <li>
-                <a className="button1 menu-btn1 f-semi-bold" href="https://github.com/mvaleriani/Shallow-frontend-"><div>Github<div className="line"></div></div></a>
+                <a className="button1 menu-btn1 f-semi-bold" href="https://github.com/mvaleriani/Shallow"><div>Github<div className="line"></div></div></a>
               </li>
               <li>
                 <Link id="to-ai-button" className="button1 type6 f-semi-bold" to="/analysis" >

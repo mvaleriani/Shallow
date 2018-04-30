@@ -378,7 +378,7 @@ class TopSection extends React.Component {
           <div className="column1 flex-grow m-r-50">
 
 
-            <img id="grad-graph" className="" src="../../app/assets/images/icon.png" alt=""
+            <img id="grad-graph" className="" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/icon.png" alt=""
               data-a-init="y:300, alpha:0"
               data-a-to="y:0, alpha:.9, ease:Expo.easeOut, duration:1"
               
@@ -408,7 +408,7 @@ class TopSection extends React.Component {
                   <a id="face-button" className="button-style3 bg6 m-r-20">
                     <div className="bg cover ease-cubicInOut"></div>
                     <p>Analyze Video</p>
-                    <span><img id="face-icon" src="../../app/assets/images/faceIcon.png" /></span>
+                    <span><img id="face-icon" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/faceIcon.png" /></span>
                   </a>
                   {/* <a className="button-style3 bg6">
                     <div className="bg cover ease-cubicInOut"></div>
@@ -419,7 +419,7 @@ class TopSection extends React.Component {
             </div>
           </div>
         </div>
-                <img id="scroll-icon" src="../../app/assets/images/scroll.png" />
+        <img id="scroll-icon" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/scroll.png" />
       </section>
     );
   }
