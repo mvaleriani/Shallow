@@ -405,11 +405,11 @@ class TopSection extends React.Component {
 
                 <div>
                   <p className="f-bold m-t-40 m-b-10">AI Demo</p>
-                  <a id="face-button" className="button-style3 bg6 m-r-20">
+                  <Link to='/analysis' id="face-button" className="button-style3 bg6 m-r-20">
                     <div className="bg cover ease-cubicInOut"></div>
                     <p>Analyze Video</p>
                     <span><img id="face-icon" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/faceIcon.png" /></span>
-                  </a>
+                  </Link>
                   {/* <a className="button-style3 bg6">
                     <div className="bg cover ease-cubicInOut"></div>
                     <span><i className="fa fa-android m-0 p-0" aria-hidden="true"></i></span>

@@ -25403,8 +25403,8 @@ var TopSection = function (_React$Component) {
                     'AI Demo'
                   ),
                   _react2.default.createElement(
-                    'a',
-                    { id: 'face-button', className: 'button-style3 bg6 m-r-20' },
+                    _reactRouterDom.Link,
+                    { to: '/analysis', id: 'face-button', className: 'button-style3 bg6 m-r-20' },
                     _react2.default.createElement('div', { className: 'bg cover ease-cubicInOut' }),
                     _react2.default.createElement(
                       'p',
@@ -27356,7 +27356,7 @@ var AnalysisPage = function (_React$Component) {
               _react2.default.createElement(
                 _reactDropzone2.default,
                 { onDrop: this.onDrop, id: 'file-catcher' },
-                _react2.default.createElement('img', { id: 'cloud', src: '../../app/assets/images/cloud-upload-1.png' }),
+                _react2.default.createElement('img', { id: 'cloud', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/cloud-upload-1.png' }),
                 _react2.default.createElement(
                   'span',
                   { className: 'up-span' },

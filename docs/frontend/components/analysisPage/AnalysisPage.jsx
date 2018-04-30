@@ -136,7 +136,7 @@ class AnalysisPage extends React.Component{
                     <div id="tool-div" className="column column1 flex-box-50p bg8 p-x-100 p-t-200 p-b-175" >
                         <section id="upload-menu">
                             <Dropzone onDrop={this.onDrop} id="file-catcher">
-                                <img id="cloud" src="../../app/assets/images/cloud-upload-1.png" />
+                    <img id="cloud" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/cloud-upload-1.png" />
                                 <span className="up-span">Drag and Drop a File</span>
                                 <span className="up-span">or Click Here</span>
                                 <span id="upload-subtitle">To Begin Video Analysis</span>
