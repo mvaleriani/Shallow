@@ -5,38 +5,32 @@ import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
 class AnalysisPage extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      vidFile: null,
-      vidPath: "",
-      cropped: [],
-      selectedCrops: []
-    };
-    this.currentTime = 0;
-    this.duration = 0;
-    this.onDrop = this.onDrop.bind(this); 
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component Did Update');
-    console.log('prevProps',prevProps);
-    console.log('prevState',prevState);
-    if (this.state.vidFile) {
-      console.log("IF", this.state.vidFile);
-      // call showImageAt at the 4 quartiles
-      this.showImageAt(0);
-
+    constructor(props) {
+      super(props);
+      this.state = {
+        vidFile: null,
+        vidPath: "",
+        cropped: [],
+        selectedCrops: []
+      };
+      this.currentTime = 0;
+      this.duration = 0;
+      this.onDrop = this.onDrop.bind(this);
+      this.getVideoImage = this.getVideoImage.bind(this);
     }
-  }
 
-  getVideoImage(path, secs, callback) {
+    componentDidUpdate(prevProps, prevState) {
+      if (this.state.vidFile && this.state.cropped.length < 40) {
+        // call showImageAt at the 4 quartiles
+        this.showImageAt(0);
+      }
+    }
+
+    getVideoImage(path, secs, callback) {
     var me = this, video = document.createElement('video');
 
     video.onloadedmetadata = function() {
-      if ('function' === typeof secs) {
-        secs = secs(this.duration);
-      }
+      console.log(this.duration);
       this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
     };
 
@@ -56,26 +50,26 @@ class AnalysisPage extends React.Component{
     };
 
     video.src = path;
-    this.duration = video.duration;
-    console.log("Video: ", video);
-    console.log("Video-Duration: ", this.duration);
+    if (video.duration) {
+      this.duration = video.duration;
+    }
+    // console.log("Video: ", video);
+    // console.log("Video-Duration: ", video.duration);
+    // console.log(this.duration)
+    // console.log(video.duration)
   }
 
-
-  showImageAt(secs) {
-    this.getVideoImage(
-      this.state.vidPath,
-      function(totalTime) {
-        // this.duration = totalTime;
-        return secs;
-      },
-      function(img, secs, event) {
-        if (event.type == 'seeked') {
-          this.crop(img);
+    showImageAt(secs) {
+      this.getVideoImage(
+        this.state.vidPath,
+        secs,
+        function(img, secs, event) {
+          if (event.type == 'seeked') {
+            this.crop(img);
+            }
           }
-        }
-    );
-  }
+        );
+    }
 
     crop(img) {
         // loads in the photo
@@ -94,8 +88,6 @@ class AnalysisPage extends React.Component{
     onDrop(acceptedFiles, rejectedFiles) {
         // do stuff with files...
         if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
-          console.log("onDrop");
-          console.log(this);
             this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
         }
     }

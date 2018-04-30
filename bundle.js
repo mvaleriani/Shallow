@@ -27086,17 +27086,14 @@ var AnalysisPage = function (_React$Component) {
         _this.currentTime = 0;
         _this.duration = 0;
         _this.onDrop = _this.onDrop.bind(_this);
+        _this.getVideoImage = _this.getVideoImage.bind(_this);
         return _this;
     }
 
     _createClass(AnalysisPage, [{
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
-            console.log('Component Did Update');
-            console.log('prevProps', prevProps);
-            console.log('prevState', prevState);
-            if (this.state.vidFile) {
-                console.log("IF", this.state.vidFile);
+            if (this.state.vidFile && this.state.cropped.length < 40) {
                 // call showImageAt at the 4 quartiles
                 this.showImageAt(0);
             }
@@ -27108,9 +27105,7 @@ var AnalysisPage = function (_React$Component) {
                 video = document.createElement('video');
 
             video.onloadedmetadata = function () {
-                if ('function' === typeof secs) {
-                    secs = secs(this.duration);
-                }
+                console.log(this.duration);
                 this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
             };
 
@@ -27130,17 +27125,18 @@ var AnalysisPage = function (_React$Component) {
             };
 
             video.src = path;
-            this.duration = video.duration;
-            console.log("Video: ", video);
-            console.log("Video-Duration: ", this.duration);
+            if (video.duration) {
+                this.duration = video.duration;
+            }
+            // console.log("Video: ", video);
+            // console.log("Video-Duration: ", video.duration);
+            // console.log(this.duration)
+            // console.log(video.duration)
         }
     }, {
         key: 'showImageAt',
         value: function showImageAt(secs) {
-            this.getVideoImage(this.state.vidPath, function (totalTime) {
-                // this.duration = totalTime;
-                return secs;
-            }, function (img, secs, event) {
+            this.getVideoImage(this.state.vidPath, secs, function (img, secs, event) {
                 if (event.type == 'seeked') {
                     this.crop(img);
                 }
@@ -27166,8 +27162,6 @@ var AnalysisPage = function (_React$Component) {
         value: function onDrop(acceptedFiles, rejectedFiles) {
             // do stuff with files...
             if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
-                console.log("onDrop");
-                console.log(this);
                 this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
             }
         }
