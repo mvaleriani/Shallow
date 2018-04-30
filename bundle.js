@@ -25520,7 +25520,7 @@ var DescriptionSection = function (_React$Component) {
               _react2.default.createElement(
                 "p",
                 { className: "t-18 m-t-30 l-h-170" },
-                "Shallow is a deep learning architecture designed to detect Deepfake video alterations."
+                "Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using only our data and the architecture of the VGG16 model, a deep-learning neural network specializing in distinguishing images, Shallow distinguishes between authentic and fake images."
               )
             )
           )
@@ -25770,14 +25770,14 @@ var SellingPointsSection = function (_React$Component) {
                                     _react2.default.createElement(
                                         "h3",
                                         { className: "t-18 color2 m-t-20" },
-                                        "Best quality experience"
+                                        "Model Accuracy"
                                     )
                                 )
                             ),
                             _react2.default.createElement(
                                 "p",
                                 { className: "t-18 m-t-30 l-h-170" },
-                                "Byond theme is a beautiful and perfect theme that your business really needs."
+                                "By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. However, it should be noted that our model was trained on available data and may not be fully representative for everyone. With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow."
                             )
                         )
                     )
@@ -25818,14 +25818,14 @@ var SellingPointsSection = function (_React$Component) {
                                     _react2.default.createElement(
                                         "h3",
                                         { className: "t-18 color2 m-t-20 " },
-                                        "Stunning Functionality"
+                                        "Why Make Shallow?"
                                     )
                                 )
                             ),
                             _react2.default.createElement(
                                 "p",
                                 { className: "t-18 m-t-30 l-h-170" },
-                                "Byond theme is a beautiful and perfect theme that your business really needs."
+                                "Deep Fakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. Surfacing in 2017, deep fakes were created as a way to create fake celebrity pornographic videos. Deep Fakes have already produced numerous scandals for the affected celebrities as well as various individuals who were targets of \"revenge porn\". As it currently stands, only the quality of the video is able to distinguish the authenticity. Our goal with this project was to create a Convolutional Neural Network (CNN) capable of distinguishing between real and faked videos in order to protect the reputation and integrity of anyone who could be affected by faked videos."
                             )
                         )
                     )
@@ -25863,14 +25863,14 @@ var SellingPointsSection = function (_React$Component) {
                                 _react2.default.createElement(
                                     "h3",
                                     { className: "t-18 color2 m-t-20" },
-                                    "Your business goals Satisfied"
+                                    "Business Applications"
                                 )
                             )
                         ),
                         _react2.default.createElement(
                             "p",
                             { className: "t-18 m-t-30 l-h-170" },
-                            "Byond theme is a beautiful and perfect theme that your business really needs."
+                            "As our goal is to just create a way to determine the authenticity of videos, we encourage anyone who has need to use our application. If you are interested in commercially using our work, please reach out to us."
                         )
                     ),
                     _react2.default.createElement(
