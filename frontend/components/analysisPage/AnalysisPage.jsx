@@ -53,6 +53,8 @@ class AnalysisPage extends React.Component{
 
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           var img = new Image();
+          img.height = canvas.height;
+          img.width = canvas.width;
 
           canvas.toBlob(function (blob) {
             this.currentBlob = blob;
@@ -91,20 +93,20 @@ class AnalysisPage extends React.Component{
     }
 
     crop(img, canvas) {
-      console.log('crop');
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
         // loads in the photo
-        function reader(image) {
-          console.log('inside the reader');
+        console.log('img-height', img.heigth);
+        console.log('img-width', img.width);
+        const reader = function (image) {
           return cv.imread(image);
         }
-        let src = reader(img)
+        let src = reader(img);
         console.log('after imread');
         let dst = new cv.Mat();
         // Crops the photo
         let rect = new cv.Rect(0, 0, 224, 224);
         dst = src.roi(rect);
-        cv.imShow(canvas, dst);
+        cv.imshow(canvas, dst);
 
         let croppedImg = new Image();
         canvas.getBlob(function (blob) {
@@ -188,5 +190,6 @@ class AnalysisPage extends React.Component{
         );
     }
 }
+
 
 export default AnalysisPage;
