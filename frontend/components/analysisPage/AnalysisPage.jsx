@@ -70,19 +70,26 @@ class AnalysisPage extends React.Component{
     );
   }
 
-  crop(img) {
-    // loads in the photo
-    let src = cv.imread(img);
-    let dst = new cv.Mat();
-    // Crops the photo
-    let rect = new cv.Rect(0, 0, 224, 224);
-    dst = src.roi(rect);
-    // add the cropped photo, cleans up memory
-    let newCropped = this.state.cropped.concat([dst]);
-    this.setState({cropped: newCropped});
-    src.delete();
-    dst.delete();
-  }
+    crop(img) {
+        // loads in the photo
+        let src = cv.imread(img);
+        let dst = new cv.Mat();
+        // Crops the photo
+        let rect = new cv.Rect(0, 0, 224, 224);
+        dst = src.roi(rect);
+        // add the cropped photo, cleans up memory
+        let newCropped = this.state.cropped.concat([dst]);
+        this.setState({cropped: newCropped});
+        src.delete();
+        dst.delete();
+    }
+
+    onDrop(acceptedFiles, rejectedFiles) {
+        // do stuff with files...
+        if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
+            this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
+        }
+    }
 
     render(){
         return (
