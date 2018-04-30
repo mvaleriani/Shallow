@@ -18,50 +18,48 @@ class AnalysisPage extends React.Component{
       this.currentBlob = ''; //Because toBlob() expects a callback, this is necessary
       this.onDrop = this.onDrop.bind(this);
       this.getVideoImage = this.getVideoImage.bind(this);
-      this.saveBlob = this.saveBlob.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
       if (this.state.vidFile && this.state.cropped.length < 40) {
-        // call showImageAt at the 4 quartiles
         this.showImageAt(0);
       }
     }
 
     getVideoImage(path, secs, callback) {
+      console.log('getVideoImage');
       var me = this, video = document.createElement('video');
 
-      video.onloadedmetadata = function() {
-        console.log(this.duration);
-        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
-      };
-
         video.onloadedmetadata = function() {
-        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+          //For some reason, this starts the onseeked event :/
+          this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
         };
 
-        video.onseeked = function(e) {
-        //We need to skip to random points in the video
-
+      video.onseeked = function(e) {
+        console.log('onseeked')
         //Initializes Canvas
         var canvas = document.createElement('canvas');
+        canvas.id = 'hidden-canvas';
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
         var ctx = canvas.getContext('2d');
 
-        //check to see if video is in scope;
-        console.log('video: ', video);
+        while (this.state.cropped.length < 40) {
+          // Draw the image into a canvas, then pass it to the cropper;
+          this.reloadRandomFrame(video);
 
-        // Draw the image into a canvas, then pass it to the cropper;
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        var img = new Image();
-        canvas.toBlob((blob) => {
-          this.currentBlob = blob;
-        }, 'image/png');
-        img.src = this.currentBlob;
-        console.log('img: ', img);
-        callback.call(me, img, this.currentTime, e);
-        };
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          var img = new Image();
+
+          canvas.toBlob((blob) => {
+            this.currentBlob = blob;
+          }, 'image/png');
+
+          img.src = URL.createObjectURL(this.currentBlob);
+          callback.call(me, img, e);
+        }
+
+      }.bind(this);
 
         video.onerror = function(e) {
         callback.call(me, undefined, undefined, e);
@@ -72,31 +70,48 @@ class AnalysisPage extends React.Component{
     }
 
     showImageAt(secs) {
+      console.log('showImageAt');
       this.getVideoImage(
         this.state.vidPath,
         secs,
-        function(img, secs, event) {
+        function(img, event) {
+          console.log("before cropping");
           if (event.type == 'seeked') {
+            console.log("before cropping, in if");
             this.crop(img);
             }
           }
         );
     }
 
-    saveBlob(blob) {
-      this.currentBlob = blob;
+    reloadRandomFrame(video) {
+      console.log('reloadRandomFrame');
+      if (!isNaN(video.duration)) {
+        var rand = Math.round(Math.random() * video.duration * 1000) + 1;
+        video.currentTime = rand / 1000;
+      }
     }
 
     crop(img) {
+      console.log('crop');
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
         // loads in the photo
-        let src = cv.imread(img); //img is invalid
+        let canvas = document.getElementById('hidden-canvas');
+        let src = cv.imread(img);
         let dst = new cv.Mat();
         // Crops the photo
         let rect = new cv.Rect(0, 0, 224, 224);
         dst = src.roi(rect);
+        cv.imShow('hidden-canvas', dst);
+
+        canvas.getBlob((blob) => {
+          this.currentBlob = blob;
+        }, 'image/png');
+        let croppedImg = new Image();
+        croppedImg.src = URL.createObjectURL(this.currentBlob);
+        debugger;
         // add the cropped photo, cleans up memory
-        let newCropped = this.state.cropped.concat([dst]);
+        let newCropped = this.state.cropped.concat([croppedImg]);
         this.setState({cropped: newCropped});
         src.delete();
         dst.delete();
