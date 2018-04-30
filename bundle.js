@@ -27085,6 +27085,7 @@ var AnalysisPage = function (_React$Component) {
         };
         _this.currentTime = 0;
         _this.duration = 0;
+        _this.currentBlob = ''; //Because toBlob() expects a callback, this is necessary
         _this.onDrop = _this.onDrop.bind(_this);
         _this.getVideoImage = _this.getVideoImage.bind(_this);
         return _this;
@@ -27094,38 +27095,47 @@ var AnalysisPage = function (_React$Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
             if (this.state.vidFile && this.state.cropped.length < 40) {
-                // call showImageAt at the 4 quartiles
                 this.showImageAt(0);
             }
         }
     }, {
         key: 'getVideoImage',
         value: function getVideoImage(path, secs, callback) {
+            console.log('getVideoImage');
             var me = this,
                 video = document.createElement('video');
 
             video.onloadedmetadata = function () {
-                console.log(this.duration);
-                this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
-            };
-
-            video.onloadedmetadata = function () {
-                if ('function' === typeof secs) {
-                    secs = secs(this.duration);
-                }
+                //For some reason, this starts the onseeked event :/
                 this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
             };
 
             video.onseeked = function (e) {
+                var _this2 = this;
+
+                console.log('onseeked');
+                //Initializes Canvas
                 var canvas = document.createElement('canvas');
+                canvas.id = 'hidden-canvas';
                 canvas.height = video.videoHeight;
                 canvas.width = video.videoWidth;
                 var ctx = canvas.getContext('2d');
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                var img = new Image();
-                img.src = canvas.toDataURL();
-                callback.call(me, img, this.currentTime, e);
-            };
+
+                while (this.state.cropped.length < 40) {
+                    // Draw the image into a canvas, then pass it to the cropper;
+                    this.reloadRandomFrame(video);
+
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    var img = new Image();
+
+                    canvas.toBlob(function (blob) {
+                        _this2.currentBlob = blob;
+                    }, 'image/png');
+
+                    img.src = URL.createObjectURL(this.currentBlob);
+                    callback.call(me, img, e);
+                }
+            }.bind(this);
 
             video.onerror = function (e) {
                 callback.call(me, undefined, undefined, e);
@@ -27133,29 +27143,52 @@ var AnalysisPage = function (_React$Component) {
 
             video.src = path;
             this.duration = video.duration;
-            console.log("Video: ", video);
-            console.log("Video-Duration: ", this.duration);
         }
     }, {
         key: 'showImageAt',
         value: function showImageAt(secs) {
-            this.getVideoImage(this.state.vidPath, secs, function (img, secs, event) {
+            console.log('showImageAt');
+            this.getVideoImage(this.state.vidPath, secs, function (img, event) {
+                console.log("before cropping");
                 if (event.type == 'seeked') {
+                    console.log("before cropping, in if");
                     this.crop(img);
                 }
             });
         }
     }, {
+        key: 'reloadRandomFrame',
+        value: function reloadRandomFrame(video) {
+            console.log('reloadRandomFrame');
+            if (!isNaN(video.duration)) {
+                var rand = Math.round(Math.random() * video.duration * 1000) + 1;
+                video.currentTime = rand / 1000;
+            }
+        }
+    }, {
         key: 'crop',
         value: function crop(img) {
+            var _this3 = this;
+
+            console.log('crop');
+            //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
             // loads in the photo
+            var canvas = document.getElementById('hidden-canvas');
             var src = cv.imread(img);
             var dst = new cv.Mat();
             // Crops the photo
             var rect = new cv.Rect(0, 0, 224, 224);
             dst = src.roi(rect);
+            cv.imShow('hidden-canvas', dst);
+
+            canvas.getBlob(function (blob) {
+                _this3.currentBlob = blob;
+            }, 'image/png');
+            var croppedImg = new Image();
+            croppedImg.src = URL.createObjectURL(this.currentBlob);
+            debugger;
             // add the cropped photo, cleans up memory
-            var newCropped = this.state.cropped.concat([dst]);
+            var newCropped = this.state.cropped.concat([croppedImg]);
             this.setState({ cropped: newCropped });
             src.delete();
             dst.delete();
