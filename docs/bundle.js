@@ -25526,7 +25526,7 @@ var DescriptionSection = function (_React$Component) {
               "data-a-to": "y:0, alpha:.7, duration:0.8",
               "data-a-gap": "100"
             },
-            _react2.default.createElement("img", { src: "../../app/assets/images/heatmaps.png", style: { height: '600px' } })
+            _react2.default.createElement("img", { src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png", style: { height: '600px' } })
           )
         )
       );

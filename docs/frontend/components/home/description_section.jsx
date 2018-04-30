@@ -41,7 +41,7 @@ class DescriptionSection extends React.Component {
             data-a-gap="100"
             >
             {/* <div className="bg-stretch cover" style={{backgroundImage:'url(../../app/assets/images/shadow.png)', marginLeft:'-160px', marginBottom:'-125px'}}></div> */}
-            <img src="../../app/assets/images/heatmaps.png" style={{height: '600px'}}/>
+            <img src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png" style={{height: '600px'}}/>
             {/* <div className="bg-cover cover" style={{backgroundImage:'url(../../app/assets/images/heatmaps.png)'}}></div> */}
             {/* <div className="cover bg-black"></div> */}
             {/* <div className="video-play"> */}
