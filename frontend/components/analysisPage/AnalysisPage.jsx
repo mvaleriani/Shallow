@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
 class AnalysisPage extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      vidFile: null,
-      vidPath: "",
-      cropped: [],
-      selectedCrops: []
-    };
-    this.currentTime = 0;
-    this.duration = 0;
-    this.onDrop = this.onDrop.bind(this);
+    constructor(props) {
+        super(props);
+        this.state = {
+        vidFile: null,
+        vidPath: "",
+        cropped: [],
+        selectedCrops: []
+        };
+        this.currentTime = 0;
+        this.duration = 0;
+        this.onDrop = this.onDrop.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
