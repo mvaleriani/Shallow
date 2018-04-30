@@ -15,6 +15,7 @@ class Navbar extends React.Component {
             </a>
             <ul className="buttons v-a-m" >
               <li>
+                
                 <Link className={"button1 menu-btn1 f-semi-bold"} to='/'>Home<div className="line"></div></Link>
               </li>
               <li>
