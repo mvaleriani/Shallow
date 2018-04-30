@@ -57,8 +57,6 @@ class AnalysisPage extends React.Component{
           canvas.toBlob(function (blob) {
             this.currentBlob = blob;
             img.src = URL.createObjectURL(this.currentBlob);
-            console.log('callback: ',callback);
-            debugger;
             callback.call(me, img, canvas, e);
             this.currentBlob = null;
           }.bind(this), 'image/png');
@@ -96,7 +94,11 @@ class AnalysisPage extends React.Component{
       console.log('crop');
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
         // loads in the photo
-        let src = cv.imread(img);
+        function reader(image) {
+          console.log('inside the reader');
+          return cv.imread(image);
+        }
+        let src = reader(img)
         console.log('after imread');
         let dst = new cv.Mat();
         // Crops the photo
@@ -104,13 +106,11 @@ class AnalysisPage extends React.Component{
         dst = src.roi(rect);
         cv.imShow(canvas, dst);
 
+        let croppedImg = new Image();
         canvas.getBlob(function (blob) {
           this.currentBlob = blob;
-        }.bind(this), 'image/png');
-        let croppedImg = new Image();
-        if (this.currentBlob) {
           croppedImg.src = URL.createObjectURL(this.currentBlob);
-        }
+        }.bind(this), 'image/png');
         // add the cropped photo, cleans up memory
         let newCropped = this.state.cropped.concat([croppedImg]);
         this.loaded = true;
