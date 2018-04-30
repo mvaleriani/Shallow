@@ -27085,7 +27085,7 @@ var AnalysisPage = function (_React$Component) {
     };
     _this.currentTime = 0;
     _this.duration = 0;
-    _this.currentBlob = ''; //Because toBlob() expects a callback, this is necessary
+    _this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
     _this.onDrop = _this.onDrop.bind(_this);
     _this.getVideoImage = _this.getVideoImage.bind(_this);
     _this.loaded = true;
@@ -27111,8 +27111,6 @@ var AnalysisPage = function (_React$Component) {
       };
 
       video.onseeked = function (e) {
-        var _this2 = this;
-
         //Initializes Canvas
         var canvas = document.createElement('canvas');
         canvas.id = 'hidden-canvas';
@@ -27121,20 +27119,24 @@ var AnalysisPage = function (_React$Component) {
         var ctx = canvas.getContext('2d');
 
         while (this.state.cropped.length < 40 && this.loaded) {
+          console.log('while loop');
+          this.loaded = false;
           // Draw the image into a canvas, then pass it to the cropper;
-          this.reloadRandomFrame(video);
+          if (this.loaded) {
+            this.reloadRandomFrame(video);
+          }
 
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           var img = new Image();
 
           canvas.toBlob(function (blob) {
-            _this2.currentBlob = blob;
-          }, 'image/png');
-          if (this.currentBlob) {
+            this.currentBlob = blob;
             img.src = URL.createObjectURL(this.currentBlob);
-          }
-          this.loaded = false;
-          callback.call(me, img, canvas, e);
+            console.log('callback: ', callback);
+            debugger;
+            callback.call(me, img, canvas, e);
+            this.currentBlob = null;
+          }.bind(this), 'image/png');
         }
       }.bind(this);
 
@@ -27152,12 +27154,12 @@ var AnalysisPage = function (_React$Component) {
         if (event.type == 'seeked' && this.state.cropped.length < 40) {
           this.crop(img, canvas);
         }
-      });
+      }.bind(this));
     }
   }, {
     key: 'reloadRandomFrame',
     value: function reloadRandomFrame(video) {
-      if (!isNaN(video.duration)) {
+      if (!isNaN(video.duration) && this.loaded) {
         var rand = Math.round(Math.random() * video.duration * 1000) + 1;
         video.currentTime = rand / 1000;
       }
@@ -27165,15 +27167,10 @@ var AnalysisPage = function (_React$Component) {
   }, {
     key: 'crop',
     value: function crop(img, canvas) {
-      var _this3 = this;
-
       console.log('crop');
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
       // loads in the photo
-      console.log(this.state.cropped);
-      console.log(img);
-      // let src = cv.imread(img);
-      console.log("imread", cv.imread(img));
+      var src = cv.imread(img);
       console.log('after imread');
       var dst = new cv.Mat();
       // Crops the photo
@@ -27182,13 +27179,12 @@ var AnalysisPage = function (_React$Component) {
       cv.imShow(canvas, dst);
 
       canvas.getBlob(function (blob) {
-        _this3.currentBlob = blob;
-      }, 'image/png');
+        this.currentBlob = blob;
+      }.bind(this), 'image/png');
       var croppedImg = new Image();
-      croppedImg.src = URL.createObjectURL(this.currentBlob);
-      console.log('before debugger');
-      debugger;
-      console.log('after debugger');
+      if (this.currentBlob) {
+        croppedImg.src = URL.createObjectURL(this.currentBlob);
+      }
       // add the cropped photo, cleans up memory
       var newCropped = this.state.cropped.concat([croppedImg]);
       this.loaded = true;
