@@ -26,7 +26,10 @@ class DescriptionSection extends React.Component {
               >
 
               <h3 className="t-60 f-extra-light l-h-normal m-t-25">Fighting AI with AI</h3>
-              <p className="t-18 m-t-30 l-h-170">Shallow is a deep learning architecture designed to detect Deepfake video alterations.</p>
+              <p className="t-18 m-t-30 l-h-170">
+                Shallow is a deep learning architecture designed to detect Deepfake video alterations.
+                Created using only our data and the architecture of the VGG16 model, a deep-learning neural network specializing in distinguishing images, Shallow distinguishes between authentic and fake images. 
+              </p>
             </div>
           </div>
 
