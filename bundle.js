@@ -27098,6 +27098,9 @@ var AnalysisPage = function (_React$Component) {
       if (this.state.vidFile && this.state.cropped.length < 40) {
         this.showImageAt(0);
       }
+      if (this.state.cropped.length === 40) {
+        debugger;
+      }
     }
   }, {
     key: 'getVideoImage',
@@ -27119,7 +27122,6 @@ var AnalysisPage = function (_React$Component) {
         var ctx = canvas.getContext('2d');
 
         while (this.state.cropped.length < 40 && this.loaded) {
-          console.log('while loop');
           this.loaded = false;
           // Draw the image into a canvas, then pass it to the cropper;
           if (this.loaded) {
@@ -27128,6 +27130,8 @@ var AnalysisPage = function (_React$Component) {
 
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           var img = new Image();
+          img.height = canvas.height;
+          img.width = canvas.width;
 
           canvas.toBlob(function (blob) {
             this.currentBlob = blob;
@@ -27165,23 +27169,22 @@ var AnalysisPage = function (_React$Component) {
   }, {
     key: 'crop',
     value: function crop(img, canvas) {
-      console.log('crop');
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
       // loads in the photo
-      function reader(image) {
-        console.log('inside the reader');
+      var reader = function reader(image) {
         return cv.imread(image);
-      }
+      };
       var src = reader(img);
-      console.log('after imread');
       var dst = new cv.Mat();
       // Crops the photo
       var rect = new cv.Rect(0, 0, 224, 224);
       dst = src.roi(rect);
-      cv.imShow(canvas, dst);
+      cv.imshow(canvas, dst);
 
       var croppedImg = new Image();
-      canvas.getBlob(function (blob) {
+      croppedImg.height = canvas.height;
+      croppedImg.width = canvas.width;
+      canvas.toBlob(function (blob) {
         this.currentBlob = blob;
         croppedImg.src = URL.createObjectURL(this.currentBlob);
       }.bind(this), 'image/png');
