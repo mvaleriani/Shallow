@@ -13,6 +13,7 @@
 
 ## Shallow
 Shallow is a web-based application developed using VGG16, a Keras convolutional neural network specializing in photo-recognition, React.js and Tensorflow.js. Our goal with this project was to create a Convolutional Neural Network (CNN) capable of distinguishing between real and faked videos in order to protect the reputation and integrity of anyone who could be affected by faked videos.  
+  
 [Try us out!](https://mvaleriani.github.io/Shallow/#/)
 ## Why was this created?
 
