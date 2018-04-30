@@ -25771,7 +25771,7 @@ var SellingPointsSection = function (_React$Component) {
                     { className: "content-10 flex" },
                     _react2.default.createElement("div", { className: "image cover bg-cover absolute cu-tweenmax", style: { backgroundImage: 'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left: '32%', height: '700px', marginTop: '320px', marginLeft: '50px' },
                         "data-a-init": "alpha:0",
-                        "data-a-to": "alpha:.5, delay:0.3, duration:1.5",
+                        "data-a-to": "alpha:.7, delay:0.3, duration:1.5",
                         "data-a-gap": "200"
                     }),
                     _react2.default.createElement(
