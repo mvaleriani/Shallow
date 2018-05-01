@@ -26885,7 +26885,7 @@ var DeveloperSection = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'list inline-wrap now nowrap m-t-70-',
-                        'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":true, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+                        'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
                     },
                     _react2.default.createElement(
                         'div',
@@ -26985,7 +26985,7 @@ var DeveloperSection = function (_React$Component) {
                             _react2.default.createElement(
                                 'p',
                                 { className: 'text wrap' },
-                                'Travis is full-stack developer with experience in React, Redux, Ruby on Rails, Javascript and Python. With a background in psychology, he enjoys solving problems, understanding complex relationships and learning about technology.'
+                                'WOW this is crazy, is insane have this high-quality Website on my hands at an affordable price, completely worth it, now my business looks like a huge company with this sleek User interface.'
                             )
                         )
                     )
