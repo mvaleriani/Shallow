@@ -74,7 +74,7 @@ class SellingPointsSection extends React.Component {
                                 Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar)
                                 <br/>
                                 <br/>
-                                Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguishing between real and 
+                                Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguish between real and 
                                 faked videos, thereby protecting the reputation of anyone whos likeness was used without consent.
                             </p>
                         </div>

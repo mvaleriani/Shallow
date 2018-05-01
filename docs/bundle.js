@@ -25812,7 +25812,7 @@ var SellingPointsSection = function (_React$Component) {
                                 "Deepfakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. Surfacing in 2017, \"deepfaking\" is typically used in creating fake celebrity pornographic videos. Deepfakes have produced numerous scandals for the affected celebrities as well as various individuals who were targets of \"revenge porn\". Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar)",
                                 _react2.default.createElement("br", null),
                                 _react2.default.createElement("br", null),
-                                "Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguishing between real and faked videos, thereby protecting the reputation of anyone whos likeness was used without consent."
+                                "Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguish between real and faked videos, thereby protecting the reputation of anyone whos likeness was used without consent."
                             )
                         )
                     )
