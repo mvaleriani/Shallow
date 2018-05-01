@@ -15,9 +15,9 @@ class About extends React.Component {
       <div className="bg12 contents p-b-5">
         <AboutHeader />
         <DeveloperSection/>
-        <EngageSection />
-        <NumbersSection />
-        <TeamMembersSection />
+        {/* <EngageSection /> */}
+        {/* <NumbersSection /> */}
+        {/* <TeamMembersSection /> */}
         <ContactSection />
       </div>
     );
