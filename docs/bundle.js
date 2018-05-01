@@ -25387,7 +25387,7 @@ var TopSection = function (_React$Component) {
                 _react2.default.createElement(
                   'h1',
                   { className: 't-60 f-extra-light m-t-25 l-h-110' },
-                  'Machine Learning for detecting fake videos'
+                  'Machine Learning for Detecting Fake Videos'
                 ),
                 _react2.default.createElement(
                   'p',
@@ -26248,9 +26248,9 @@ var AboutHeader = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "section",
-                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(http://www.guoguiyan.com/data/out/138/69680394-now-wallpapers.png)" } },
+                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url()" } },
                 _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
-                _react2.default.createElement("div", { className: "cover", style: { background: "rgba(41,53,76,0.4)" } }),
+                _react2.default.createElement("img", { src: "http://www.guoguiyan.com/data/out/138/69680394-now-wallpapers.png", className: "cover" }),
                 _react2.default.createElement(
                     "div",
                     { className: "color7" },
@@ -26890,7 +26890,7 @@ var DeveloperSection = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'content box-shadow7' },
-                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(../../app/assets/images/testimonio1.jpg)" } }),
+                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(https://i.imgur.com/YJ0CLhQ.jpg)" } }),
                             _react2.default.createElement(
                                 'p',
                                 { className: 't-18 f-bold wrap' },
@@ -26914,7 +26914,7 @@ var DeveloperSection = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'content box-shadow7' },
-                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(../../app/assets/images/testimonio2.jpg)" } }),
+                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(https://i.imgur.com/h8u751b.jpg)" } }),
                             _react2.default.createElement(
                                 'p',
                                 { className: 't-18 f-bold wrap' },
@@ -26944,7 +26944,7 @@ var DeveloperSection = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'content box-shadow7' },
-                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(../../app/assets/images/testimonio1.jpg)" } }),
+                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(https://i.imgur.com/IStPhWy.jpg)" } }),
                             _react2.default.createElement(
                                 'p',
                                 { className: 't-18 f-bold wrap' },
@@ -26968,7 +26968,7 @@ var DeveloperSection = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'content box-shadow7' },
-                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(../../app/assets/images/testimonio2.jpg)" } }),
+                            _react2.default.createElement('div', { className: 'image bg-cover', style: { backgroundImage: "url(https://i.imgur.com/Y6KXrkt.jpg)" } }),
                             _react2.default.createElement(
                                 'p',
                                 { className: 't-18 f-bold wrap' },

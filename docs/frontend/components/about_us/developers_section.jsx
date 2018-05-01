@@ -24,14 +24,14 @@ class DeveloperSection extends React.Component {
           >
               <div className="item inline-element p-t-125 p-x-40" >
                   <div className="content box-shadow7">
-                      <div className="image bg-cover" style={{backgroundImage:"url(../../app/assets/images/testimonio1.jpg)"}}></div>
+                        <div className="image bg-cover" style={{ backgroundImage:"url(https://i.imgur.com/YJ0CLhQ.jpg)"}}></div>
                       <p className="t-18 f-bold wrap">Ozzy Paniagua | <span className="f-light italic">Designer at Adobe</span></p>
                       <p className="text wrap">Beautiful, complaint, fluid, usable and versatile theme, couldn't be happier and relax using Byond theme.</p>
                   </div>
               </div>
               <div className="item inline-element p-t-125 p-x-40" >
                   <div className="content box-shadow7">
-                      <div className="image bg-cover" style={{backgroundImage:"url(../../app/assets/images/testimonio2.jpg)"}}></div>
+                        <div className="image bg-cover" style={{ backgroundImage:"url(https://i.imgur.com/h8u751b.jpg)"}}></div>
                       <p className="t-18 f-bold wrap">Michael Valeriani | <span className="f-light italic">Developer at Google</span></p>
                       <p className="text wrap">WOW this is crazy, is insane have this high-quality Website on my hands at an affordable price, completely worth it, now my business looks like a huge company with this sleek User interface.</p>
                   </div>
@@ -49,14 +49,14 @@ class DeveloperSection extends React.Component {
             >
                 <div className="item inline-element p-t-125 p-x-40" >
                     <div className="content box-shadow7">
-                        <div className="image bg-cover" style={{ backgroundImage: "url(../../app/assets/images/testimonio1.jpg)" }}></div>
+                        <div className="image bg-cover" style={{ backgroundImage: "url(https://i.imgur.com/IStPhWy.jpg)" }}></div>
                         <p className="t-18 f-bold wrap">Tommy Pham | <span className="f-light italic">Designer at Adobe</span></p>
                         <p className="text wrap">Beautiful, complaint, fluid, usable and versatile theme, couldn't be happier and relax using Byond theme.</p>
                     </div>
                 </div>
                 <div className="item inline-element p-t-125 p-x-40" >
                     <div className="content box-shadow7">
-                        <div className="image bg-cover" style={{ backgroundImage: "url(../../app/assets/images/testimonio2.jpg)" }}></div>
+                        <div className="image bg-cover" style={{ backgroundImage: "url(https://i.imgur.com/Y6KXrkt.jpg)" }}></div>
                         <p className="t-18 f-bold wrap">Travis Tillotson | <span className="f-light italic">Developer at Google</span></p>
                         <p className="text wrap">WOW this is crazy, is insane have this high-quality Website on my hands at an affordable price, completely worth it, now my business looks like a huge company with this sleek User interface.</p>
                     </div>

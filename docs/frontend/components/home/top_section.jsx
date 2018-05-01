@@ -399,7 +399,7 @@ class TopSection extends React.Component {
                 data-a-to="x:0, alpha:1, duration:0.9, delay:0.7, ease:Cubic.easeOut"
                 >
                                                                   
-                <h1 className="t-60 f-extra-light m-t-25 l-h-110">Machine Learning for detecting fake videos</h1>
+                <h1 className="t-60 f-extra-light m-t-25 l-h-110">Machine Learning for Detecting Fake Videos</h1>
 
                 <p className="t-16 m-t-30">Navigate down to learn more</p>
 
