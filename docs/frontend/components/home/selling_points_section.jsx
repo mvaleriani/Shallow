@@ -69,12 +69,13 @@ class SellingPointsSection extends React.Component {
                             </div>
                             <p className="t-18 m-t-30 l-h-170" >
                                 Deepfakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. 
-                                Surfacing in 2017, deep fakes were created as a way to create fake celebrity pornographic videos. 
-                                Deepfakes have already produced numerous scandals for the affected celebrities as well as various individuals who were targets of "revenge porn". 
-                                As it currently stands, only the quality of the video is able to distinguish the authenticity.
-
-                                Our goal with this project was to create a Convolutional Neural Network (CNN) capable of distinguishing between real and 
-                                faked videos in order to protect the reputation and integrity of anyone who could be affected by faked videos.
+                                Surfacing in 2017, "deepfaking" is typically used in creating fake celebrity pornographic videos. 
+                                Deepfakes have produced numerous scandals for the affected celebrities as well as various individuals who were targets of "revenge porn". 
+                                Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar)
+                                <br/>
+                                <br/>
+                                Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguishing between real and 
+                                faked videos, thereby protecting the reputation of anyone whos likeness was used without consent.
                             </p>
                         </div>
 
