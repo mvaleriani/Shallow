@@ -25033,7 +25033,7 @@ var TopSection = function (_React$Component) {
         endColor: 'hsla(0,20%,light%,alp)',
         dataColor: 'hsla(40,80%,light%,0)',
 
-        wireframeWidth: .1,
+        wireframeWidth: .2,
         wireframeColor: '#7db6cd',
 
         depth: 150,
@@ -25392,7 +25392,7 @@ var TopSection = function (_React$Component) {
                 _react2.default.createElement(
                   'p',
                   { className: 't-16 m-t-30' },
-                  'Navigate down to learn more'
+                  'Scroll down to learn more'
                 ),
                 _react2.default.createElement(
                   'div',
@@ -26253,7 +26253,7 @@ var AboutHeader = function (_React$Component) {
                 "section",
                 { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url()" } },
                 _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
-                _react2.default.createElement("img", { src: "http://www.guoguiyan.com/data/out/138/69680394-now-wallpapers.png", className: "cover" }),
+                _react2.default.createElement("img", { src: "", className: "cover", style: { backgroundImage: "url(http://www.guoguiyan.com/data/out/138/69680394-now-wallpapers.png)", backgroundRepeat: "no-repeat" } }),
                 _react2.default.createElement(
                     "div",
                     { className: "color7" },
@@ -26885,7 +26885,7 @@ var DeveloperSection = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'list inline-wrap now nowrap m-t-70-',
-                        'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+                        'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":true, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
                     },
                     _react2.default.createElement(
                         'div',
@@ -26985,7 +26985,7 @@ var DeveloperSection = function (_React$Component) {
                             _react2.default.createElement(
                                 'p',
                                 { className: 'text wrap' },
-                                'WOW this is crazy, is insane have this high-quality Website on my hands at an affordable price, completely worth it, now my business looks like a huge company with this sleek User interface.'
+                                'Travis is full-stack developer with experience in React, Redux, Ruby on Rails, Javascript and Python. With a background in psychology, he enjoys solving problems, understanding complex relationships and learning about technology.'
                             )
                         )
                     )

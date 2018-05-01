@@ -20,7 +20,7 @@ class DeveloperSection extends React.Component {
               </div>
 
           <div className="list inline-wrap now nowrap m-t-70-"
-              data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+              data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":true, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
           >
               <div className="item inline-element p-t-125 p-x-40" >
                   <div className="content box-shadow7">
@@ -58,7 +58,7 @@ class DeveloperSection extends React.Component {
                     <div className="content box-shadow7">
                         <div className="image bg-cover" style={{ backgroundImage: "url(https://i.imgur.com/Y6KXrkt.jpg)" }}></div>
                         <p className="t-18 f-bold wrap">Travis Tillotson | <span className="f-light italic">Developer at Google</span></p>
-                        <p className="text wrap">WOW this is crazy, is insane have this high-quality Website on my hands at an affordable price, completely worth it, now my business looks like a huge company with this sleek User interface.</p>
+                        <p className="text wrap">Travis is full-stack developer with experience in React, Redux, Ruby on Rails, Javascript and Python. With a background in psychology, he enjoys solving problems, understanding complex relationships and learning about technology.</p>
                     </div>
                 </div>
                 {/* <div className="item inline-element p-t-125 p-x-40" >

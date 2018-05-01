@@ -40,7 +40,7 @@ class TopSection extends React.Component {
         endColor: 'hsla(0,20%,light%,alp)',
         dataColor: 'hsla(40,80%,light%,0)',
 
-        wireframeWidth: .1,
+        wireframeWidth: .2,
         wireframeColor: '#7db6cd',
 
         depth: 150,
@@ -401,7 +401,7 @@ class TopSection extends React.Component {
                                                                   
                 <h1 className="t-60 f-extra-light m-t-25 l-h-110">Machine Learning for Detecting Fake Videos</h1>
 
-                <p className="t-16 m-t-30">Navigate down to learn more</p>
+                <p className="t-16 m-t-30">Scroll down to learn more</p>
 
                 <div>
                   <p className="f-bold m-t-40 m-b-10">AI Demo</p>
