@@ -24720,7 +24720,7 @@ var Navbar = function (_React$Component) {
             _react2.default.createElement(
               'a',
               { className: 'logo main', href: 'index.html' },
-              _react2.default.createElement('img', { id: 'nav-logo', className: 'a-l-c svg', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo.png', alt: 'logo' })
+              _react2.default.createElement('img', { id: 'nav-logo', className: '', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo.png', alt: 'logo' })
             ),
             _react2.default.createElement(
               'ul',
@@ -24773,11 +24773,6 @@ var Navbar = function (_React$Component) {
                   )
                 )
               )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'btn-menu a-r-c m-r-20 color7', onClick: byond.showMenuMobile(true, 1) },
-              _react2.default.createElement('img', { alt: '', className: 'svg', src: '../../app/assets/images/icon-menu2.svg' })
             )
           ),
           _react2.default.createElement(
@@ -24786,11 +24781,7 @@ var Navbar = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'flex flex-cover m-w' },
-              _react2.default.createElement(
-                'div',
-                { className: 'logo color7 a-l-t m-l-20 m-t-40' },
-                _react2.default.createElement('img', { className: 'a-l-c m-l-20 svg', src: '../../app/assets/images/p1-logo1.svg', alt: 'logo' })
-              ),
+              _react2.default.createElement('div', { className: 'logo color7 a-l-t m-l-20 m-t-40' }),
               _react2.default.createElement(
                 'div',
                 { className: 'c-a-1' },
@@ -24845,28 +24836,11 @@ var Navbar = function (_React$Component) {
                         )
                       )
                     ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'social m-t-30' },
-                      _react2.default.createElement(
-                        'a',
-                        { className: 'button button-alpha-25p m-r-10 color2' },
-                        _react2.default.createElement('img', { alt: '', className: 'icon svg', src: '../../app/assets/images/icon-facebook.svg' })
-                      ),
-                      _react2.default.createElement(
-                        'a',
-                        { className: 'button button-alpha-25p ' },
-                        _react2.default.createElement('img', { alt: '', className: 'icon svg', src: '../../app/assets/images/icon-twitter.svg' })
-                      )
-                    )
+                    _react2.default.createElement('div', { className: 'social m-t-30' })
                   )
                 )
               ),
-              _react2.default.createElement(
-                'div',
-                { className: 'btn-menu-close a-r-t m-r-20 m-t-20 color7 transition', onClick: byond.showMenuMobile(false, 1) },
-                _react2.default.createElement('img', { className: 'svg', alt: '', src: '../../app/assets/images/icon-close.svg' })
-              )
+              _react2.default.createElement('div', { className: 'btn-menu-close a-r-t m-r-20 m-t-20 color7 transition', onClick: byond.showMenuMobile(false, 1) })
             )
           )
         )
