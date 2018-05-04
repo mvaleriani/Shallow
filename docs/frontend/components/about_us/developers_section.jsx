@@ -45,7 +45,7 @@ class DeveloperSection extends React.Component {
               </div> */}
           </div>
             <div className="list inline-wrap now nowrap m-t-70-" style={{marginTop:'20px'}}
-                data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+                // data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
             >
                 <div className="item inline-element p-t-125 p-x-40" >
                     <div className="content box-shadow7">

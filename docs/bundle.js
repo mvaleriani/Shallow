@@ -26912,8 +26912,8 @@ var DeveloperSection = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'list inline-wrap now nowrap m-t-70-', style: { marginTop: '20px' },
-                        'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+                    { className: 'list inline-wrap now nowrap m-t-70-', style: { marginTop: '20px' }
+                        // data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
                     },
                     _react2.default.createElement(
                         'div',
