@@ -120,13 +120,44 @@ class AnalysisPage extends React.Component{
     }
 
     onDrop(acceptedFiles, rejectedFiles) {
-        // do stuff with files...
-        if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
-            this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
+        // let canvas = document.getElementById("blobify")
+        // debugger;
+        let cropArr = []
+
+        for (let i = 0; i < acceptedFiles.length; i++) {
+          cropArr.push(acceptedFiles[i].preview)
         }
+
+        this.setState({cropped: cropArr})
+        // if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
+        //     this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
+        // }
     }
 
     render(){
+        let croppedArr = [];
+        let cropRow = [];
+
+        for (let i = 0; i < this.state.cropped.length; i++) {
+          if ((i !== 0 && i%6 === 0)) {
+            croppedArr.push(cropRow);
+            cropRow = [];
+          } 
+          cropRow.push(
+            <div className="croppedFrame" id={"frame_"+i}>
+              <img src={this.state.cropped[i]}/>
+            </div>
+          );
+          if (i == this.state.cropped.length - 1 && i%6 !== 0) {
+              croppedArr.push(cropRow);
+          }
+        }
+
+        let flexCrop = [];
+        for (let j = 0; j < croppedArr.length; j++) {
+          flexCrop.push(<div id="cropRow">{croppedArr[j]}</div>)
+        }
+
         return (
         <div>
             <section id="analysis-page" className=" h-80vh color7" style={{ zIndex: 2 }}>
@@ -143,7 +174,10 @@ class AnalysisPage extends React.Component{
                             </Dropzone>
 
                         </section>
-                        <canvas id="canvas-output"></canvas>
+                        {/* <canvas id="blobify"></canvas> */}
+                        <div id="canvas-output">
+                          {flexCrop}
+                        </div>
 
                         {/* <div className="texts m-w-400 m-l-0">
                             <div>

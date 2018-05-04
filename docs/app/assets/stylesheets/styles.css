@@ -269,7 +269,18 @@ p{ padding:0; }
     border: 3px dashed #8ED3D0;
     /* position: absolute; */
     box-shadow: -15px 35px 22px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
 }
+#cropRow{
+    display: flex;
+    flex-direction: row;
+    height: 148px;
+    width: 894px;
+    justify-content: flex-start;
+    margin-bottom: 1px;
+}
+
 #upload-menu{
     top:100px;
     left:60px;
@@ -306,6 +317,28 @@ p{ padding:0; }
 #upload-subtitle{font-size: 12px; font-weight: 600; margin-top: 10px;}
 
 #logo-2{height:40px;}
+
+.croppedFrame {
+    width: 148px;
+    height: 148px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid salmon; */
+}
+.croppedFrame img{
+    width: 140px;
+    height: 140px;
+    box-shadow: rgba(255,255,255,0.5)
+    /* transition: width .2s, height .2s, border .2s; */
+    transition-property: width height border;
+    transition-duration: .2s;
+}
+.croppedFrame img:hover{
+    width: 160px;
+    height: 160px;
+    border: 4px solid #90D3D0;
+}
 
 .video{ cursor: pointer; }
     .video .bg-black{ transition: 1s; opacity: 0; background: #000; }

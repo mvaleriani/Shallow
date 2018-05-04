@@ -26858,7 +26858,7 @@ var DeveloperSection = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'list inline-wrap now nowrap m-t-70-',
+                    { className: '', style: { display: 'flex', justifyContent: "space-around" },
                         'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
                     },
                     _react2.default.createElement(
@@ -27328,14 +27328,49 @@ var AnalysisPage = function (_React$Component) {
   }, {
     key: 'onDrop',
     value: function onDrop(acceptedFiles, rejectedFiles) {
-      // do stuff with files...
-      if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
-        this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
+      // let canvas = document.getElementById("blobify")
+      // debugger;
+      var cropArr = [];
+
+      for (var i = 0; i < acceptedFiles.length; i++) {
+        cropArr.push(acceptedFiles[i].preview);
       }
+
+      this.setState({ cropped: cropArr });
+      // if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
+      //     this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
+      // }
     }
   }, {
     key: 'render',
     value: function render() {
+      var croppedArr = [];
+      var cropRow = [];
+
+      for (var i = 0; i < this.state.cropped.length; i++) {
+        if (i !== 0 && i % 6 === 0) {
+          croppedArr.push(cropRow);
+          cropRow = [];
+        }
+        cropRow.push(_react2.default.createElement(
+          'div',
+          { className: 'croppedFrame', id: "frame_" + i },
+          _react2.default.createElement('img', { src: this.state.cropped[i] })
+        ));
+        if (i == this.state.cropped.length - 1 && i % 6 !== 0) {
+          croppedArr.push(cropRow);
+        }
+      }
+
+      var flexCrop = [];
+      for (var j = 0; j < croppedArr.length; j++) {
+        flexCrop.push(_react2.default.createElement(
+          'div',
+          { id: 'cropRow' },
+          croppedArr[j]
+        ));
+      }
+
       return _react2.default.createElement(
         'div',
         null,
@@ -27370,7 +27405,11 @@ var AnalysisPage = function (_React$Component) {
                 )
               )
             ),
-            _react2.default.createElement('canvas', { id: 'canvas-output' })
+            _react2.default.createElement(
+              'div',
+              { id: 'canvas-output' },
+              flexCrop
+            )
           )
         )
       );
