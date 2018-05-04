@@ -19,10 +19,10 @@ class DeveloperSection extends React.Component {
                   </div>
               </div>
 
-          <div className="" style={{display: 'flex', justifyContent: "space-around"}}
-              data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+          <div className="" style={{display: 'flex', justifyContent: "space-around", width: "100%"}}
+            //   data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
           >
-              <div className="item inline-element p-t-125 p-x-40" >
+              <div className="item inline-element p-t-125 p-x-40" style={{marginRight: "40px"}} >
                   <div className="content box-shadow7">
                         <div className="image bg-cover" style={{ backgroundImage:"url(https://i.imgur.com/YJ0CLhQ.jpg)"}}></div>
                         <p className="t-18 f-bold wrap">Ozzy Paniagua | <span className="f-light italic">Software Engineer</span></p>

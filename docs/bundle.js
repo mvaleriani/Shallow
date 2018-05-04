@@ -26858,12 +26858,12 @@ var DeveloperSection = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: '', style: { display: 'flex', justifyContent: "space-around" },
-                        'data-flickity': '{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
+                    { className: '', style: { display: 'flex', justifyContent: "space-around", width: "100%" }
+                        //   data-flickity='{ "initialIndex": 0, "contain": true, "autoPlay":false, "prevNextButtons":false, "control":false, "pageDots":false, "wrapAround": false }'
                     },
                     _react2.default.createElement(
                         'div',
-                        { className: 'item inline-element p-t-125 p-x-40' },
+                        { className: 'item inline-element p-t-125 p-x-40', style: { marginRight: "40px" } },
                         _react2.default.createElement(
                             'div',
                             { className: 'content box-shadow7' },
