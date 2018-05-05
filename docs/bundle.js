@@ -27229,60 +27229,92 @@ var AnalysisPage = function (_React$Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       if (this.state.vidFile && this.state.cropped.length < 40) {
-        this.showImageAt(0);
+        // Why is this here? Why not formalize the looping process rather
+        // than simply letting it do it's thing whenever the component
+        // updates
+        console.log("update");
+        this.showImageAt(0); // the component gets update the show image at resets it back to 0
+        // Also why are we calling it showImageAt, if all it does is start
+        // the whole process. Can we find a more somantic name?
+      }
+      if (this.state.cropped.length == 40) {
+        debugger;
       }
     }
   }, {
     key: 'getVideoImage',
     value: function getVideoImage(path, secs, callback) {
+      // why are these being declared like this when no where else in the
+      // codebase do we declare variables like this?
       var me = this,
           video = document.createElement('video');
+      video.src = path;
+      this.duration = video.duration; // Is this the correct duration?
+      // Why var? furthermore, why are we abusing this trick when we don't
+      // abuse it later, we simply bind this to the functions.
 
       video.onloadedmetadata = function () {
-        //For some reason, this starts the onseeked event :/
-        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+        //For some reason, this starts the onseeked event, Why?
+        // The change in time counts as a seeking action, thus triggering
+        // the onseeked event
+        this.currentTime = Math.min( //This doesn't randomize the current time
+        // it selects the minimum between two values
+        Math.max(0, (secs < 0 ? this.duration : 0) + secs), // either 0 or (secs + duration : secs + 0)
+        this.duration //and whatever the current duration is.
+        );
+        // *************DANGER BUG ****************
+        // The fact that the image being captured is probably due to this
+        // Unless this only runs once, rather than multiple times
       };
 
       video.onseeked = function (e) {
+        // This should be an external function, not something randomly defined here
         //Initializes Canvas
-        var canvas = document.createElement('canvas');
+        var canvas = document.createElement('canvas'); //Modularize your code, extract this too
         canvas.id = 'hidden-canvas';
-        canvas.height = video.videoHeight;
+        canvas.height = video.videoHeight; // Pass in video as argument? can we make this general use for images too?
         canvas.width = video.videoWidth;
         var ctx = canvas.getContext('2d');
 
         while (this.state.cropped.length < 40 && this.loaded) {
           console.log('while loop');
-          this.loaded = false;
+          this.loaded = false; // AAAAAG we are setting this to false right
+          // before we attempt to reload a frame Is this the problem?
           // Draw the image into a canvas, then pass it to the cropper;
           if (this.loaded) {
+            //When in the hell would this be loaded dumbass?
             this.reloadRandomFrame(video);
           }
-
+          //Now is this actually redrawing the image? How can we test that?
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           var img = new Image();
-
+          //We need to refactor this BAD, so many thing in here are off
           canvas.toBlob(function (blob) {
-            this.currentBlob = blob;
-            img.src = URL.createObjectURL(this.currentBlob);
-            callback.call(me, img, canvas, e);
-            this.currentBlob = null;
+            this.currentBlob = blob; // Why does this need to happen
+            img.src = URL.createObjectURL(this.currentBlob); // We immediately use it here
+            callback.call(me, img, canvas, e); // Is this the only time the callback is used?
+            this.currentBlob = null; // this just solidified the excess code
           }.bind(this), 'image/png');
         }
-      }.bind(this);
+      }.bind(this); // So many bindings
 
       video.onerror = function (e) {
+        //This doesn't add anything to the codebase and you know it
         callback.call(me, undefined, undefined, e);
       };
-
-      video.src = path;
-      this.duration = video.duration;
     }
+    // Why is it's name showImageAt if all it does is start shits
+
   }, {
     key: 'showImageAt',
     value: function showImageAt(secs) {
-      this.getVideoImage(this.state.vidPath, secs, function (img, canvas, event) {
+      this.getVideoImage( // Why are we even using it if all it does
+      this.state.vidPath, // is act as a creator function for getVideoImage
+      secs, function (img, canvas, event) {
+        //This could also be refactored out
         if (event.type == 'seeked' && this.state.cropped.length < 40) {
+          //This is the callback right? why not just name it
+          //and call it when it's needed?
           this.crop(img, canvas);
         }
       }.bind(this));
@@ -27290,6 +27322,7 @@ var AnalysisPage = function (_React$Component) {
   }, {
     key: 'reloadRandomFrame',
     value: function reloadRandomFrame(video) {
+      //This is for the most part okay, but that's because you didn't write it
       if (!isNaN(video.duration) && this.loaded) {
         var rand = Math.round(Math.random() * video.duration * 1000) + 1;
         video.currentTime = rand / 1000;
@@ -27298,28 +27331,29 @@ var AnalysisPage = function (_React$Component) {
   }, {
     key: 'crop',
     value: function crop(img, canvas) {
-      console.log('crop');
       //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
       // loads in the photo
       function reader(image) {
-        console.log('inside the reader');
-        return cv.imread(image);
+        // Do we really need a function that returns another function
+        return cv.imread(image); // Does this actually even call imread?
       }
       var src = reader(img);
-      console.log('after imread');
-      var dst = new cv.Mat();
+      var dst = new cv.Mat(); // cv matrixes are werid
       // Crops the photo
       var rect = new cv.Rect(0, 0, 224, 224);
       dst = src.roi(rect);
-      cv.imShow(canvas, dst);
+      cv.imShow(canvas, dst); //Does this actually change the canvas to the new image
+      // and if it does, will the rest of the video code still work?
 
       var croppedImg = new Image();
       canvas.getBlob(function (blob) {
-        this.currentBlob = blob;
-        croppedImg.src = URL.createObjectURL(this.currentBlob);
+        this.currentBlob = blob; // Why are we doing this ?!?!?!
+        // Do we know if this croppedImg src is being saved properly?
+        croppedImg.src = URL.createObjectURL(this.currentBlob); // it's being used right here!!!
       }.bind(this), 'image/png');
+
       // add the cropped photo, cleans up memory
-      var newCropped = this.state.cropped.concat([croppedImg]);
+      var newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
       this.loaded = true;
       this.setState({ cropped: newCropped });
       src.delete();
@@ -27330,16 +27364,16 @@ var AnalysisPage = function (_React$Component) {
     value: function onDrop(acceptedFiles, rejectedFiles) {
       // let canvas = document.getElementById("blobify")
       // debugger;
-      var cropArr = [];
-
-      for (var i = 0; i < acceptedFiles.length; i++) {
-        cropArr.push(acceptedFiles[i].preview);
-      }
-
-      this.setState({ cropped: cropArr });
-      // if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0]==='video') {
-      //     this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0])})
+      // let cropArr = []
+      //
+      // for (let i = 0; i < acceptedFiles.length; i++) {
+      //   cropArr.push(acceptedFiles[i].preview)
       // }
+
+      // this.setState({cropped: cropArr})
+      if (acceptedFiles.length == 1 && acceptedFiles[0].type.split('/')[0] === 'video') {
+        this.setState({ vidFile: acceptedFiles[0], vidPath: URL.createObjectURL(acceptedFiles[0]) });
+      }
     }
   }, {
     key: 'render',
