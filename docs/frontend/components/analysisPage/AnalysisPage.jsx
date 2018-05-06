@@ -16,7 +16,6 @@ class AnalysisPage extends React.Component{
     };
 
     this.currentTime = 0;
-    this.duration = 0;
     this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
     this.htmlVideo = null;
     this.loaded = true;
@@ -54,19 +53,19 @@ class AnalysisPage extends React.Component{
     */
   }
 
-  initializeCanvas(video) {
+  initializeCanvas() {
     let canvas = document.createElement('canvas');
     canvas.id = 'hidden-canvas';
     // can we make this general use for images too?
-    canvas.height = video.videoHeight;
-    canvas.width = video.videoWidth;
+    canvas.height = this.htmlVideo.videoHeight;
+    canvas.width = this.htmlVideo.videoWidth;
 
     return canvas;
   }
 
   videoSeekHandler(e) {
     //Initializes Canvas
-    let canvas = this.initializeCanvas(video);
+    let canvas = this.initializeCanvas();
     var ctx = canvas.getContext('2d');
 
     while (this.state.cropped.length < 40 && this.loaded) {
@@ -75,10 +74,10 @@ class AnalysisPage extends React.Component{
                           // before we attempt to reload a frame Is this the problem?
       // Draw the image into a canvas, then pass it to the cropper;
       if (this.loaded) { //When in the hell would this be loaded dumbass?
-        this.reloadRandomFrame(video);
+        this.reloadRandomFrame();
       }
       //Now is this actually redrawing the image? How can we test that?
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
       var img = new Image();
       //We need to refactor this BAD, so many thing in here are off
       canvas.toBlob(function (blob) {
@@ -93,16 +92,11 @@ class AnalysisPage extends React.Component{
   getVideoImage(path, callback) {
     // why are these being declared like this when no where else in the
     // codebase do we declare variables like this?
-    var video = ;
-    video.src = path;
-    // Is this the correct duration?
-    this.duration = video.duration;
-    // Why var? furthermore, why are we abusing this trick when we don't
-    // abuse it later, we simply bind this to the functions.
+    this.htmlVideo.src = path;
 
-    video.onloadedmetadata = this.setTimeToStart;
+    this.htmlVideo.onloadedmetadata = this.setTimeToStart;
 
-    video.onseeked = this.videoSeekHandler;
+    this.htmlVideo.onseeked = this.videoSeekHandler;
   }
   // Why is it's name showImageAt if all it does is start shits
   showImageAt() {
@@ -117,10 +111,10 @@ class AnalysisPage extends React.Component{
       );
   }
 
-  reloadRandomFrame(video) { //This is for the most part okay, but that's because you didn't write it
-    if (!isNaN(video.duration) && this.loaded) {
-      var rand = Math.round(Math.random() * video.duration * 1000) + 1;
-      video.currentTime = rand / 1000;
+  reloadRandomFrame() { //This is for the most part okay, but that's because you didn't write it
+    if (!isNaN(this.htmlVideo.duration) && this.loaded) {
+      var rand = Math.round(Math.random() * this.htmlVideo.duration * 1000) + 1;
+      this.htmlVideo.currentTime = rand / 1000;
     }
   }
 
