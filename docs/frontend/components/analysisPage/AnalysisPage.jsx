@@ -25,6 +25,7 @@ class AnalysisPage extends React.Component{
     this.onDrop = this.onDrop.bind(this);
     this.getVideoImage = this.getVideoImage.bind(this);
     this.videoSeekHandler = this.videoSeekHandler.bind(this);
+    this.fromBlobToImg = this.fromBlobToImg.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,7 +34,7 @@ class AnalysisPage extends React.Component{
       // than simply letting it do it's thing whenever the component
       // updates
       console.log("update");
-      this.showImageAt(0); // the component gets update the show image at resets it back to 0
+      this.getCroppedFaces(this.state.vidFile); // the component gets update the show image at resets it back to 0
       // Also why are we calling it showImageAt, if all it does is start
       // the whole process. Can we find a more somantic name?
     }
@@ -55,7 +56,6 @@ class AnalysisPage extends React.Component{
 
   initializeCanvas() {
     let canvas = document.createElement('canvas');
-    canvas.id = 'hidden-canvas';
     // can we make this general use for images too?
     canvas.height = this.htmlVideo.videoHeight;
     canvas.width = this.htmlVideo.videoWidth;
@@ -68,28 +68,31 @@ class AnalysisPage extends React.Component{
     let canvas = this.initializeCanvas();
     var ctx = canvas.getContext('2d');
 
-    while (this.state.cropped.length < 40 && this.loaded) {
-      console.log('while loop');
-      this.loaded = false; // AAAAAG we are setting this to false right
-                          // before we attempt to reload a frame Is this the problem?
-      // Draw the image into a canvas, then pass it to the cropper;
-      if (this.loaded) { //When in the hell would this be loaded dumbass?
+    while (this.state.cropped.length < 40) {
+      if (this.loaded) {
+        // Draw the image into a canvas, then pass it to the cropper;
+        // Now is this actually redrawing the image? How can we test that?
+        ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
+        // We need to refactor this BAD, so many thing in here are off
+        canvas.toBlob(this.fromBlobToImg, 'image/png');
+
         this.reloadRandomFrame();
       }
-      //Now is this actually redrawing the image? How can we test that?
-      ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
-      var img = new Image();
-      //We need to refactor this BAD, so many thing in here are off
-      canvas.toBlob(function (blob) {
-        this.currentBlob = blob;// Why does this need to happen
-        img.src = URL.createObjectURL(this.currentBlob); // We immediately use it here
-        callback.call(me, img, canvas, e); // Is this the only time the callback is used?
-        this.currentBlob = null; // this just solidified the excess code
-      }.bind(this), 'image/png');
     }
   }
 
-  getVideoImage(path, callback) {
+  fromBlobToImg(blob) {
+    //This came here from videoSeekHandler, trying to see if we can keep the
+    // reloadRandomFram from activating until it's done.
+    this.loaded = false;
+
+    let img = new Image();
+    img.src = URL.createObjectURL(blob);
+
+    this.crop(img);
+  }
+
+  getCroppedFaces(path) {
     // why are these being declared like this when no where else in the
     // codebase do we declare variables like this?
     this.htmlVideo.src = path;
@@ -98,18 +101,6 @@ class AnalysisPage extends React.Component{
 
     this.htmlVideo.onseeked = this.videoSeekHandler;
   }
-  // Why is it's name showImageAt if all it does is start shits
-  showImageAt() {
-    this.getVideoImage( // Why are we even using it if all it does
-      this.state.vidPath, // is act as a creator function for getVideoImage
-      function(img, canvas, event) { //This could also be refactored out
-        if (event.type == 'seeked' && this.state.cropped.length < 40) { //This is the callback right? why not just name it
-        //and call it when it's needed?
-          this.crop(img, canvas);
-          }
-        }.bind(this)
-      );
-  }
 
   reloadRandomFrame() { //This is for the most part okay, but that's because you didn't write it
     if (!isNaN(this.htmlVideo.duration) && this.loaded) {
@@ -117,8 +108,8 @@ class AnalysisPage extends React.Component{
       this.htmlVideo.currentTime = rand / 1000;
     }
   }
-
-  crop(img, canvas) {
+  // Crop has fucked canvas refrences, it should create it's own canvas to use
+  crop(img) {
     //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
       // loads in the photo
       function reader(image) { // Do we really need a function that returns another function
@@ -131,6 +122,9 @@ class AnalysisPage extends React.Component{
       dst = src.roi(rect);
       cv.imShow(canvas, dst); //Does this actually change the canvas to the new image
       // and if it does, will the rest of the video code still work?
+
+      //I think this section of code is responsible for our bug, any video changes
+      // won't change the canvas back.
 
       let croppedImg = new Image();
       canvas.getBlob(function (blob) {
