@@ -27308,7 +27308,7 @@ var AnalysisPage = function (_React$Component) {
         // Draw the image into a canvas, then pass it to the cropper;
         // Now is this actually redrawing the image? How can we test that?
         ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
-        // We need to refactor this BAD, so many thing in here are off
+
         canvas.toBlob(this.fromBlobToImg, 'image/png');
       }
     }
@@ -27316,8 +27316,6 @@ var AnalysisPage = function (_React$Component) {
     key: 'fromBlobToImg',
     value: function fromBlobToImg(blob) {
       console.log('fromBlobToImg');
-      //This came here from videoSeekHandler, trying to see if we can keep the
-      // reloadRandomFrame from activating until it's done.
       this.loaded = false;
 
       var img = new Image();
@@ -27325,9 +27323,9 @@ var AnalysisPage = function (_React$Component) {
       img.width = this.htmlVideo.videoWidth;
       img.src = URL.createObjectURL(blob);
 
-      // Should we try anad go for seperation of concerns and have this simply
-      // return an image to be then sent to this.crop?
-      this.crop(img);
+      img.onload = function () {
+        this.crop(img);
+      }.bind(this);
     }
   }, {
     key: 'reloadRandomFrame',
@@ -27345,25 +27343,43 @@ var AnalysisPage = function (_React$Component) {
     value: function crop(img) {
       console.log('crop');
       // loads in the photo
+      // console.log(img);
+      // So the image isn't working well with the canvas!
+      // You can't just simply draw an html element to the canvas, it has
+      // to be converted to an svg.
+      var canvasHolder = document.getElementById('canvas-output');
       var imgCanvas = document.createElement('canvas');
-      // These aren't setting the values
       imgCanvas.height = img.height;
       imgCanvas.width = img.width;
+      var imgCtx = imgCanvas.getContext('2d');
+      // This isn't drawing the image for some reason, the inputs are correct
+      // we have the right number of arguments.
 
-      var src = cv.imread(img);
+      imgCtx.drawImage(img, 0, 0, img.width, img.height);
 
+      /*
+      Using the methods below I proved that the imgCtx is able to render things
+      to the screen, I am initializing the canvas and it is properly being updated
+      imgCtx.fillStyle = "#FF0000";
+      imgCtx.fillRect(0, 0, 80, 80);
+      */
+      // canvasHolder.appendChild(imgCanvas);
+      var imgData = imgCtx.getImageData(0, 0, imgCanvas.width, imgCanvas.height);
+      var src = cv.matFromImageData(imgData);
+      // src type is CV_8U or 24
+
+      // let src = cv.imread(img);
       var dst = new cv.Mat();
-      var rect = new cv.Rect(0, 0, 224, 224);
-      // Applies the dimensions defined above to the image
+      var rect = new cv.Rect(100, 100, 224, 224);
+      // // Applies the dimensions defined above to the image
       dst = src.roi(rect);
-
-      // Applies cropped img to the canvas
+      //
+      // // Applies cropped img to the canvas
+      // // This isn't showing anything, even the regular src doesn't display
       cv.imshow(imgCanvas, dst);
-
       imgCanvas.toBlob(this.blobSetter, 'image/png');
       src.delete();
       dst.delete();
-      this.processCroppedImg();
     }
   }, {
     key: 'blobSetter',
@@ -27371,8 +27387,10 @@ var AnalysisPage = function (_React$Component) {
       //This blob isn't a proper blob!!!
       console.log('blobSetter');
       // this blob is used to create the croppedImg
+      // It is also grey and not at all an actual image
       this.croppedBlob = URL.createObjectURL(blob);
       console.log('CroppedBlob: ', this.croppedBlob);
+      this.processCroppedImg();
     }
   }, {
     key: 'reader',
@@ -27387,13 +27405,15 @@ var AnalysisPage = function (_React$Component) {
     value: function processCroppedImg() {
       console.log('processCroppedImg');
       // console.log('croppedBlob: ', this.croppedBlob);
-      var croppedImg = new Image();
+      var croppedImg = new Image(224, 224);
       croppedImg.src = this.croppedBlob;
       // add the cropped photo, cleans up memory
-      var newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
-      this.loaded = true;
-      this.reloadRandomFrame(); // this has been moved here from video seek handler
-      this.setState({ cropped: newCropped });
+      croppedImg.onload = function () {
+        var newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
+        this.loaded = true;
+        this.reloadRandomFrame(); // this has been moved here from video seek handler
+        this.setState({ cropped: newCropped });
+      }.bind(this);
     }
   }, {
     key: 'onDrop',
@@ -27422,10 +27442,13 @@ var AnalysisPage = function (_React$Component) {
           croppedArr.push(cropRow);
           cropRow = [];
         }
+        // I added that little .src to the img tag so it works with my code
+        // I'm pushing html img's directly in so you can probably use those
+        // directly
         cropRow.push(_react2.default.createElement(
           'div',
           { className: 'croppedFrame', id: "frame_" + i },
-          _react2.default.createElement('img', { src: this.state.cropped[i] })
+          _react2.default.createElement('img', { src: this.state.cropped[i].src })
         ));
         if (i == this.state.cropped.length - 1 && i % 6 !== 0) {
           croppedArr.push(cropRow);
