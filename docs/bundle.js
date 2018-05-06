@@ -27216,148 +27216,179 @@ var AnalysisPage = function (_React$Component) {
       cropped: [],
       selectedCrops: []
     };
+
     _this.currentTime = 0;
-    _this.duration = 0;
-    _this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
-    _this.onDrop = _this.onDrop.bind(_this);
-    _this.getVideoImage = _this.getVideoImage.bind(_this);
+    _this.htmlVideo = document.createElement('video');
     _this.loaded = true;
+    _this.croppedBlob = null;
+
+    _this.onDrop = _this.onDrop.bind(_this);
+    _this.setTimeToStart = _this.setTimeToStart.bind(_this);
+    _this.getCroppedFaces = _this.getCroppedFaces.bind(_this);
+    _this.videoSeekHandler = _this.videoSeekHandler.bind(_this);
+    _this.fromBlobToImg = _this.fromBlobToImg.bind(_this);
+    _this.initializeCanvas = _this.initializeCanvas.bind(_this);
+    _this.crop = _this.crop.bind(_this);
+    _this.blobSetter = _this.blobSetter.bind(_this);
     return _this;
   }
 
   _createClass(AnalysisPage, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
-      if (this.state.vidFile && this.state.cropped.length < 40) {
+      console.log(this.state.cropped.length);
+      // We only want this to run once while the cropped is empty
+      if (this.state.vidFile && this.state.cropped.length === 0) {
         // Why is this here? Why not formalize the looping process rather
         // than simply letting it do it's thing whenever the component
         // updates
         console.log("update");
-        this.showImageAt(0); // the component gets update the show image at resets it back to 0
+        this.getCroppedFaces(this.state.vidFile); // the component gets update the show image at resets it back to 0
         // Also why are we calling it showImageAt, if all it does is start
         // the whole process. Can we find a more somantic name?
       }
-      if (this.state.cropped.length == 40) {
-        debugger;
+    }
+  }, {
+    key: 'getCroppedFaces',
+    value: function getCroppedFaces(videoFile) {
+      console.log("getCroppedFaces");
+      // why are these being declared like this when no where else in the
+      // codebase do we declare variables like this?
+      this.htmlVideo.src = videoFile.preview;
+      var video = this.htmlVideo;
+
+      this.htmlVideo.addEventListener("loadedmetadata", this.setTimeToStart);
+      // this.htmlVideo.onloadedmetadata = ;
+      // this.setTimeToStart;
+      console.log('after loaded meta data');
+
+      // this.htmlVideo.onseeked = this.videoSeekHandler;
+      this.htmlVideo.addEventListener('seeked', this.videoSeekHandler);
+      console.log('after onseeked');
+    }
+  }, {
+    key: 'setTimeToStart',
+    value: function setTimeToStart() {
+      console.log('setTimeToStart');
+      // This will just set the time straight to 1 second in.
+      this.htmlVideo.currentTime = 1;
+
+      //This is just here for posterity, I'm not entirely sure why it was included
+      /*
+       Math.min(//This doesn't randomize the current time
+                                   // it selects the minimum between two values
+         Math.max(0, (secs < 0 ? this.duration : 0) + secs),// either 0 or (secs + duration : secs + 0)
+         this.duration //and whatever the current duration is.
+       );
+      */
+    }
+  }, {
+    key: 'initializeCanvas',
+    value: function initializeCanvas() {
+      console.log('initializeCanvas');
+      var canvas = document.createElement('canvas');
+      // can we make this general use for images too?
+      canvas.height = this.htmlVideo.videoHeight;
+      canvas.width = this.htmlVideo.videoWidth;
+
+      return canvas;
+    }
+  }, {
+    key: 'videoSeekHandler',
+    value: function videoSeekHandler(e) {
+      console.log('videoSeekHandler');
+      //Initializes Canvas
+      var canvas = this.initializeCanvas();
+      var ctx = canvas.getContext('2d');
+
+      while (this.state.cropped.length < 40 && this.loaded) {
+        console.log("while loop");
+        this.loaded = false;
+        // Draw the image into a canvas, then pass it to the cropper;
+        // Now is this actually redrawing the image? How can we test that?
+        ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
+        // We need to refactor this BAD, so many thing in here are off
+        canvas.toBlob(this.fromBlobToImg, 'image/png');
       }
     }
   }, {
-    key: 'getVideoImage',
-    value: function getVideoImage(path, secs, callback) {
-      // why are these being declared like this when no where else in the
-      // codebase do we declare variables like this?
-      var me = this,
-          video = document.createElement('video');
-      video.src = path;
-      this.duration = video.duration; // Is this the correct duration?
-      // Why var? furthermore, why are we abusing this trick when we don't
-      // abuse it later, we simply bind this to the functions.
+    key: 'fromBlobToImg',
+    value: function fromBlobToImg(blob) {
+      console.log('fromBlobToImg');
+      //This came here from videoSeekHandler, trying to see if we can keep the
+      // reloadRandomFrame from activating until it's done.
+      this.loaded = false;
 
-      video.onloadedmetadata = function () {
-        //For some reason, this starts the onseeked event, Why?
-        // The change in time counts as a seeking action, thus triggering
-        // the onseeked event
-        this.currentTime = Math.min( //This doesn't randomize the current time
-        // it selects the minimum between two values
-        Math.max(0, (secs < 0 ? this.duration : 0) + secs), // either 0 or (secs + duration : secs + 0)
-        this.duration //and whatever the current duration is.
-        );
-        // *************DANGER BUG ****************
-        // The fact that the image being captured is probably due to this
-        // Unless this only runs once, rather than multiple times
-      };
+      var img = new Image();
+      img.height = this.htmlVideo.videoHeight;
+      img.width = this.htmlVideo.videoWidth;
+      img.src = URL.createObjectURL(blob);
 
-      video.onseeked = function (e) {
-        // This should be an external function, not something randomly defined here
-        //Initializes Canvas
-        var canvas = document.createElement('canvas'); //Modularize your code, extract this too
-        canvas.id = 'hidden-canvas';
-        canvas.height = video.videoHeight; // Pass in video as argument? can we make this general use for images too?
-        canvas.width = video.videoWidth;
-        var ctx = canvas.getContext('2d');
-
-        while (this.state.cropped.length < 40 && this.loaded) {
-          console.log('while loop');
-          this.loaded = false; // AAAAAG we are setting this to false right
-          // before we attempt to reload a frame Is this the problem?
-          // Draw the image into a canvas, then pass it to the cropper;
-          if (this.loaded) {
-            //When in the hell would this be loaded dumbass?
-            this.reloadRandomFrame(video);
-          }
-          //Now is this actually redrawing the image? How can we test that?
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          var img = new Image();
-          //We need to refactor this BAD, so many thing in here are off
-          canvas.toBlob(function (blob) {
-            this.currentBlob = blob; // Why does this need to happen
-            img.src = URL.createObjectURL(this.currentBlob); // We immediately use it here
-            callback.call(me, img, canvas, e); // Is this the only time the callback is used?
-            this.currentBlob = null; // this just solidified the excess code
-          }.bind(this), 'image/png');
-        }
-      }.bind(this); // So many bindings
-
-      video.onerror = function (e) {
-        //This doesn't add anything to the codebase and you know it
-        callback.call(me, undefined, undefined, e);
-      };
-    }
-    // Why is it's name showImageAt if all it does is start shits
-
-  }, {
-    key: 'showImageAt',
-    value: function showImageAt(secs) {
-      this.getVideoImage( // Why are we even using it if all it does
-      this.state.vidPath, // is act as a creator function for getVideoImage
-      secs, function (img, canvas, event) {
-        //This could also be refactored out
-        if (event.type == 'seeked' && this.state.cropped.length < 40) {
-          //This is the callback right? why not just name it
-          //and call it when it's needed?
-          this.crop(img, canvas);
-        }
-      }.bind(this));
+      // Should we try anad go for seperation of concerns and have this simply
+      // return an image to be then sent to this.crop?
+      this.crop(img);
     }
   }, {
     key: 'reloadRandomFrame',
-    value: function reloadRandomFrame(video) {
-      //This is for the most part okay, but that's because you didn't write it
-      if (!isNaN(video.duration) && this.loaded) {
-        var rand = Math.round(Math.random() * video.duration * 1000) + 1;
-        video.currentTime = rand / 1000;
+    value: function reloadRandomFrame() {
+      console.log('reloadRandomFrame');
+      // Do we need this loaded check here if the code that calls this
+      // function is already checking for that?
+      if (!isNaN(this.htmlVideo.duration) && this.loaded) {
+        var rand = Math.round(Math.random() * this.htmlVideo.duration * 1000) + 1;
+        this.htmlVideo.currentTime = rand / 1000;
       }
     }
   }, {
     key: 'crop',
-    value: function crop(img, canvas) {
-      //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
+    value: function crop(img) {
+      console.log('crop');
       // loads in the photo
-      function reader(image) {
-        // Do we really need a function that returns another function
-        return cv.imread(image); // Does this actually even call imread?
-      }
-      var src = reader(img);
-      var dst = new cv.Mat(); // cv matrixes are werid
-      // Crops the photo
+
+      console.log('Image Height: ', img.height);
+      console.log('Image Width: ', img.width);
+      var imgCanvas = document.createElement('canvas');
+      // These aren't setting the values
+      imgCanvas.height = img.height;
+      imgCanvas.width = img.width;
+
+      var src = cv.imread(img);
+
+      var dst = new cv.Mat();
       var rect = new cv.Rect(0, 0, 224, 224);
+      // Applies the dimensions defined above to the image
       dst = src.roi(rect);
-      cv.imShow(canvas, dst); //Does this actually change the canvas to the new image
-      // and if it does, will the rest of the video code still work?
+
+      // Applies cropped img to the canvas
+      cv.imshow(imgCanvas, dst);
+
+      imgCanvas.getBlob(this.blobSetter, 'image/png');
 
       var croppedImg = new Image();
-      canvas.getBlob(function (blob) {
-        this.currentBlob = blob; // Why are we doing this ?!?!?!
-        // Do we know if this croppedImg src is being saved properly?
-        croppedImg.src = URL.createObjectURL(this.currentBlob); // it's being used right here!!!
-      }.bind(this), 'image/png');
-
+      croppedImg.src = URL.createObjectURL(this.croppedBlob);
       // add the cropped photo, cleans up memory
       var newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
       this.loaded = true;
-      this.setState({ cropped: newCropped });
       src.delete();
       dst.delete();
+      this.reloadRandomFrame(); // this has been moved here from video seek handler
+      this.setState({ cropped: newCropped });
+    }
+  }, {
+    key: 'blobSetter',
+    value: function blobSetter(blob) {
+      console.log('blobSetter');
+      // this blob is used to create the croppedImg
+      this.croppedBlob = blob;
+    }
+  }, {
+    key: 'reader',
+    value: function reader(image) {
+      console.log('reader');
+      // fairly certain this is due to async issues, this is basically a
+      // promise
+      console.log(image);
+      return cv.imread(image);
     }
   }, {
     key: 'onDrop',

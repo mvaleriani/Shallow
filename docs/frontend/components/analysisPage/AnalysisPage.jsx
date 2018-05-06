@@ -16,20 +16,25 @@ class AnalysisPage extends React.Component{
     };
 
     this.currentTime = 0;
-    this.htmlVideo = null;
+    this.htmlVideo = document.createElement('video');
     this.loaded = true;
     this.croppedBlob = null;
 
 
-    this.setTimeToStart = this.setTimeToStart.bind(this);
     this.onDrop = this.onDrop.bind(this);
-    this.getVideoImage = this.getVideoImage.bind(this);
+    this.setTimeToStart = this.setTimeToStart.bind(this);
+    this.getCroppedFaces = this.getCroppedFaces.bind(this);
     this.videoSeekHandler = this.videoSeekHandler.bind(this);
     this.fromBlobToImg = this.fromBlobToImg.bind(this);
+    this.initializeCanvas = this.initializeCanvas.bind(this);
+    this.crop = this.crop.bind(this);
+    this.blobSetter = this.blobSetter.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.vidFile && this.state.cropped.length < 40) {
+    console.log(this.state.cropped.length);
+    // We only want this to run once while the cropped is empty
+    if (this.state.vidFile && this.state.cropped.length === 0) {
       // Why is this here? Why not formalize the looping process rather
       // than simply letting it do it's thing whenever the component
       // updates
@@ -40,19 +45,27 @@ class AnalysisPage extends React.Component{
     }
   }
 
-  getCroppedFaces(path) {
+  getCroppedFaces(videoFile) {
+    console.log("getCroppedFaces");
     // why are these being declared like this when no where else in the
     // codebase do we declare variables like this?
-    this.htmlVideo.src = path;
+    this.htmlVideo.src = videoFile.preview;
+    let video = this.htmlVideo;
 
-    this.htmlVideo.onloadedmetadata = this.setTimeToStart;
+    this.htmlVideo.addEventListener("loadedmetadata", this.setTimeToStart);
+    // this.htmlVideo.onloadedmetadata = ;
+    // this.setTimeToStart;
+    console.log('after loaded meta data');
 
-    this.htmlVideo.onseeked = this.videoSeekHandler;
+    // this.htmlVideo.onseeked = this.videoSeekHandler;
+    this.htmlVideo.addEventListener('seeked', this.videoSeekHandler);
+    console.log('after onseeked');
   }
 
   setTimeToStart() {
-    // This will just set the time straight to zero.
-    this.currentTime = 0;
+    console.log('setTimeToStart');
+    // This will just set the time straight to 1 second in.
+    this.htmlVideo.currentTime = 1;
 
     //This is just here for posterity, I'm not entirely sure why it was included
     /*
@@ -65,6 +78,7 @@ class AnalysisPage extends React.Component{
   }
 
   initializeCanvas() {
+    console.log('initializeCanvas');
     let canvas = document.createElement('canvas');
     // can we make this general use for images too?
     canvas.height = this.htmlVideo.videoHeight;
@@ -74,29 +88,31 @@ class AnalysisPage extends React.Component{
   }
 
   videoSeekHandler(e) {
+    console.log('videoSeekHandler');
     //Initializes Canvas
     let canvas = this.initializeCanvas();
     var ctx = canvas.getContext('2d');
 
-    while (this.state.cropped.length < 40) {
-      if (this.loaded) {
-        // Draw the image into a canvas, then pass it to the cropper;
-        // Now is this actually redrawing the image? How can we test that?
-        ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
-        // We need to refactor this BAD, so many thing in here are off
-        canvas.toBlob(this.fromBlobToImg, 'image/png');
-
-        this.reloadRandomFrame();
-      }
+    while (this.state.cropped.length < 40 && this.loaded) {
+      console.log("while loop");
+      this.loaded = false;
+      // Draw the image into a canvas, then pass it to the cropper;
+      // Now is this actually redrawing the image? How can we test that?
+      ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
+      // We need to refactor this BAD, so many thing in here are off
+      canvas.toBlob(this.fromBlobToImg, 'image/png');
     }
   }
 
   fromBlobToImg(blob) {
+    console.log('fromBlobToImg');
     //This came here from videoSeekHandler, trying to see if we can keep the
-    // reloadRandomFram from activating until it's done.
+    // reloadRandomFrame from activating until it's done.
     this.loaded = false;
 
     let img = new Image();
+    img.height = this.htmlVideo.videoHeight;
+    img.width = this.htmlVideo.videoWidth;
     img.src = URL.createObjectURL(blob);
 
     // Should we try anad go for seperation of concerns and have this simply
@@ -105,6 +121,7 @@ class AnalysisPage extends React.Component{
   }
 
   reloadRandomFrame() {
+    console.log('reloadRandomFrame');
     // Do we need this loaded check here if the code that calls this
     // function is already checking for that?
     if (!isNaN(this.htmlVideo.duration) && this.loaded) {
@@ -114,12 +131,17 @@ class AnalysisPage extends React.Component{
   }
 
   crop(img) {
+    console.log('crop');
       // loads in the photo
+
+      console.log('Image Height: ', img.height);
+      console.log('Image Width: ', img.width);
       let imgCanvas = document.createElement('canvas');
+      // These aren't setting the values
       imgCanvas.height = img.height;
       imgCanvas.width = img.width;
 
-      let src = this.reader(img);
+      let src = cv.imread(img);
 
       let dst = new cv.Mat();
       let rect = new cv.Rect(0, 0, 224, 224);
@@ -127,7 +149,7 @@ class AnalysisPage extends React.Component{
       dst = src.roi(rect);
 
       // Applies cropped img to the canvas
-      cv.imShow(imgCanvas, dst);
+      cv.imshow(imgCanvas, dst);
 
       imgCanvas.getBlob(this.blobSetter, 'image/png');
 
@@ -138,17 +160,21 @@ class AnalysisPage extends React.Component{
       this.loaded = true;
       src.delete();
       dst.delete();
+      this.reloadRandomFrame(); // this has been moved here from video seek handler
       this.setState({cropped: newCropped});
   }
 
   blobSetter(blob) {
+    console.log('blobSetter');
     // this blob is used to create the croppedImg
     this.croppedBlob = blob;
   }
 
   reader(image) {
+    console.log('reader');
     // fairly certain this is due to async issues, this is basically a
     // promise
+    console.log(image);
     return cv.imread(image);
   }
 
