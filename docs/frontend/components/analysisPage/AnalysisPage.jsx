@@ -16,9 +16,10 @@ class AnalysisPage extends React.Component{
     this.currentTime = 0;
     this.duration = 0;
     this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
+    this.loaded = true;
+    this.setTimeToStart = this.setTimeToStart.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.getVideoImage = this.getVideoImage.bind(this);
-    this.loaded = true;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,7 +34,21 @@ class AnalysisPage extends React.Component{
     }
   }
 
-  getVideoImage(path, secs, callback) {
+  setTimeToStart() {
+    // This will just set the time straight to zero.
+    this.currentTime = 0;
+
+    //This is just here for posterity, I'm not entirely sure why it was included
+    /*
+     Math.min(//This doesn't randomize the current time
+                                 // it selects the minimum between two values
+       Math.max(0, (secs < 0 ? this.duration : 0) + secs),// either 0 or (secs + duration : secs + 0)
+       this.duration //and whatever the current duration is.
+     );
+    */
+  }
+
+  getVideoImage(path, callback) {
     // why are these being declared like this when no where else in the
     // codebase do we declare variables like this?
     var me = this, video = document.createElement('video');
@@ -42,19 +57,7 @@ class AnalysisPage extends React.Component{
     // Why var? furthermore, why are we abusing this trick when we don't
     // abuse it later, we simply bind this to the functions.
 
-    video.onloadedmetadata = function() {
-      //For some reason, this starts the onseeked event, Why?
-      // The change in time counts as a seeking action, thus triggering
-      // the onseeked event
-      this.currentTime = Math.min(//This doesn't randomize the current time
-                                  // it selects the minimum between two values
-        Math.max(0, (secs < 0 ? this.duration : 0) + secs),// either 0 or (secs + duration : secs + 0)
-        this.duration //and whatever the current duration is.
-      );
-      // *************DANGER BUG ****************
-      // The fact that the image being captured is probably due to this
-      // Unless this only runs once, rather than multiple times
-    };
+    video.onloadedmetadata = this.setTimeToStart;
 
     video.onseeked = function(e) { // This should be an external function, not something randomly defined here
       //Initializes Canvas
@@ -86,10 +89,9 @@ class AnalysisPage extends React.Component{
     }.bind(this); // So many bindings
   }
   // Why is it's name showImageAt if all it does is start shits
-  showImageAt(secs) {
+  showImageAt() {
     this.getVideoImage( // Why are we even using it if all it does
       this.state.vidPath, // is act as a creator function for getVideoImage
-      secs,
       function(img, canvas, event) { //This could also be refactored out
         if (event.type == 'seeked' && this.state.cropped.length < 40) { //This is the callback right? why not just name it
         //and call it when it's needed?
