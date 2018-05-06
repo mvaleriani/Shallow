@@ -15,71 +15,47 @@ class AnalysisPage extends React.Component{
       selectedCrops: []
     };
 
-    this.currentTime = 0;
     this.htmlVideo = document.createElement('video');
     this.loaded = true;
     this.croppedBlob = null;
 
-
+    // The order of operations follows this order:
     this.onDrop = this.onDrop.bind(this);
-    this.setTimeToStart = this.setTimeToStart.bind(this);
     this.getCroppedFaces = this.getCroppedFaces.bind(this);
+    this.setTimeToStart = this.setTimeToStart.bind(this);
     this.videoSeekHandler = this.videoSeekHandler.bind(this);
-    this.fromBlobToImg = this.fromBlobToImg.bind(this);
     this.initializeCanvas = this.initializeCanvas.bind(this);
+    this.fromBlobToImg = this.fromBlobToImg.bind(this);
     this.crop = this.crop.bind(this);
     this.blobSetter = this.blobSetter.bind(this);
     this.processCroppedImg = this.processCroppedImg.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.cropped.length);
     // We only want this to run once while the cropped is empty
     if (this.state.vidFile && this.state.cropped.length === 0) {
-      // Why is this here? Why not formalize the looping process rather
-      // than simply letting it do it's thing whenever the component
-      // updates
-      console.log("update");
-      this.getCroppedFaces(this.state.vidFile); // the component gets update the show image at resets it back to 0
-      // Also why are we calling it showImageAt, if all it does is start
-      // the whole process. Can we find a more somantic name?
+      this.getCroppedFaces(this.state.vidFile);
     }
   }
 
   getCroppedFaces(videoFile) {
-    console.log("getCroppedFaces");
-    // why are these being declared like this when no where else in the
-    // codebase do we declare variables like this?
+    // The videoFile preview contains the blob for the video
     this.htmlVideo.src = videoFile.preview;
-    let video = this.htmlVideo;
 
+    // meta data is duration, width, and height all important attributes
     this.htmlVideo.addEventListener("loadedmetadata", this.setTimeToStart);
-    // this.htmlVideo.onloadedmetadata = ;
-    // this.setTimeToStart;
-    console.log('after loaded meta data');
 
-    // this.htmlVideo.onseeked = this.videoSeekHandler;
+    // The previous method will trigger this method
     this.htmlVideo.addEventListener('seeked', this.videoSeekHandler);
-    console.log('after onseeked');
   }
 
   setTimeToStart() {
-    console.log('setTimeToStart');
-    // This will just set the time straight to 1 second in.
+    // This will just set the time straight to 1 second in, an arbitrary choice.
     this.htmlVideo.currentTime = 1;
-
-    //This is just here for posterity, I'm not entirely sure why it was included
-    /*
-     Math.min(//This doesn't randomize the current time
-                                 // it selects the minimum between two values
-       Math.max(0, (secs < 0 ? this.duration : 0) + secs),// either 0 or (secs + duration : secs + 0)
-       this.duration //and whatever the current duration is.
-     );
-    */
   }
 
   initializeCanvas() {
-    console.log('initializeCanvas');
+    // Used to create the canvas in the videoSeekHandler method
     let canvas = document.createElement('canvas');
     // can we make this general use for images too?
     canvas.height = this.htmlVideo.videoHeight;
@@ -89,16 +65,13 @@ class AnalysisPage extends React.Component{
   }
 
   videoSeekHandler(e) {
-    console.log('videoSeekHandler');
-    //Initializes Canvas
     let canvas = this.initializeCanvas();
     var ctx = canvas.getContext('2d');
 
+    // This is the semi-main event loop
     while (this.state.cropped.length < 40 && this.loaded) {
-      console.log("while loop");
       this.loaded = false;
-      // Draw the image into a canvas, then pass it to the cropper;
-      // Now is this actually redrawing the image? How can we test that?
+
       ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
 
       canvas.toBlob(this.fromBlobToImg, 'image/png');
@@ -106,7 +79,8 @@ class AnalysisPage extends React.Component{
   }
 
   fromBlobToImg(blob) {
-    console.log('fromBlobToImg');
+    // These are here to act as a fail safe to keep the loop from spiralling
+    // out of control
     this.loaded = false;
 
     let img = new Image();
@@ -120,84 +94,63 @@ class AnalysisPage extends React.Component{
   }
 
   reloadRandomFrame() {
-    console.log('reloadRandomFrame');
-    // Do we need this loaded check here if the code that calls this
-    // function is already checking for that?
-    if (!isNaN(this.htmlVideo.duration) && this.loaded) {
+    if (!isNaN(this.htmlVideo.duration)) {
       var rand = Math.round(Math.random() * this.htmlVideo.duration * 1000) + 1;
       this.htmlVideo.currentTime = rand / 1000;
     }
   }
 
   crop(img) {
-    console.log('crop');
-    // loads in the photo
-    // console.log(img);
-    // So the image isn't working well with the canvas!
-    // You can't just simply draw an html element to the canvas, it has
-    // to be converted to an svg.
-    let canvasHolder = document.getElementById('canvas-output');
     let imgCanvas = document.createElement('canvas');
-    imgCanvas.height = img.height;
-    imgCanvas.width = img.width;
+    let height = img.height;
+    let width = img.width;
+
+    imgCanvas.height = height;
+    imgCanvas.width = width;
+
     let imgCtx = imgCanvas.getContext('2d');
-    // This isn't drawing the image for some reason, the inputs are correct
-    // we have the right number of arguments.
 
-    imgCtx.drawImage(img, 0, 0, img.width, img.height);
+    imgCtx.drawImage(img, 0, 0, width, height);
 
-    /*
-    Using the methods below I proved that the imgCtx is able to render things
-    to the screen, I am initializing the canvas and it is properly being updated
-    imgCtx.fillStyle = "#FF0000";
-    imgCtx.fillRect(0, 0, 80, 80);
-    */
-    // canvasHolder.appendChild(imgCanvas);
-    let imgData = imgCtx.getImageData(0, 0, imgCanvas.width, imgCanvas.height);
+    let imgData = imgCtx.getImageData(0, 0, width, height);
+
     let src = cv.matFromImageData(imgData);
-    // src type is CV_8U or 24
-
-    // let src = cv.imread(img);
     let dst = new cv.Mat();
+
+    // The first two arguments can/are use to locate the face for some reason
     let rect = new cv.Rect(100, 100, 224, 224);
-    // // Applies the dimensions defined above to the image
+
+    // The cv docs imply this is what does the locating but it doesn't
     dst = src.roi(rect);
-    //
-    // // Applies cropped img to the canvas
-    // // This isn't showing anything, even the regular src doesn't display
+
     cv.imshow(imgCanvas, dst);
+
     imgCanvas.toBlob(this.blobSetter, 'image/png');
+
     src.delete();
     dst.delete();
   }
 
   blobSetter(blob) {
-    //This blob isn't a proper blob!!!
-    console.log('blobSetter');
-    // this blob is used to create the croppedImg
-    // It is also grey and not at all an actual image
     this.croppedBlob = URL.createObjectURL(blob);
-    console.log('CroppedBlob: ', this.croppedBlob);
+
     this.processCroppedImg();
   }
 
-  reader(image) {
-    console.log('reader');
-    // fairly certain this is due to async issues, this is basically a
-    // promise
-    return cv.imread(image);
-  }
 
   processCroppedImg() {
-    console.log('processCroppedImg');
-    // console.log('croppedBlob: ', this.croppedBlob);
     let croppedImg = new Image(224, 224);
     croppedImg.src = this.croppedBlob;
-    // add the cropped photo, cleans up memory
+
     croppedImg.onload = function() {
-      let newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
+      // keeping with never changing state directly we create a new array
+      let newCropped = this.state.cropped.concat([croppedImg]);
+
+      // This ensure the whole process can start again after we have
+      // successfully completed the cropping process
       this.loaded = true;
-      this.reloadRandomFrame(); // this has been moved here from video seek handler
+
+      this.reloadRandomFrame();
       this.setState({cropped: newCropped});
     }.bind(this);
   }
