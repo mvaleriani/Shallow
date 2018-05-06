@@ -27230,6 +27230,7 @@ var AnalysisPage = function (_React$Component) {
     _this.initializeCanvas = _this.initializeCanvas.bind(_this);
     _this.crop = _this.crop.bind(_this);
     _this.blobSetter = _this.blobSetter.bind(_this);
+    _this.processCroppedImg = _this.processCroppedImg.bind(_this);
     return _this;
   }
 
@@ -27344,9 +27345,6 @@ var AnalysisPage = function (_React$Component) {
     value: function crop(img) {
       console.log('crop');
       // loads in the photo
-
-      console.log('Image Height: ', img.height);
-      console.log('Image Width: ', img.width);
       var imgCanvas = document.createElement('canvas');
       // These aren't setting the values
       imgCanvas.height = img.height;
@@ -27362,24 +27360,19 @@ var AnalysisPage = function (_React$Component) {
       // Applies cropped img to the canvas
       cv.imshow(imgCanvas, dst);
 
-      imgCanvas.getBlob(this.blobSetter, 'image/png');
-
-      var croppedImg = new Image();
-      croppedImg.src = URL.createObjectURL(this.croppedBlob);
-      // add the cropped photo, cleans up memory
-      var newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
-      this.loaded = true;
+      imgCanvas.toBlob(this.blobSetter, 'image/png');
       src.delete();
       dst.delete();
-      this.reloadRandomFrame(); // this has been moved here from video seek handler
-      this.setState({ cropped: newCropped });
+      this.processCroppedImg();
     }
   }, {
     key: 'blobSetter',
     value: function blobSetter(blob) {
+      //This blob isn't a proper blob!!!
       console.log('blobSetter');
       // this blob is used to create the croppedImg
-      this.croppedBlob = blob;
+      this.croppedBlob = URL.createObjectURL(blob);
+      console.log('CroppedBlob: ', this.croppedBlob);
     }
   }, {
     key: 'reader',
@@ -27387,8 +27380,20 @@ var AnalysisPage = function (_React$Component) {
       console.log('reader');
       // fairly certain this is due to async issues, this is basically a
       // promise
-      console.log(image);
       return cv.imread(image);
+    }
+  }, {
+    key: 'processCroppedImg',
+    value: function processCroppedImg() {
+      console.log('processCroppedImg');
+      // console.log('croppedBlob: ', this.croppedBlob);
+      var croppedImg = new Image();
+      croppedImg.src = this.croppedBlob;
+      // add the cropped photo, cleans up memory
+      var newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
+      this.loaded = true;
+      this.reloadRandomFrame(); // this has been moved here from video seek handler
+      this.setState({ cropped: newCropped });
     }
   }, {
     key: 'onDrop',
