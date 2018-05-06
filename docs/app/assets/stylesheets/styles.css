@@ -216,7 +216,7 @@ p{ padding:0; }
 
 
 #keras-icon{box-shadow:0px 8px 20px #96040e;}
-#keras-img{height: 73px;}
+#keras-img{height: 73px; left:-1px;}
 
 #tensorflow-icon{background-color: #3BC4AC; box-shadow:0px 8px 20px #3BC4AC;}
 #tensorflow-img{height: 56px;}
