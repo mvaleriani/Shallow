@@ -7,19 +7,25 @@ import Dropzone from 'react-dropzone';
 class AnalysisPage extends React.Component{
   constructor(props) {
     super(props);
+
     this.state = {
       vidFile: null,
       vidPath: "",
       cropped: [],
       selectedCrops: []
     };
+
     this.currentTime = 0;
     this.duration = 0;
     this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
+    this.htmlVideo = null;
     this.loaded = true;
+
+
     this.setTimeToStart = this.setTimeToStart.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.getVideoImage = this.getVideoImage.bind(this);
+    this.videoSeekHandler = this.videoSeekHandler.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -48,45 +54,55 @@ class AnalysisPage extends React.Component{
     */
   }
 
+  initializeCanvas(video) {
+    let canvas = document.createElement('canvas');
+    canvas.id = 'hidden-canvas';
+    // can we make this general use for images too?
+    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth;
+
+    return canvas;
+  }
+
+  videoSeekHandler(e) {
+    //Initializes Canvas
+    let canvas = this.initializeCanvas(video);
+    var ctx = canvas.getContext('2d');
+
+    while (this.state.cropped.length < 40 && this.loaded) {
+      console.log('while loop');
+      this.loaded = false; // AAAAAG we are setting this to false right
+                          // before we attempt to reload a frame Is this the problem?
+      // Draw the image into a canvas, then pass it to the cropper;
+      if (this.loaded) { //When in the hell would this be loaded dumbass?
+        this.reloadRandomFrame(video);
+      }
+      //Now is this actually redrawing the image? How can we test that?
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      var img = new Image();
+      //We need to refactor this BAD, so many thing in here are off
+      canvas.toBlob(function (blob) {
+        this.currentBlob = blob;// Why does this need to happen
+        img.src = URL.createObjectURL(this.currentBlob); // We immediately use it here
+        callback.call(me, img, canvas, e); // Is this the only time the callback is used?
+        this.currentBlob = null; // this just solidified the excess code
+      }.bind(this), 'image/png');
+    }
+  }
+
   getVideoImage(path, callback) {
     // why are these being declared like this when no where else in the
     // codebase do we declare variables like this?
-    var me = this, video = document.createElement('video');
+    var video = ;
     video.src = path;
-    this.duration = video.duration; // Is this the correct duration?
+    // Is this the correct duration?
+    this.duration = video.duration;
     // Why var? furthermore, why are we abusing this trick when we don't
     // abuse it later, we simply bind this to the functions.
 
     video.onloadedmetadata = this.setTimeToStart;
 
-    video.onseeked = function(e) { // This should be an external function, not something randomly defined here
-      //Initializes Canvas
-      var canvas = document.createElement('canvas'); //Modularize your code, extract this too
-      canvas.id = 'hidden-canvas';
-      canvas.height = video.videoHeight; // Pass in video as argument? can we make this general use for images too?
-      canvas.width = video.videoWidth;
-      var ctx = canvas.getContext('2d');
-
-      while (this.state.cropped.length < 40 && this.loaded) {
-        console.log('while loop');
-        this.loaded = false; // AAAAAG we are setting this to false right
-                            // before we attempt to reload a frame Is this the problem?
-        // Draw the image into a canvas, then pass it to the cropper;
-        if (this.loaded) { //When in the hell would this be loaded dumbass?
-          this.reloadRandomFrame(video);
-        }
-        //Now is this actually redrawing the image? How can we test that?
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        var img = new Image();
-        //We need to refactor this BAD, so many thing in here are off
-        canvas.toBlob(function (blob) {
-          this.currentBlob = blob;// Why does this need to happen
-          img.src = URL.createObjectURL(this.currentBlob); // We immediately use it here
-          callback.call(me, img, canvas, e); // Is this the only time the callback is used?
-          this.currentBlob = null; // this just solidified the excess code
-        }.bind(this), 'image/png');
-      }
-    }.bind(this); // So many bindings
+    video.onseeked = this.videoSeekHandler;
   }
   // Why is it's name showImageAt if all it does is start shits
   showImageAt() {
