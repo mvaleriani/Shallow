@@ -26990,6 +26990,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(7);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27008,139 +27010,139 @@ var FooterSection = function (_React$Component) {
     }
 
     _createClass(FooterSection, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                { className: "footer-fixed" },
+                'div',
+                { className: 'footer-fixed' },
                 _react2.default.createElement(
-                    "footer",
-                    { className: "footer-1 bg1 p-y-80 p-x-20 cu-tweenmax",
-                        "data-a-init": "alpha:0",
-                        "data-a-to": "alpha:1, duration:0.9,ease:Cubic.easeOut"
+                    'footer',
+                    { className: 'footer-1 bg1 p-y-80 p-x-20 cu-tweenmax',
+                        'data-a-init': 'alpha:0',
+                        'data-a-to': 'alpha:1, duration:0.9,ease:Cubic.easeOut'
                     },
                     _react2.default.createElement(
-                        "div",
-                        { className: "m-w-1600 wrap flex" },
+                        'div',
+                        { className: 'm-w-1600 wrap flex' },
                         _react2.default.createElement(
-                            "div",
-                            { className: "column column1 flex-box-16p" },
-                            _react2.default.createElement("img", { id: "logo-2", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png", alt: "" }),
+                            'div',
+                            { className: 'column column1 flex-box-16p' },
+                            _react2.default.createElement('img', { id: 'logo-2', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png', alt: '' }),
                             _react2.default.createElement(
-                                "div",
-                                { className: "social m-t-20" },
+                                'div',
+                                { className: 'social m-t-20' },
                                 _react2.default.createElement(
-                                    "a",
-                                    { className: "button-style4 type2 m-r-20" },
-                                    _react2.default.createElement("img", { className: "icon svg", src: "../../app/assets/images/icon-facebook.svg", alt: "" })
+                                    'a',
+                                    { className: 'button-style4 type2 m-r-20' },
+                                    _react2.default.createElement('img', { className: 'icon svg', src: '../../app/assets/images/icon-facebook.svg', alt: '' })
                                 ),
                                 _react2.default.createElement(
-                                    "a",
-                                    { className: "button-style4 type2" },
-                                    _react2.default.createElement("img", { className: "icon svg", src: "../../app/assets/images/icon-twitter.svg", alt: "" })
+                                    'a',
+                                    { className: 'button-style4 type2' },
+                                    _react2.default.createElement('img', { className: 'icon svg', src: '../../app/assets/images/icon-twitter.svg', alt: '' })
                                 )
                             )
                         ),
                         _react2.default.createElement(
-                            "div",
-                            { className: "column column2 flex flex-box-50p" },
+                            'div',
+                            { className: 'column column2 flex flex-box-50p' },
                             _react2.default.createElement(
-                                "div",
+                                'div',
                                 null,
                                 _react2.default.createElement(
-                                    "div",
-                                    { className: "color1 f-medium" },
-                                    "Sections"
+                                    'div',
+                                    { className: 'color1 f-medium' },
+                                    'Sections'
                                 ),
                                 _react2.default.createElement(
-                                    "ul",
-                                    { className: "list list-no-style t-14  m-t-40" },
+                                    'ul',
+                                    { className: 'list list-no-style t-14  m-t-40' },
                                     _react2.default.createElement(
-                                        "li",
+                                        'li',
                                         null,
                                         _react2.default.createElement(
-                                            "a",
-                                            { className: "button-style6 type2", href: "index.html" },
-                                            _react2.default.createElement("div", { className: "bg" }),
+                                            _reactRouterDom.Link,
+                                            { className: 'button-style6 type2', to: '/' },
+                                            _react2.default.createElement('div', { className: 'bg' }),
                                             _react2.default.createElement(
-                                                "span",
+                                                'span',
                                                 null,
-                                                "Home"
+                                                'Home'
                                             )
                                         )
                                     ),
                                     _react2.default.createElement(
-                                        "li",
+                                        'li',
                                         null,
                                         _react2.default.createElement(
-                                            "a",
-                                            { className: "button-style6 type2", href: "about.html" },
-                                            _react2.default.createElement("div", { className: "bg" }),
+                                            _reactRouterDom.Link,
+                                            { className: 'button-style6 type2', to: '/about' },
+                                            _react2.default.createElement('div', { className: 'bg' }),
                                             _react2.default.createElement(
-                                                "span",
+                                                'span',
                                                 null,
-                                                "Our Team"
+                                                'Our Team'
                                             )
                                         )
                                     ),
                                     _react2.default.createElement(
-                                        "li",
+                                        'li',
                                         null,
                                         _react2.default.createElement(
-                                            "a",
-                                            { className: "button-style6 type2", href: "https://github.com/mvaleriani/Shallow" },
-                                            _react2.default.createElement("div", { className: "bg" }),
+                                            'a',
+                                            { className: 'button-style6 type2', href: 'https://github.com/mvaleriani/Shallow' },
+                                            _react2.default.createElement('div', { className: 'bg' }),
                                             _react2.default.createElement(
-                                                "span",
+                                                'span',
                                                 null,
-                                                "GitHub"
+                                                'GitHub'
                                             )
                                         )
                                     )
                                 )
                             ),
                             _react2.default.createElement(
-                                "div",
+                                'div',
                                 null,
                                 _react2.default.createElement(
-                                    "div",
-                                    { className: "color1 f-medium" },
-                                    "Contact"
+                                    'div',
+                                    { className: 'color1 f-medium' },
+                                    'Contact'
                                 ),
                                 _react2.default.createElement(
-                                    "ul",
-                                    { className: "list list-no-style t-14  m-t-40" },
+                                    'ul',
+                                    { className: 'list list-no-style t-14  m-t-40' },
                                     _react2.default.createElement(
-                                        "li",
+                                        'li',
                                         null,
-                                        "vggshallow@gmail.com"
+                                        'vggshallow@gmail.com'
                                     )
                                 )
                             )
                         ),
                         _react2.default.createElement(
-                            "div",
-                            { className: "column column3 flex flex-align-center flex-grow" },
+                            'div',
+                            { className: 'column column3 flex flex-align-center flex-grow' },
                             _react2.default.createElement(
-                                "div",
-                                { className: "chat-button v-a-m" },
+                                'div',
+                                { className: 'chat-button v-a-m' },
                                 _react2.default.createElement(
-                                    "div",
-                                    { className: "ball bg6 box-shadow1" },
-                                    _react2.default.createElement("i", { className: "fa fa-commenting-o", "aria-hidden": "true" })
+                                    'div',
+                                    { className: 'ball bg6 box-shadow1' },
+                                    _react2.default.createElement('i', { className: 'fa fa-commenting-o', 'aria-hidden': 'true' })
                                 ),
                                 _react2.default.createElement(
-                                    "div",
-                                    { className: "text f-bold" },
+                                    'div',
+                                    { className: 'text f-bold' },
                                     _react2.default.createElement(
-                                        "div",
+                                        'div',
                                         null,
-                                        "Do you need help?"
+                                        'Do you need help?'
                                     ),
                                     _react2.default.createElement(
-                                        "div",
-                                        { className: "color1" },
-                                        "Chat online"
+                                        'div',
+                                        { className: 'color1' },
+                                        'Chat online'
                                     )
                                 )
                             )
@@ -27148,15 +27150,15 @@ var FooterSection = function (_React$Component) {
                     )
                 ),
                 _react2.default.createElement(
-                    "footer",
-                    { className: "footer-2" },
+                    'footer',
+                    { className: 'footer-2' },
                     _react2.default.createElement(
-                        "div",
-                        { className: "flex flex-justify-between max-width" },
+                        'div',
+                        { className: 'flex flex-justify-between max-width' },
                         _react2.default.createElement(
-                            "div",
-                            { className: "t-12" },
-                            "Copyright \xA9 2017 Byond Theme. "
+                            'div',
+                            { className: 't-12' },
+                            'Copyright \xA9 2017 Byond Theme. '
                         )
                     )
                 )

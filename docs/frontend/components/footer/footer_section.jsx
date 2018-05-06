@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class FooterSection extends React.Component {
   render() {
@@ -25,16 +26,16 @@ class FooterSection extends React.Component {
                           <div className="color1 f-medium">Sections</div>
                           <ul className="list list-no-style t-14  m-t-40">
                               <li>
-                                  <a className="button-style6 type2" href="index.html">
+                                  <Link className="button-style6 type2" to="/">
                                       <div className="bg"></div>
                                       <span>Home</span>
-                                  </a>
+                                  </Link>
                               </li>
                               <li>
-                                  <a className="button-style6 type2" href="about.html">
-                                      <div className="bg"></div>
-                                      <span>Our Team</span>
-                                  </a>
+                                <Link className="button-style6 type2" to='/about'>
+                                    <div className="bg"></div>
+                                    <span>Our Team</span>
+                                </Link>
                               </li>
                               <li>
                                     <a className="button-style6 type2" href="https://github.com/mvaleriani/Shallow">
