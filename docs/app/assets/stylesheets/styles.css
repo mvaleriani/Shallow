@@ -233,6 +233,7 @@ p{ padding:0; }
 #nav-logo{height:40px;}
 
 #grad-graph{left:120px; top:25%; height: 450px; min-width: 450px; min-height: 450px; max-width: 450px;}
+#top-section{height: fit-content; padding-bottom: 25px;}
 
 #canvas-cont{overflow: hidden;}
 #face-icon{height:35px; margin-left: 1px;}

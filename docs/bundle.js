@@ -25326,7 +25326,7 @@ var TopSection = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'section',
-        { className: ' h-80vh color7', style: { zIndex: 2 } },
+        { id: 'top-section', className: ' color7', style: { zIndex: 2 } },
         _react2.default.createElement(
           'div',
           { id: 'canvas-cont', className: 'cover bg-cover parallax-bg' },
