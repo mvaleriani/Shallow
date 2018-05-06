@@ -16,9 +16,9 @@ class AnalysisPage extends React.Component{
     };
 
     this.currentTime = 0;
-    this.currentBlob = null; //Because toBlob() expects a callback, this is necessary
     this.htmlVideo = null;
     this.loaded = true;
+    this.croppedBlob = null;
 
 
     this.setTimeToStart = this.setTimeToStart.bind(this);
@@ -38,6 +38,16 @@ class AnalysisPage extends React.Component{
       // Also why are we calling it showImageAt, if all it does is start
       // the whole process. Can we find a more somantic name?
     }
+  }
+
+  getCroppedFaces(path) {
+    // why are these being declared like this when no where else in the
+    // codebase do we declare variables like this?
+    this.htmlVideo.src = path;
+
+    this.htmlVideo.onloadedmetadata = this.setTimeToStart;
+
+    this.htmlVideo.onseeked = this.videoSeekHandler;
   }
 
   setTimeToStart() {
@@ -89,56 +99,57 @@ class AnalysisPage extends React.Component{
     let img = new Image();
     img.src = URL.createObjectURL(blob);
 
+    // Should we try anad go for seperation of concerns and have this simply
+    // return an image to be then sent to this.crop?
     this.crop(img);
   }
 
-  getCroppedFaces(path) {
-    // why are these being declared like this when no where else in the
-    // codebase do we declare variables like this?
-    this.htmlVideo.src = path;
-
-    this.htmlVideo.onloadedmetadata = this.setTimeToStart;
-
-    this.htmlVideo.onseeked = this.videoSeekHandler;
-  }
-
-  reloadRandomFrame() { //This is for the most part okay, but that's because you didn't write it
+  reloadRandomFrame() {
+    // Do we need this loaded check here if the code that calls this
+    // function is already checking for that?
     if (!isNaN(this.htmlVideo.duration) && this.loaded) {
       var rand = Math.round(Math.random() * this.htmlVideo.duration * 1000) + 1;
       this.htmlVideo.currentTime = rand / 1000;
     }
   }
-  // Crop has fucked canvas refrences, it should create it's own canvas to use
-  crop(img) {
-    //cv error: Index or size is negative or greater than the allowed amount, problem with imread()
-      // loads in the photo
-      function reader(image) { // Do we really need a function that returns another function
-        return cv.imread(image); // Does this actually even call imread?
-      }
-      let src = reader(img);
-      let dst = new cv.Mat(); // cv matrixes are werid
-      // Crops the photo
-      let rect = new cv.Rect(0, 0, 224, 224);
-      dst = src.roi(rect);
-      cv.imShow(canvas, dst); //Does this actually change the canvas to the new image
-      // and if it does, will the rest of the video code still work?
 
-      //I think this section of code is responsible for our bug, any video changes
-      // won't change the canvas back.
+  crop(img) {
+      // loads in the photo
+      let imgCanvas = document.createElement('canvas');
+      imgCanvas.height = img.height;
+      imgCanvas.width = img.width;
+
+      let src = this.reader(img);
+
+      let dst = new cv.Mat();
+      let rect = new cv.Rect(0, 0, 224, 224);
+      // Applies the dimensions defined above to the image
+      dst = src.roi(rect);
+
+      // Applies cropped img to the canvas
+      cv.imShow(imgCanvas, dst);
+
+      imgCanvas.getBlob(this.blobSetter, 'image/png');
 
       let croppedImg = new Image();
-      canvas.getBlob(function (blob) {
-        this.currentBlob = blob; // Why are we doing this ?!?!?!
-        // Do we know if this croppedImg src is being saved properly?
-        croppedImg.src = URL.createObjectURL(this.currentBlob); // it's being used right here!!!
-      }.bind(this), 'image/png');
-
+      croppedImg.src = URL.createObjectURL(this.croppedBlob);
       // add the cropped photo, cleans up memory
       let newCropped = this.state.cropped.concat([croppedImg]); //keeping with never changing state directly
       this.loaded = true;
-      this.setState({cropped: newCropped});
       src.delete();
       dst.delete();
+      this.setState({cropped: newCropped});
+  }
+
+  blobSetter(blob) {
+    // this blob is used to create the croppedImg
+    this.croppedBlob = blob;
+  }
+
+  reader(image) {
+    // fairly certain this is due to async issues, this is basically a
+    // promise
+    return cv.imread(image);
   }
 
   onDrop(acceptedFiles, rejectedFiles) {
