@@ -27312,6 +27312,38 @@ var AnalysisPage = function (_React$Component) {
         this.htmlVideo.currentTime = rand / 1000;
       }
     }
+
+    // crop(img) {
+    //   let imgCanvas = document.createElement('canvas');
+    //   let height = img.height;
+    //   let width = img.width;
+
+    //   imgCanvas.height = height;
+    //   imgCanvas.width = width;
+
+    //   let imgCtx = imgCanvas.getContext('2d');
+
+    //   imgCtx.drawImage(img, 0, 0, width, height);
+
+    //   let imgData = imgCtx.getImageData(0, 0, width, height);
+
+    //   let src = cv.matFromImageData(imgData);
+    //   let dst = new cv.Mat();
+
+    //   // The first two arguments can/are use to locate the face for some reason
+    //   let rect = new cv.Rect(100, 100, 224, 224);
+
+    //   // The cv docs imply this is what does the locating but it doesn't
+    //   dst = src.roi(faces(rect));
+
+    //   cv.imshow(imgCanvas, dst);
+
+    //   imgCanvas.toBlob(this.blobSetter, 'image/png');
+
+    //   src.delete();
+    //   dst.delete();
+    // }
+
   }, {
     key: 'crop',
     value: function crop(img) {
@@ -27335,7 +27367,7 @@ var AnalysisPage = function (_React$Component) {
       var rect = new cv.Rect(100, 100, 224, 224);
 
       // The cv docs imply this is what does the locating but it doesn't
-      dst = src.roi(rect);
+      dst = src.roi(faces(rect));
 
       cv.imshow(imgCanvas, dst);
 
