@@ -21,6 +21,7 @@ class AnalysisPage extends React.Component{
 
     // The order of operations follows this order:
     this.onDrop = this.onDrop.bind(this);
+    // componentDidUpdate will trigger after the drop method
     this.getCroppedFaces = this.getCroppedFaces.bind(this);
     this.setTimeToStart = this.setTimeToStart.bind(this);
     this.videoSeekHandler = this.videoSeekHandler.bind(this);

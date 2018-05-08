@@ -27223,6 +27223,7 @@ var AnalysisPage = function (_React$Component) {
 
     // The order of operations follows this order:
     _this.onDrop = _this.onDrop.bind(_this);
+    // componentDidUpdate will trigger after the drop method
     _this.getCroppedFaces = _this.getCroppedFaces.bind(_this);
     _this.setTimeToStart = _this.setTimeToStart.bind(_this);
     _this.videoSeekHandler = _this.videoSeekHandler.bind(_this);
