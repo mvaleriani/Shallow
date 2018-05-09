@@ -127,63 +127,7 @@ class AnalysisPage extends React.Component{
 
     imgCtx.drawImage(img, 0, 0, width, height);
 
-    let src = cv.imread(imgCanvas);
-    let gray = new cv.Mat();
-
-    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
-
-    let faces = new cv.RectVector();
-    let eyes = new cv.RectVector();
-
-    let faceCascade = new cv.CascadeClassifier();
-    let eyeCascade = new cv.CascadeClassifier();
-    // load pre-trained classifiers
-    // Try putting the files directly in this folder, if that doesn't work
-    // abandon cv
-    faceCascade.load('./haarcascade_frontalface_default.xml');
-    eyeCascade.load('./haarcascade_eye.xml');
-
-    // detect faces
-    let msize = new cv.Size(0, 0);
-    //The error is detectMultiScale
-    faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, msize, msize);
-    console.log('After detectMultiScale');
-    for (let i = 0; i < faces.size(); ++i) {
-      console.log('Inside for loop');
-        let roiGray = gray.roi(faces.get(i));
-        console.log('After roiGray');
-        let roiSrc = src.roi(faces.get(i));
-        console.log('After roiSrc');
-        let point1 = new cv.Point(faces.get(i).x, faces.get(i).y);
-        console.log('After point1');
-        let point2 = new cv.Point(faces.get(i).x + faces.get(i).width,
-                                  faces.get(i).y + faces.get(i).height);
-        console.log('After point2');
-        cv.rectangle(src, point1, point2, [255, 0, 0, 255]);
-        console.log('After rectangle');
-        // detect eyes in face ROI
-        eyeCascade.detectMultiScale(roiGray, eyes);
-        console.log('After second detectMultiScale');
-        for (let j = 0; j < eyes.size(); ++j) {
-          console.log('Inside second loop');
-            let point3 = new cv.Point(eyes.get(j).x, eyes.get(j).y);
-            console.log('After point3');
-            let point4 = new cv.Point(eyes.get(j).x + eyes.get(j).width,
-                                      eyes.get(j).y + eyes.get(j).height);
-            console.log('After point4');
-            cv.rectangle(roiSrc, point3, point4, [0, 0, 255, 255]);
-            console.log('After rectangle');
-        }
-        roiGray.delete(); roiSrc.delete();
-        console.log('After deletion');
-    }
-
-    cv.imshow(imgCanvas, src);
-
     imgCanvas.toBlob(this.blobSetter, 'image/png');
-
-    src.delete(); gray.delete(); faceCascade.delete();
-    eyeCascade.delete(); faces.delete(); eyes.delete();
   }
 
   blobSetter(blob) {
