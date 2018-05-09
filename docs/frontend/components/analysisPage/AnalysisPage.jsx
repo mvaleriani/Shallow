@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 // import ImageCropper from './image_cropper';
 import Dropzone from 'react-dropzone';
+import smartcrop from 'smartcrop';
 
 class AnalysisPage extends React.Component{
   constructor(props) {
@@ -70,7 +71,8 @@ class AnalysisPage extends React.Component{
     var ctx = canvas.getContext('2d');
 
     // This is the semi-main event loop
-    while (this.state.cropped.length < 40 && this.loaded) {
+    // Change the 5 back to 40
+    while (this.state.cropped.length < 5 && this.loaded) {
       this.loaded = false;
 
       ctx.drawImage(this.htmlVideo, 0, 0, canvas.width, canvas.height);
@@ -117,23 +119,45 @@ class AnalysisPage extends React.Component{
 
     //The critical error is spawning in this method
     let imgCanvas = document.createElement('canvas');
-    let height = img.height;
-    let width = img.width;
+    let height = 224;
+    let width = 224;
 
     imgCanvas.height = height;
     imgCanvas.width = width;
 
     let imgCtx = imgCanvas.getContext('2d');
 
-    imgCtx.drawImage(img, 0, 0, width, height);
 
-    imgCanvas.toBlob(this.blobSetter, 'image/png');
+    let cropOptions = {
+      minScale: .5,
+      height: 224,
+      width: 224
+    };
+
+    smartcrop.crop(img, cropOptions).then(
+      (result) => {
+        // debugger;
+        console.log("Result: ",result);
+        imgCtx.drawImage(
+          img,
+          result.topCrop.x, // Source X
+          result.topCrop.y, // Source Y
+          224, // Width of subsection taken from image
+          224, // Height of subsection taken from image
+          0, // Destination X
+          0, // Destination Y
+          224,
+          224
+        );
+        imgCanvas.toBlob(this.blobSetter, 'image/png');
+      }
+    );
   }
 
   blobSetter(blob) {
     console.log('blobSetter');
     this.croppedBlob = URL.createObjectURL(blob);
-    // console.log("croppedBlob: ", this.croppedBlob);
+    console.log("croppedBlob: ", this.croppedBlob);
     this.processCroppedImg();
   }
 
