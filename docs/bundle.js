@@ -27347,7 +27347,7 @@ var AnalysisPage = function (_React$Component) {
       var imgCtx = imgCanvas.getContext('2d');
 
       var cropOptions = {
-        minScale: .5,
+        minScale: 1,
         height: 224,
         width: 224
       };
@@ -27355,8 +27355,8 @@ var AnalysisPage = function (_React$Component) {
       _smartcrop2.default.crop(img, cropOptions).then(function (result) {
         // debugger;
         console.log("Result: ", result);
-        imgCtx.drawImage(img, result.topCrop.x, // Source X
-        result.topCrop.y, // Source Y
+        imgCtx.drawImage(img, result.topCrop.x + 224, // Source X
+        result.topCrop.y + 56, // Source Y
         224, // Width of subsection taken from image
         224, // Height of subsection taken from image
         0, // Destination X

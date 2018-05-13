@@ -129,7 +129,7 @@ class AnalysisPage extends React.Component{
 
 
     let cropOptions = {
-      minScale: .5,
+      minScale: 1,
       height: 224,
       width: 224
     };
@@ -140,8 +140,8 @@ class AnalysisPage extends React.Component{
         console.log("Result: ",result);
         imgCtx.drawImage(
           img,
-          result.topCrop.x, // Source X
-          result.topCrop.y, // Source Y
+          (result.topCrop.x + 224), // Source X
+          (result.topCrop.y + 56), // Source Y
           224, // Width of subsection taken from image
           224, // Height of subsection taken from image
           0, // Destination X

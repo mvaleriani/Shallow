@@ -26,7 +26,7 @@ class DeveloperSection extends React.Component {
                   <div className="content box-shadow7">
                         <div className="image bg-cover" style={{ backgroundImage:"url(https://i.imgur.com/YJ0CLhQ.jpg)"}}></div>
                         <p className="t-18 f-bold wrap">Ozzy Paniagua | <span className="f-light italic">Software Engineer</span></p>
-                      <p className="text wrap">Beautiful, complaint, fluid, usable and versatile theme, couldn't be happier and relax using Byond theme.</p>
+                      <p className="text wrap">Ozzy is a someone with a deep appreciation for the process of learning. The drive to expand his horizons have pushed him into the ever adapting field of web development. This path lead him to learning JavaScript, Ruby, HTML and CSS, but to go above and beyond that was his main goal. Towards that goal, he has begun to practice Python and Machine Learning, a deep field, rich with unexplored potential. But no great endeavour was completed alone, and Ozzy thrives when working with others in a collaborative setting, having prior education in Management he knows, the true strength of any developer is only revealed when surrounded by similarly motivated individuals.</p>
                   </div>
               </div>
               <div className="item inline-element p-t-125 p-x-40" >
@@ -45,7 +45,7 @@ class DeveloperSection extends React.Component {
               </div> */}
           </div>
             <div className="list inline-wrap now nowrap m-t-70-" style={{marginTop:'20px'}}
-                
+
             >
                 <div className="item inline-element p-t-125 p-x-40" >
                     <div className="content box-shadow7">
