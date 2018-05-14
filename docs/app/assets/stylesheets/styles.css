@@ -214,6 +214,15 @@ p{ padding:0; }
     .icon-ball *{ position: absolute; top: 50%; left:0; right:0; margin:0 auto; transform: translate(-1%, -50%); text-align:center; }
     .icon-ball i{ font-size: 26px; color: #FFF; }
 
+#graph-container{
+    max-width: 100%;
+    max-height: fit-content;
+    z-index: 22;
+}
+#shallow-graph{
+    width: inherit;
+}
+
 
 #keras-icon{box-shadow:0px 8px 20px #96040e;}
 #keras-img{height: 73px; left:-1px;}
@@ -239,6 +248,10 @@ p{ padding:0; }
 #face-icon{height:35px; margin-left: 1px;}
 #face-button{height: 56px; width:250px; display: flex; justify-content: space-between; align-items: center;}
 #scroll-icon{height: 70px; position: absolute; left: 50%; bottom: -80px;}
+
+#buildings{
+    margin-top: 10px;
+}
 
 #footer-ball{
     background-color: #121214;

@@ -25500,7 +25500,7 @@ var DescriptionSection = function (_React$Component) {
               "data-a-to": "y:0, alpha:.7, duration:0.8",
               "data-a-gap": "100"
             },
-            _react2.default.createElement("img", { src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png", style: { height: '600px' } })
+            _react2.default.createElement("img", { className: "box-shadow7", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png", style: { height: '600px' } })
           )
         )
       );
@@ -25662,6 +25662,8 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -25680,6 +25682,8 @@ var SellingPointsSection = function (_React$Component) {
     _createClass(SellingPointsSection, [{
         key: "render",
         value: function render() {
+            var _React$createElement;
+
             return _react2.default.createElement(
                 "div",
                 null,
@@ -25689,11 +25693,15 @@ var SellingPointsSection = function (_React$Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "column column1 flex-grow" },
-                        _react2.default.createElement("div", { className: "image bg-cover cu-tweenmax c-a-t-y box-shadow7", style: { backgroundImage: "url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png)" },
-                            "data-a-init": "alpha:0",
-                            "data-a-to": "alpha:1, delay:0.3, duration:1.5",
-                            "data-a-gap": "200"
-                        })
+                        _react2.default.createElement(
+                            "div",
+                            { id: "graph-container", className: "image bg-cover cu-tweenmax c-a-t-y ",
+                                "data-a-init": "alpha:0",
+                                "data-a-to": "alpha:1, delay:0.3, duration:1.5",
+                                "data-a-gap": "200"
+                            },
+                            _react2.default.createElement("img", { id: "shallow-graph", className: "box-shadow7", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png", alt: "" })
+                        )
                     ),
                     _react2.default.createElement(
                         "div",
@@ -25743,7 +25751,7 @@ var SellingPointsSection = function (_React$Component) {
                 _react2.default.createElement(
                     "section",
                     { className: "content-10 flex" },
-                    _react2.default.createElement("div", { className: "image cover bg-cover absolute cu-tweenmax", style: { backgroundImage: 'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left: '32%', height: '700px', marginTop: '320px', marginLeft: '50px' },
+                    _react2.default.createElement("div", { className: "image box-shadow7 cover bg-cover absolute cu-tweenmax", style: { backgroundImage: 'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left: '32%', height: '700px', marginTop: '320px', marginLeft: '50px' },
                         "data-a-init": "alpha:0",
                         "data-a-to": "alpha:.7, delay:0.3, duration:1.5",
                         "data-a-gap": "200"
@@ -25841,7 +25849,7 @@ var SellingPointsSection = function (_React$Component) {
                             "data-a-to": "y:0, alpha:1, delay:0.3, duration:0.7",
                             "data-a-gap": "100"
                         },
-                        _react2.default.createElement("img", { src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/p2-image5.png", className: "m-w-1000", alt: "" })
+                        _react2.default.createElement("img", (_React$createElement = { className: "box-shadow7", id: "buildings", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/buildings.png" }, _defineProperty(_React$createElement, "className", "m-w-1000"), _defineProperty(_React$createElement, "alt", ""), _React$createElement))
                     )
                 )
             );
@@ -27144,7 +27152,7 @@ var FooterSection = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 't-12' },
-                            'Copyright \xA9 2017 Byond Theme. '
+                            'Please note that our front end analysis tool is still currently in development. '
                         )
                     )
                 )

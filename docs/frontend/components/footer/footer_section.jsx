@@ -49,7 +49,8 @@ class FooterSection extends React.Component {
                       <div>
                           <div className="color1 f-medium">Contact</div>
                           <ul className="list list-no-style t-14  m-t-40">
-                              <li>vggshallow@gmail.com</li>
+                                <li>vggshallow@gmail.com</li>
+                                
                               {/* <li>1-800-456-7823</li>
                               <li>1900 West Hollywood, CA, 90204</li> */}
                           </ul>
@@ -67,7 +68,7 @@ class FooterSection extends React.Component {
           </footer>
           <footer className="footer-2">
               <div className="flex flex-justify-between max-width">
-                  <div className="t-12">Copyright © 2017 Byond Theme. </div>
+                  <div className="t-12">Please note that our front end analysis tool is still currently in development. </div>
 
               </div>
           </footer>

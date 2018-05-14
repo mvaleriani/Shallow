@@ -6,11 +6,13 @@ class SellingPointsSection extends React.Component {
         <div>
             <section className="content-2 flex max-width m-t-70 m-w p-x-20" >
             <div className="column column1 flex-grow" >
-                        <div className="image bg-cover cu-tweenmax c-a-t-y box-shadow7" style={{ backgroundImage:"url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png)"}}
+                        <div id="graph-container" className="image bg-cover cu-tweenmax c-a-t-y " 
                 data-a-init="alpha:0"
                 data-a-to="alpha:1, delay:0.3, duration:1.5"
                 data-a-gap="200"
-                ></div>
+                >
+                <img id="shallow-graph" className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png" alt=""/>    
+            </div>
             </div>
             <div className="column column2 flex-box-60p p-x-100 p-t-275 p-b-250" >
                 <div className="cover bg1 cu-tweenmax" style={{marginRight:"-9999px"}}
@@ -42,10 +44,10 @@ class SellingPointsSection extends React.Component {
 
                 </div>
             </div>
-            </section>
-
+                </section>
+    
             <section className="content-10 flex">
-                    <div className="image cover bg-cover absolute cu-tweenmax" style={{ backgroundImage:'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left:'32%', height: '700px', marginTop: '320px', marginLeft:'50px'}}
+                    <div className="image box-shadow7 cover bg-cover absolute cu-tweenmax" style={{ backgroundImage:'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left:'32%', height: '700px', marginTop: '320px', marginLeft:'50px'}}
                     data-a-init="alpha:0"
                     data-a-to="alpha:.7, delay:0.3, duration:1.5"
                     data-a-gap="200"
@@ -116,7 +118,7 @@ class SellingPointsSection extends React.Component {
                     data-a-to="y:0, alpha:1, delay:0.3, duration:0.7"
                     data-a-gap="100"
                 >
-                        <img src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/p2-image5.png" className="m-w-1000" alt="" />
+                        <img className="box-shadow7" id="buildings" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/buildings.png" className="m-w-1000" alt="" />
                 </div>
             </section>
         </div>
