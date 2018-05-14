@@ -57,13 +57,10 @@ class FooterSection extends React.Component {
                   </div>
                   <div className="column column3 flex flex-align-center flex-grow">
                       <div className="chat-button v-a-m" >
-                          <div className="ball bg6 box-shadow1">
-                              <i className="fa fa-commenting-o" aria-hidden="true"></i>
+                          <div id="footer-ball" className="ball box-shadow1">
+                                <img id="footer-shallow-icon" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/icon.png"/>
                           </div>
-                          <div className="text f-bold">
-                              <div>Do you need help?</div>
-                              <div className="color1">Chat online</div>
-                          </div>
+                         
                       </div>
                   </div>
               </div>

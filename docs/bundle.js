@@ -26227,7 +26227,7 @@ var AboutHeader = function (_React$Component) {
                 "section",
                 { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url()" } },
                 _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
-                _react2.default.createElement("img", { src: "", className: "cover", style: { backgroundImage: "url(http://www.guoguiyan.com/data/out/138/69680394-now-wallpapers.png)", backgroundRepeat: "no-repeat" } }),
+                _react2.default.createElement("img", { src: "", className: "cover", style: { backgroundImage: "url(https://i.imgur.com/MM92ext.jpg)", backgroundRepeat: "no-repeat" } }),
                 _react2.default.createElement(
                     "div",
                     { className: "color7" },
@@ -27128,22 +27128,8 @@ var FooterSection = function (_React$Component) {
                                 { className: 'chat-button v-a-m' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'ball bg6 box-shadow1' },
-                                    _react2.default.createElement('i', { className: 'fa fa-commenting-o', 'aria-hidden': 'true' })
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'text f-bold' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        null,
-                                        'Do you need help?'
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'color1' },
-                                        'Chat online'
-                                    )
+                                    { id: 'footer-ball', className: 'ball box-shadow1' },
+                                    _react2.default.createElement('img', { id: 'footer-shallow-icon', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/icon.png' })
                                 )
                             )
                         )
