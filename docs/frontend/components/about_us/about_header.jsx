@@ -5,7 +5,7 @@ class AboutHeader extends React.Component {
     return (
         <section className="header-5 flex flex-align-center o-hidden p-x-20 min-h-350" data-cu-height="45%" style={{ backgroundImage:"url()"}}>
           <video className="video-bg" src="../../app/assets/videos/video2.mp4" autoPlay loop ></video>
-            <img src="" className="cover" style={{ backgroundImage: "url(https://i.imgur.com/MM92ext.jpg)", backgroundRepeat: "no-repeat"}}/>
+            <img src="https://i.imgur.com/MM92ext.jpg" className="cover" />
           <div className="color7" >
               <div>
                   {/* <div className="line1 bg1 m-l-5 m-b-10 absolute cu-tweenmax"

@@ -26235,7 +26235,7 @@ var AboutHeader = function (_React$Component) {
                 "section",
                 { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url()" } },
                 _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
-                _react2.default.createElement("img", { src: "", className: "cover", style: { backgroundImage: "url(https://i.imgur.com/MM92ext.jpg)", backgroundRepeat: "no-repeat" } }),
+                _react2.default.createElement("img", { src: "https://i.imgur.com/MM92ext.jpg", className: "cover" }),
                 _react2.default.createElement(
                     "div",
                     { className: "color7" },
