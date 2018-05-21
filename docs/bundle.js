@@ -26739,7 +26739,7 @@ var ContactSection = function (_React$Component) {
                     "data-a-to": "alpha:1, y:0",
                     "data-a-gap": "300"
                 },
-                _react2.default.createElement("div", { className: "cover bg-cover parallax-bg", style: { backgroundImage: "url(./media/images/p2-about10.jpg)" } }),
+                _react2.default.createElement("div", { className: "cover bg-cover parallax-bg", style: { backgroundImage: "url(https://i.imgur.com/MM92ext.jpg)" } }),
                 _react2.default.createElement("div", { className: "cover", style: { background: "rgba(41,53,76,0.4)" } }),
                 _react2.default.createElement(
                     "div",
@@ -26758,7 +26758,7 @@ var ContactSection = function (_React$Component) {
                                 "data-a-init": "alpha:0",
                                 "data-a-to": "alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
                             },
-                            "Get the experts knowledge "
+                            "Questions about anything? "
                         )
                     ),
                     _react2.default.createElement(
@@ -26770,11 +26770,11 @@ var ContactSection = function (_React$Component) {
                         _react2.default.createElement(
                             "p",
                             { className: "t-20 m-t-10" },
-                            "getting this awesome theme"
+                            "shoot us an email"
                         ),
                         _react2.default.createElement(
                             "a",
-                            { className: "button-style1 type2 m-t-40", href: "contact.html" },
+                            { className: "button-style1 type2 m-t-40", href: "mailto:vggshallow@gmail.com" },
                             _react2.default.createElement(
                                 "div",
                                 { className: "arrow" },
