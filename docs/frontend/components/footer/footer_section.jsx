@@ -12,14 +12,7 @@ class FooterSection extends React.Component {
               <div className="m-w-1600 wrap flex">
                   <div className="column column1 flex-box-16p"  >
                         <img id="logo-2" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png" alt="" />
-                      <div className="social m-t-20" >
-                          <a className="button-style4 type2 m-r-20">
-                              <img className="icon svg" src="../../app/assets/images/icon-facebook.svg" alt="" />
-                          </a>
-                          <a className="button-style4 type2">
-                              <img className="icon svg" src="../../app/assets/images/icon-twitter.svg" alt="" />
-                          </a>
-                      </div>
+                      
                   </div>
                   <div className="column column2 flex flex-box-50p">
                       <div>

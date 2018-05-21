@@ -20,6 +20,7 @@ class DescriptionSection extends React.Component {
                 data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
                 >What is Shallow?</h2>
             </div>
+           
             <div className="cu-tweenmax"
               data-a-init="x:-50, alpha:0"
               data-a-to="x:0, alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"

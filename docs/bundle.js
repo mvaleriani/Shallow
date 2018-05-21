@@ -27035,21 +27035,7 @@ var FooterSection = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'column column1 flex-box-16p' },
-                            _react2.default.createElement('img', { id: 'logo-2', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png', alt: '' }),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'social m-t-20' },
-                                _react2.default.createElement(
-                                    'a',
-                                    { className: 'button-style4 type2 m-r-20' },
-                                    _react2.default.createElement('img', { className: 'icon svg', src: '../../app/assets/images/icon-facebook.svg', alt: '' })
-                                ),
-                                _react2.default.createElement(
-                                    'a',
-                                    { className: 'button-style4 type2' },
-                                    _react2.default.createElement('img', { className: 'icon svg', src: '../../app/assets/images/icon-twitter.svg', alt: '' })
-                                )
-                            )
+                            _react2.default.createElement('img', { id: 'logo-2', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo2.png', alt: '' })
                         ),
                         _react2.default.createElement(
                             'div',
