@@ -3,10 +3,12 @@ import React from 'react';
 class AboutHeader extends React.Component {
   render() {
     return (
-        <section className="header-5 flex flex-align-center o-hidden p-x-20 min-h-350" data-cu-height="45%" style={{ backgroundImage:"url()"}}>
+        <section className="header-5 flex flex-align-center o-hidden p-x-20 min-h-350" data-cu-height="45%" style={{ backgroundImage:"url(https://github.com/mvaleriani/Shallow/blob/master/docs/app/assets/images/MichaelCoding.png?raw=true)", minHeight:"648px", position:"relative"}}>
+          
+            <div id="nav-shadow"></div>
           <video className="video-bg" src="../../app/assets/videos/video2.mp4" autoPlay loop ></video>
-            <img id="dev-cover" src="https://github.com/mvaleriani/Shallow/blob/master/docs/app/assets/images/MichaelCoding.png?raw=true" className="cover" />
-          <div className="color7" >
+            {/* <img id="dev-cover" src="https://github.com/mvaleriani/Shallow/blob/master/docs/app/assets/images/MichaelCoding.png?raw=true" className="cover" style={{width: "100%"}}/> */}
+          <div className="color7" style={{position: "relative"}}>
               <div>
                   {/* <div className="line1 bg1 m-l-5 m-b-10 absolute cu-tweenmax"
                       data-a-init="x:300, alpha:0, scaleX:1"
