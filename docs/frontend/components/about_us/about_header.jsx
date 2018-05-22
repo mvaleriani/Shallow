@@ -3,7 +3,7 @@ import React from 'react';
 class AboutHeader extends React.Component {
   render() {
     return (
-        <section className="header-5 flex flex-align-center o-hidden p-x-20 min-h-350" data-cu-height="45%" style={{ backgroundImage:"url(https://i.imgur.com/glqKuG1.jpg)", minHeight:"648px", position:"relative"}}>
+        <section className="header-5 flex flex-align-center o-hidden p-x-20 min-h-350" data-cu-height="45%" style={{ backgroundImage: "url(https://i.imgur.com/glqKuG1.jpg)", minHeight: "648px", position: "relative", backgroundRepeat: "no-repeat"}}>
             
             <div id="nav-shadow"></div>
           

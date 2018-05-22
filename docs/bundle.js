@@ -26230,7 +26230,7 @@ var AboutHeader = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "section",
-                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(https://i.imgur.com/glqKuG1.jpg)", minHeight: "648px", position: "relative" } },
+                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(https://i.imgur.com/glqKuG1.jpg)", minHeight: "648px", position: "relative", backgroundRepeat: "no-repeat" } },
                 _react2.default.createElement("div", { id: "nav-shadow" }),
                 _react2.default.createElement(
                     "div",
