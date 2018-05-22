@@ -222,7 +222,14 @@ p{ padding:0; }
 #shallow-graph{
     width: inherit;
 }
-
+#dev-cover{
+    height: inherit;
+}
+#dev-title{
+    background-color: #11264050;
+    padding: 10px;
+    border-radius: 3px;
+}
 
 #keras-icon{box-shadow:0px 8px 20px #96040e;}
 #keras-img{height: 73px; left:-1px;}
