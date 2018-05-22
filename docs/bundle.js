@@ -26202,7 +26202,7 @@ exports.default = About;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26220,40 +26220,39 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var AboutHeader = function (_React$Component) {
-    _inherits(AboutHeader, _React$Component);
+  _inherits(AboutHeader, _React$Component);
 
-    function AboutHeader() {
-        _classCallCheck(this, AboutHeader);
+  function AboutHeader() {
+    _classCallCheck(this, AboutHeader);
 
-        return _possibleConstructorReturn(this, (AboutHeader.__proto__ || Object.getPrototypeOf(AboutHeader)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (AboutHeader.__proto__ || Object.getPrototypeOf(AboutHeader)).apply(this, arguments));
+  }
+
+  _createClass(AboutHeader, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "section",
+        { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(https://i.imgur.com/glqKuG1.jpg)", minHeight: "648px", position: "relative" } },
+        _react2.default.createElement("div", { id: "nav-shadow" }),
+        _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
+        _react2.default.createElement(
+          "div",
+          { className: "color7", style: { position: "relative" } },
+          _react2.default.createElement(
+            "h1",
+            { id: "dev-title", className: "f-extra-light t-60 l-h-100 t-center cu-tweenmax",
+              "data-a-init": "alpha:0",
+              "data-a-to": "alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
+            },
+            "Our Team Runs Deep"
+          )
+        )
+      );
     }
+  }]);
 
-    _createClass(AboutHeader, [{
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "section",
-                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(https://github.com/mvaleriani/Shallow/blob/master/docs/app/assets/images/MichaelCoding.jpg?raw=true)", minHeight: "648px", position: "relative" } },
-                _react2.default.createElement("div", { id: "nav-shadow" }),
-                _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
-                _react2.default.createElement(
-                    "div",
-                    { className: "color7", style: { position: "relative" } },
-                    _react2.default.createElement("div", null),
-                    _react2.default.createElement(
-                        "h1",
-                        { id: "dev-title", className: "f-extra-light t-60 l-h-100 t-center cu-tweenmax",
-                            "data-a-init": "alpha:0",
-                            "data-a-to": "alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
-                        },
-                        "Our Team Runs Deep"
-                    )
-                )
-            );
-        }
-    }]);
-
-    return AboutHeader;
+  return AboutHeader;
 }(_react2.default.Component);
 
 exports.default = AboutHeader;
