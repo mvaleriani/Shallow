@@ -28,7 +28,7 @@ class DescriptionSection extends React.Component {
 
               <h3 className="t-60 f-extra-light l-h-normal m-t-25">Fighting AI with AI</h3>
               <p className="t-18 m-t-30 l-h-170">
-                Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using data collected by our team and the architecture of the VGG16 model, a deep-learning neural network specializing in classification, Shallow distinguishes between authentic and fake videos, with the top images showing faked samples, and the bottom showing real people. 
+                Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using data collected by our team and the architecture of the VGG16 model, a deep-learning neural network specializing in classification, Shallow distinguishes between authentic and fake videos, with the top images showing faked samples, and the bottom showing real people.
               </p>
             </div>
           </div>
@@ -41,7 +41,7 @@ class DescriptionSection extends React.Component {
             data-a-gap="100"
             >
             {/* <div className="bg-stretch cover" style={{backgroundImage:'url(../../app/assets/images/shadow.png)', marginLeft:'-160px', marginBottom:'-125px'}}></div> */}
-            <img className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png" style={{height: '600px'}}/>
+            <img className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/4faces.png" style={{height: '600px'}}/>
             {/* <div className="bg-cover cover" style={{backgroundImage:'url(../../app/assets/images/heatmaps.png)'}}></div> */}
             {/* <div className="cover bg-black"></div> */}
             {/* <div className="video-play"> */}
