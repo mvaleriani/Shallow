@@ -24718,8 +24718,8 @@ var Navbar = function (_React$Component) {
             'div',
             { id: 'menu', className: 'content max-width flex flex-justify-between flex-align-center p-x-40 ' },
             _react2.default.createElement(
-              'a',
-              { className: 'logo main', href: 'index.html' },
+              _reactRouterDom.Link,
+              { className: 'logo main', to: '/' },
               _react2.default.createElement('img', { id: 'nav-logo', className: '', src: 'https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo.png', alt: 'logo' })
             ),
             _react2.default.createElement(

@@ -9,10 +9,10 @@ class Navbar extends React.Component {
       <div>
         <div className="main-menu-1 main-menu " >
           <div id="menu" className="content max-width flex flex-justify-between flex-align-center p-x-40 ">
-            <a className="logo main" href="index.html">
-              {/* <img id="main-shallow-icon" src="../../app/assets/images/IconWShadow.png" /> */}
+            <Link className="logo main" to="/">
+              
               <img id="nav-logo" className="" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/shallowLogo.png" alt="logo" />
-            </a>
+            </Link>
             <ul className="buttons v-a-m" >
               <li>
                 
