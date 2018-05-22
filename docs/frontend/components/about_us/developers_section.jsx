@@ -26,14 +26,14 @@ class DeveloperSection extends React.Component {
                   <div className="content box-shadow7">
                         <div className="image bg-cover" style={{ backgroundImage:"url(https://i.imgur.com/YJ0CLhQ.jpg)"}}></div>
                         <p className="t-18 f-bold wrap">Ozzy Paniagua | <span className="f-light italic">Software Engineer</span></p>
-                      <p className="text wrap">Ozzy is a someone with a deep appreciation for the process of learning. The drive to expand his horizons have pushed him into the ever adapting field of web development. This path lead him to learning JavaScript, Ruby, HTML and CSS, but to go above and beyond that was his main goal. Towards that goal, he has begun to practice Python and Machine Learning, a deep field, rich with unexplored potential. But no great endeavour was completed alone, and Ozzy thrives when working with others in a collaborative setting, having prior education in Management he knows, the true strength of any developer is only revealed when surrounded by similarly motivated individuals.</p>
+                      <p className="text wrap">Ozzy is someone with a deep appreciation for the process of learning. The drive to expand his horizons have pushed him into the ever adapting field of web development. This path lead him to learning JavaScript, Ruby, HTML and CSS, but to go above and beyond that was his main goal. Towards that goal, he has begun to practice Python and Machine Learning, a deep field, rich with unexplored potential. But no great endeavour was completed alone, and Ozzy thrives when working with others in a collaborative setting, having prior education in Management he knows, the true strength of any developer is only revealed when surrounded by similarly motivated individuals.</p>
                   </div>
               </div>
               <div className="item inline-element p-t-125 p-x-40" >
                   <div className="content box-shadow7">
                         <div className="image bg-cover" style={{ backgroundImage:"url(https://i.imgur.com/h8u751b.jpg)"}}></div>
                         <p className="t-18 f-bold wrap">Michael Valeriani | <span className="f-light italic">Software Engineer</span></p>
-                      <p className="text wrap">WOW this is crazy, is insane have this high-quality Website on my hands at an affordable price, completely worth it, now my business looks like a huge company with this sleek User interface.</p>
+                        <p className="text wrap" >Michael is a self-driven, lifelong learner with a passion for logic and discrete systems. He believes the best solutions are ones that are both efficient and optimized for the user’s experience. At the end of the day it’s people who interact with code, whether it be the consumer or another developer. After being fascinated by Machine Learning for years Michael stepped into the field after learning of <a href="https://en.wikipedia.org/wiki/Deepfake" style={{ color: "#199B99", textDecoration: "underline" }}>Deepfake</a>. He recognized that for AI to make a positive impact on society it would need to focus more on Ethics. With that in mind he formed a team of developers and dove into the project now known as Shallow.</p>
                   </div>
               </div>
               {/* <div className="item inline-element p-t-125 p-x-40" >
@@ -47,6 +47,7 @@ class DeveloperSection extends React.Component {
             <div className="list inline-wrap now nowrap m-t-70-" style={{marginTop:'20px'}}
 
             >
+            <a href=""></a>
                 <div className="item inline-element p-t-125 p-x-40" >
                     <div className="content box-shadow7">
                         <div className="image bg-cover" style={{ backgroundImage: "url(https://i.imgur.com/IStPhWy.jpg)" }}></div>
