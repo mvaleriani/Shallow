@@ -6,12 +6,12 @@ class SellingPointsSection extends React.Component {
         <div>
             <section className="content-2 flex max-width m-t-70 m-w p-x-20" >
             <div className="column column1 flex-grow" >
-                        <div id="graph-container" className="image bg-cover cu-tweenmax c-a-t-y " 
+                        <div id="graph-container" className="image bg-cover cu-tweenmax c-a-t-y "
                 data-a-init="alpha:0"
                 data-a-to="alpha:1, delay:0.3, duration:1.5"
                 data-a-gap="200"
                 >
-                <img id="shallow-graph" className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png" alt=""/>    
+                <img id="shallow-graph" className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/val_acc.png" alt=""/>
             </div>
             </div>
             <div className="column column2 flex-box-60p p-x-100 p-t-275 p-b-250" >
@@ -37,15 +37,13 @@ class SellingPointsSection extends React.Component {
                     </div>
                 </div>
                 <p className="t-18 m-t-30 l-h-170" >
-                    By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. 
-                    However, it should be noted that our model was trained on available data and may not be fully representative for everyone. 
-                    With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow.
+                    By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. However, it should be noted that our model was trained on available data and may not be fully accurate in every use case. With that in mind, we aspire to continue teaching and developing our model if the menace of DeepFakes continues.
                 </p>
 
                 </div>
             </div>
                 </section>
-    
+
             <section className="content-10 flex">
                     <div className="image box-shadow7 cover bg-cover absolute cu-tweenmax" style={{ backgroundImage:'url(https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/df_faces.png)', left:'32%', height: '700px', marginTop: '320px', marginLeft:'50px'}}
                     data-a-init="alpha:0"
@@ -70,14 +68,7 @@ class SellingPointsSection extends React.Component {
                                 </div>
                             </div>
                             <p className="t-18 m-t-30 l-h-170" >
-                                Deepfakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. 
-                                Surfacing in 2017, "deepfaking" is typically used in creating fake celebrity pornographic videos. 
-                                Deepfakes have produced numerous scandals for the affected celebrities as well as various individuals who were targets of "revenge porn". 
-                                Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar)
-                                <br/>
-                                <br/>
-                                Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguish between real and 
-                                faked videos, thereby protecting the reputation of anyone whos likeness was used without consent.
+                                Deepfakes are digital impersonation videos using deep learning technologies to copy a person's likeness onto another’s body. Surfacing in 2017, "deepfaking" is typically used in creating fake celebrity pornographic videos. Deepfakes have produced numerous scandals for the affected celebrities as well as various individuals who were targets of "revenge porn". Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar).
                             </p>
                         </div>
 
@@ -107,9 +98,7 @@ class SellingPointsSection extends React.Component {
                             </div>
                         </div>
                         <p className="t-18 m-t-30 l-h-170" >
-                            As our goal is to just create a way to determine the authenticity of videos, 
-                            we encourage anyone who has need to use our application. 
-                            If you are interested in commercially using our work, please reach out to us.
+                            As our goal is to create a reliable way to determine the authenticity of videos, we encourage anyone who has need to use our application. Our further plans are to expand accepted file-types, provide analytics on submitted files, and a chrome extension version. This type of program is necessary in any website that provides user hosted content, where DeepFakes can slip into the proper community content.
                         </p>
                     </div>
 

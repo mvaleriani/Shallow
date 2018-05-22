@@ -20,7 +20,7 @@ class DescriptionSection extends React.Component {
                 data-a-to="alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
                 >What is Shallow?</h2>
             </div>
-           
+
             <div className="cu-tweenmax"
               data-a-init="x:-50, alpha:0"
               data-a-to="x:0, alpha:1, duration:0.9, delay:0.6, ease:Cubic.easeOut"
@@ -28,8 +28,7 @@ class DescriptionSection extends React.Component {
 
               <h3 className="t-60 f-extra-light l-h-normal m-t-25">Fighting AI with AI</h3>
               <p className="t-18 m-t-30 l-h-170">
-                Shallow is a deep learning architecture designed to detect Deepfake video alterations.
-                Created using only our data and the architecture of the VGG16 model, a deep-learning neural network specializing in classification, Shallow distinguishes between authentic and fake videos. 
+                Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using data collected by our team and the architecture of the VGG16 model, a deep-learning neural network specializing in classification, Shallow distinguishes between authentic and fake videos. In the example the top images show manipulated images, with a blue-green heatmap overlayed indicating increased attention from the AI.
               </p>
             </div>
           </div>
@@ -42,7 +41,7 @@ class DescriptionSection extends React.Component {
             data-a-gap="100"
             >
             {/* <div className="bg-stretch cover" style={{backgroundImage:'url(../../app/assets/images/shadow.png)', marginLeft:'-160px', marginBottom:'-125px'}}></div> */}
-            <img className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png" style={{height: '600px'}}/>
+            <img className="box-shadow7" src="https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/4faces.png" style={{height: '600px'}}/>
             {/* <div className="bg-cover cover" style={{backgroundImage:'url(../../app/assets/images/heatmaps.png)'}}></div> */}
             {/* <div className="cover bg-black"></div> */}
             {/* <div className="video-play"> */}

@@ -25485,7 +25485,7 @@ var DescriptionSection = function (_React$Component) {
               _react2.default.createElement(
                 "p",
                 { className: "t-18 m-t-30 l-h-170" },
-                "Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using only our data and the architecture of the VGG16 model, a deep-learning neural network specializing in classification, Shallow distinguishes between authentic and fake videos."
+                "Shallow is a deep learning architecture designed to detect Deepfake video alterations. Created using data collected by our team and the architecture of the VGG16 model, a deep-learning neural network specializing in classification, Shallow distinguishes between authentic and fake videos. In the example the top images show manipulated images, with a blue-green heatmap overlayed indicating increased attention from the AI."
               )
             )
           )
@@ -25500,7 +25500,7 @@ var DescriptionSection = function (_React$Component) {
               "data-a-to": "y:0, alpha:.7, duration:0.8",
               "data-a-gap": "100"
             },
-            _react2.default.createElement("img", { className: "box-shadow7", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/heatmaps.png", style: { height: '600px' } })
+            _react2.default.createElement("img", { className: "box-shadow7", src: "https://raw.githubusercontent.com/mvaleriani/Shallow/master/docs/app/assets/images/4faces.png", style: { height: '600px' } })
           )
         )
       );
@@ -25743,7 +25743,7 @@ var SellingPointsSection = function (_React$Component) {
                             _react2.default.createElement(
                                 "p",
                                 { className: "t-18 m-t-30 l-h-170" },
-                                "By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. However, it should be noted that our model was trained on available data and may not be fully representative for everyone. With that in mind, we aspire to continue teaching and developing our model if the current trend continues to grow."
+                                "By fine-tuning the VGG16 model, we achieved 99% accuracy on Deep Fake detection. However, it should be noted that our model was trained on available data and may not be fully accurate in every use case. With that in mind, we aspire to continue teaching and developing our model if the menace of DeepFakes continues."
                             )
                         )
                     )
@@ -25791,10 +25791,7 @@ var SellingPointsSection = function (_React$Component) {
                             _react2.default.createElement(
                                 "p",
                                 { className: "t-18 m-t-30 l-h-170" },
-                                "Deepfakes are digital impersonation videos using deep learning to copy a person's likeness onto faces in videos. Surfacing in 2017, \"deepfaking\" is typically used in creating fake celebrity pornographic videos. Deepfakes have produced numerous scandals for the affected celebrities as well as various individuals who were targets of \"revenge porn\". Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar)",
-                                _react2.default.createElement("br", null),
-                                _react2.default.createElement("br", null),
-                                "Our goal with this project was to train a Convolutional Neural Network (CNN) to distinguish between real and faked videos, thereby protecting the reputation of anyone whos likeness was used without consent."
+                                "Deepfakes are digital impersonation videos using deep learning technologies to copy a person's likeness onto another\u2019s body. Surfacing in 2017, \"deepfaking\" is typically used in creating fake celebrity pornographic videos. Deepfakes have produced numerous scandals for the affected celebrities as well as various individuals who were targets of \"revenge porn\". Prior to our software, the only the method of determining a video's deepfake status was human vision (detecting artifacts is possible if the deepfake quality is subpar)."
                             )
                         )
                     )
@@ -25839,7 +25836,7 @@ var SellingPointsSection = function (_React$Component) {
                         _react2.default.createElement(
                             "p",
                             { className: "t-18 m-t-30 l-h-170" },
-                            "As our goal is to just create a way to determine the authenticity of videos, we encourage anyone who has need to use our application. If you are interested in commercially using our work, please reach out to us."
+                            "As our goal is to create a reliable way to determine the authenticity of videos, we encourage anyone who has need to use our application. Our further plans are to expand accepted file-types, provide analytics on submitted files, and a chrome extension version. This type of program is necessary in any website that provides user hosted content, where DeepFakes can slip into the proper community content."
                         )
                     ),
                     _react2.default.createElement(
