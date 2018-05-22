@@ -26233,7 +26233,7 @@ var AboutHeader = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "section",
-                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(https://github.com/mvaleriani/Shallow/blob/master/docs/app/assets/images/MichaelCoding.png?raw=true)", minHeight: "648px", position: "relative" } },
+                { className: "header-5 flex flex-align-center o-hidden p-x-20 min-h-350", "data-cu-height": "45%", style: { backgroundImage: "url(https://github.com/mvaleriani/Shallow/blob/master/docs/app/assets/images/MichaelCoding.jpg?raw=true)", minHeight: "648px", position: "relative" } },
                 _react2.default.createElement("div", { id: "nav-shadow" }),
                 _react2.default.createElement("video", { className: "video-bg", src: "../../app/assets/videos/video2.mp4", autoPlay: true, loop: true }),
                 _react2.default.createElement(
